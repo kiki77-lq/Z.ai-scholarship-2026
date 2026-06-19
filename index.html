@@ -34,8 +34,9 @@
     padding:0 16px 0 24px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,0.08);
     border-radius:999px;background:rgba(7,10,18,0.6);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
     box-shadow:0 20px 80px rgba(0,0,0,0.2);transition:background .25s ease,border-color .25s ease,box-shadow .25s ease;}
-  .nav-brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:600;letter-spacing:0.01em;font-size:15px;white-space:nowrap;}
-  .nav-brand svg{display:block;border-radius:7px;}
+  .nav-brand{display:flex;align-items:center;gap:8px;color:#fff;font-weight:600;letter-spacing:0.005em;font-size:15px;white-space:nowrap;text-decoration:none;}
+  .nav-brand svg{display:block;border-radius:6px;}
+  .nav-brand .brand-txt{font-weight:600;}
   .nav-links{display:flex;gap:34px;}
   .nav-links span{color:rgba(255,255,255,0.68);font-size:14px;cursor:pointer;transition:color .22s ease;}
   .nav-links span:hover{color:#fff;}
@@ -66,8 +67,8 @@
   .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:360px;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 0%,rgba(5,7,13,0.35) 38%,rgba(5,7,13,0.8) 74%,#05070d 100%);}
   .hero-content{position:relative;z-index:2;width:min(calc(100vw - 96px),1320px);margin:0 auto;}
   .hero-eyebrow{color:rgba(255,255,255,0.42);font-size:15px;margin:0 0 24px;letter-spacing:0.04em;}
-  .hero-title{margin:0;max-width:760px;font-size:clamp(76px,8vw,128px);line-height:0.96;font-weight:450;letter-spacing:-0.055em;color:#fff;}
-  .hero-title span{display:block;}
+  /* Hero 主标题：桌面端单行、克制字号；移动端在媒体查询里允许换行 */
+  .hero-title{margin:0;font-size:clamp(46px,6.2vw,104px);line-height:1.04;font-weight:600;letter-spacing:-0.015em;color:#fff;white-space:nowrap;}
   .hero-slogan{margin:34px 0 0;color:rgba(255,255,255,0.68);font-size:20px;font-style:italic;}
   .hero-copy{max-width:620px;margin:28px 0 0;color:rgba(255,255,255,0.68);font-size:17px;line-height:1.85;}
   .hero-cta{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
@@ -83,11 +84,13 @@
   @keyframes scrollLine{0%,100%{transform:scaleX(0.45);opacity:0.4;}50%{transform:scaleX(1);opacity:0.9;}}
 
   /* ===== intro narrative ===== */
-  .intro{width:min(calc(100vw - 96px),900px);margin:0 auto;padding:150px 0 140px;text-align:center;}
-  .intro p{margin:0 0 26px;font-size:clamp(24px,2.6vw,34px);line-height:1.6;font-weight:450;letter-spacing:-0.02em;}
-  .intro p.dim{font-size:clamp(20px,2vw,26px);}
+  .intro{width:min(calc(100vw - 96px),920px);margin:0 auto;padding:140px 0 130px;text-align:center;}
+  /* 居中三段式叙事：克制字号、稳定行高、balance 断行避免孤字掉行 */
+  .intro p{margin:0 auto 28px;font-size:clamp(20px,2.05vw,26px);line-height:1.7;font-weight:400;letter-spacing:0;color:rgba(255,255,255,0.9);text-wrap:balance;}
+  .intro p.lead{max-width:880px;}
+  .intro p.emph{margin:48px auto 0;max-width:760px;font-size:clamp(26px,2.7vw,36px);line-height:1.5;font-weight:450;letter-spacing:-0.01em;}
   /* 滚动驱动文字高亮：初始低透明灰，随滚动逐词点亮 */
-  .st-word{color:rgba(255,255,255,0.16);transition:color .35s cubic-bezier(0.2,0.8,0.2,1);}
+  .st-word{color:rgba(255,255,255,0.22);transition:color .4s cubic-bezier(0.2,0.8,0.2,1);}
   .st-word.lit{color:rgba(255,255,255,0.92);}
   .st-word.accent.lit{color:#76a7ff;}
 
@@ -196,7 +199,7 @@
     .nav{width:calc(100vw - 32px) !important;top:16px !important;height:58px !important;}
     .hero{min-height:760px;padding-top:128px;}
     .hero-content{width:calc(100vw - 40px) !important;}
-    .hero-title{font-size:58px !important;}
+    .hero-title{font-size:clamp(40px,9vw,58px) !important;white-space:normal !important;}
     .sec{width:calc(100vw - 40px) !important;padding:84px 0 !important;}
     .guide-card{grid-template-columns:1fr !important;gap:40px !important;padding:40px 30px !important;}
     .timeline{grid-template-columns:1fr !important;border-top:none !important;border-left:1px solid rgba(255,255,255,0.1) !important;padding-left:24px;}
@@ -234,7 +237,7 @@
         <polygon fill="#FFFFFF" points="751.28,286.53 449.74,713.72 248.72,713.72 550.26,286.53"/>
         <path fill="#FFFFFF" d="M487.44,713.72l35.43-50.26c5.53-7.79,14.57-12.56,24.37-12.56h191.48v62.82H487.44z"/>
       </svg>
-      <span>Z.AI Scholarship</span>
+      <span class="brand-txt">.AI Scholarship</span>
     </div>
     <nav class="nav-links">
       <span data-nav="intro">项目理念</span>
@@ -267,9 +270,8 @@
     <div class="hero-mask"></div>
     <div class="hero-content">
       <p class="hero-eyebrow" data-reveal>Z.AI Scholarship 2026</p>
-      <h1 class="hero-title" data-reveal><span>问道 AGI，</span><span>同行未来</span></h1>
+      <h1 class="hero-title" data-reveal>问道 AGI，同行未来</h1>
       <p class="hero-slogan" data-reveal>Toward AGI, with the next generation.</p>
-      <p class="hero-copy" data-reveal>Z.AI Scholarship 是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，旨在激发具备原创精神和创新潜力的青年学者，持续探索人工智能的能力边界，成为推动人工智能研究及其应用技术突破的青年开拓者。</p>
       <div class="hero-cta" data-reveal>
         <a class="btn-lg btn-fill" data-apply href="#">立即申请</a>
         <a class="btn-lg btn-ghost" data-nav="apply" href="#apply">查看申请指南</a>
@@ -280,9 +282,9 @@
 
   <!-- ===== INTRO NARRATIVE ===== -->
   <section class="intro" id="intro" data-intro>
-    <p>Z.AI Scholarship 是智谱面向全球优秀人工智能青年研究者发起的奖学金计划。</p>
-    <p class="dim">项目坚持开放、公益和学术导向原则，不以实习、就业或成果交付作为奖学金发放条件。</p>
-    <p>奖学金不是终点。我们希望寻找的，不只是奖学金获得者，<span class="accent">更是 AGI 道路上的同行者。</span></p>
+    <p class="lead">Z.AI Scholarship 是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，旨在激发具备原创精神和创新潜力的青年学者，持续探索人工智能的能力边界，成为推动人工智能研究及其应用技术突破的青年开拓者。</p>
+    <p>项目坚持开放、公益和学术导向原则，不以实习、就业或成果交付作为奖学金发放条件。</p>
+    <p class="emph">奖学金不是终点。我们希望寻找的，不只是奖学金获得者，<span class="accent">更是 AGI 道路上的同行者。</span></p>
   </section>
 
   <!-- ===== CORE BENEFITS ===== -->
