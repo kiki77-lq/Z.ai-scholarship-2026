@@ -80,7 +80,13 @@ vercel --prod            # 确认无误后生产部署
 
 **方式 B：连接 GitHub 仓库（推荐）**
 
-在 Vercel Dashboard 中 Import Git Repository，选择本仓库，Framework Preset 选 **Other**，Root Directory 指向 `z-ai-scholarship-2026/project`（若仓库根即为该目录则留空）。之后每次 `git push` 自动触发部署。
+在 Vercel Dashboard 中 Import Git Repository，选择本仓库。注意：**本仓库的根目录就是站点目录**（`index.html` 直接位于仓库根），因此设置如下：
+
+- Framework Preset → **Other**
+- Root Directory → **留空 / `./`**（⚠️ 不要填 `z-ai-scholarship-2026/project`，仓库内不存在这层目录，填了会导致 `404: NOT_FOUND`）
+- Build Command / Output Directory / Install Command → **全部留空（不要开启 Override）**
+
+之后每次 `git push` 自动触发部署。
 
 ### 日常更新流程
 
