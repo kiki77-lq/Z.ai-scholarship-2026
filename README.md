@@ -13,7 +13,7 @@
 ```
 z-ai-scholarship-2026/project/        ← 部署根目录
 ├── index.html                        ← 网站入口（自包含）
-├── public/
+├── assets/                           ← 静态资源（刻意不命名为 public，见下方说明）
 │   └── images/
 │       └── z-scholarship-hero-real.png   ← Hero 背景图（被引用）
 ├── vercel.json                       ← Vercel 静态站点配置
@@ -66,6 +66,8 @@ z-ai-scholarship-2026/project/
 ```
 
 纯静态站点，无需 Build Command 与 Output Directory，Vercel 直接托管根目录静态文件。
+
+> ⚠️ **不要把静态资源目录命名为 `public/`**。对无框架（Other）项目，Vercel 会自动把根目录下的 `public/` 当作站点输出目录，导致根目录的 `index.html` 不被托管、访问首页返回 `404: NOT_FOUND`。本项目因此使用 `assets/` 存放资源。
 
 **方式 A：Vercel CLI**
 
