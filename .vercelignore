@@ -1,0 +1,9 @@
+# 与 .gitignore 保持一致，确保 Vercel CLI 直接部署时也不上传内部素材
+.DS_Store
+**/.DS_Store
+.thumbnail
+*.dc.html
+support.js
+screenshots/
+uploads/
+node_modules/
