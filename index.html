@@ -34,9 +34,11 @@
     padding:0 16px 0 24px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,0.08);
     border-radius:999px;background:rgba(7,10,18,0.6);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
     box-shadow:0 20px 80px rgba(0,0,0,0.2);transition:background .25s ease,border-color .25s ease,box-shadow .25s ease;}
-  .nav-brand{display:flex;align-items:center;gap:8px;color:#fff;font-weight:600;letter-spacing:0.005em;font-size:15px;white-space:nowrap;text-decoration:none;}
-  .nav-brand svg{display:block;border-radius:6px;}
-  .nav-brand .brand-txt{font-weight:600;}
+  .nav-brand{display:flex;align-items:center;gap:9px;color:#fff;white-space:nowrap;text-decoration:none;}
+  .nav-brand svg{display:block;border-radius:6px;flex-shrink:0;}
+  .nav-brand .brand-txt{display:flex;flex-direction:column;justify-content:center;line-height:1.12;}
+  .nav-brand .brand-cn{font-size:14px;font-weight:600;color:#fff;letter-spacing:0.02em;}
+  .nav-brand .brand-en{font-size:10.5px;font-weight:500;color:rgba(255,255,255,0.52);letter-spacing:0.07em;margin-top:1px;}
   .nav-links{display:flex;gap:34px;}
   .nav-links span{color:rgba(255,255,255,0.68);font-size:14px;cursor:pointer;transition:color .22s ease;}
   .nav-links span:hover{color:#fff;}
@@ -66,10 +68,13 @@
   /* 长渐变收尾：Hero 自然融入下方深色长页，无硬切分界 */
   .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:360px;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 0%,rgba(5,7,13,0.35) 38%,rgba(5,7,13,0.8) 74%,#05070d 100%);}
   .hero-content{position:relative;z-index:2;width:min(calc(100vw - 96px),1320px);margin:0 auto;}
-  .hero-eyebrow{color:rgba(255,255,255,0.42);font-size:15px;margin:0 0 24px;letter-spacing:0.04em;}
-  /* Hero 主标题：桌面端单行、克制字号；移动端在媒体查询里允许换行 */
-  .hero-title{margin:0;font-size:clamp(46px,6.2vw,104px);line-height:1.04;font-weight:600;letter-spacing:-0.015em;color:#fff;white-space:nowrap;}
-  .hero-slogan{margin:34px 0 0;color:rgba(255,255,255,0.68);font-size:20px;font-style:italic;}
+  .hero-eyebrow{color:rgba(255,255,255,0.42);font-size:14px;margin:0 0 20px;letter-spacing:0.08em;}
+  /* Hero 主标题「智谱Z奖学金」：首屏重点，桌面端单行；移动端在媒体查询里允许换行 */
+  .hero-title{margin:0;font-size:clamp(48px,6vw,96px);line-height:1.06;font-weight:600;letter-spacing:-0.01em;color:#fff;white-space:nowrap;}
+  /* 中文 slogan「问道 AGI，同行未来」：小一号，放在主标题下方 */
+  .hero-cn-slogan{margin:22px 0 0;color:rgba(255,255,255,0.82);font-size:clamp(21px,2.3vw,32px);font-weight:450;letter-spacing:0.01em;}
+  /* 英文 slogan：层级最小 */
+  .hero-slogan{margin:14px 0 0;color:rgba(255,255,255,0.5);font-size:16px;font-style:italic;}
   .hero-copy{max-width:620px;margin:28px 0 0;color:rgba(255,255,255,0.68);font-size:17px;line-height:1.85;}
   .hero-cta{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
   .btn-lg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;text-decoration:none;
@@ -84,11 +89,9 @@
   @keyframes scrollLine{0%,100%{transform:scaleX(0.45);opacity:0.4;}50%{transform:scaleX(1);opacity:0.9;}}
 
   /* ===== intro narrative ===== */
-  .intro{width:min(calc(100vw - 96px),920px);margin:0 auto;padding:140px 0 130px;text-align:center;}
-  /* 居中三段式叙事：克制字号、稳定行高、balance 断行避免孤字掉行 */
-  .intro p{margin:0 auto 28px;font-size:clamp(20px,2.05vw,26px);line-height:1.7;font-weight:400;letter-spacing:0;color:rgba(255,255,255,0.9);text-wrap:balance;}
-  .intro p.lead{max-width:880px;}
-  .intro p.emph{margin:48px auto 0;max-width:760px;font-size:clamp(26px,2.7vw,36px);line-height:1.5;font-weight:450;letter-spacing:-0.01em;}
+  .intro{width:min(calc(100vw - 96px),900px);margin:0 auto;padding:150px 0 140px;text-align:center;}
+  /* 项目简介：单段居中、加大行间距、字形更规整、balance 断行避免孤字掉行 */
+  .intro p.lead{margin:0 auto;max-width:860px;font-size:clamp(20px,2vw,25px);line-height:1.95;font-weight:400;letter-spacing:0.01em;color:rgba(255,255,255,0.9);text-wrap:balance;}
   /* 滚动驱动文字高亮：初始低透明灰，随滚动逐词点亮 */
   .st-word{color:rgba(255,255,255,0.22);transition:color .4s cubic-bezier(0.2,0.8,0.2,1);}
   .st-word.lit{color:rgba(255,255,255,0.92);}
@@ -129,6 +132,10 @@
   .mat-item:last-child{border-bottom:none;}
   .mat-item svg{flex-shrink:0;margin-top:3px;}
   .mat-item span{font-size:15.5px;color:rgba(255,255,255,0.85);line-height:1.5;}
+  .mat-intro{color:rgba(255,255,255,0.55);font-size:14px;margin:0 0 8px;}
+  .mat-sub{margin:8px 0 0 32px;display:flex;flex-direction:column;gap:7px;}
+  .mat-sub span{font-size:14px;color:rgba(255,255,255,0.62);line-height:1.4;position:relative;padding-left:14px;}
+  .mat-sub span::before{content:"";position:absolute;left:0;top:8px;width:4px;height:4px;border-radius:999px;background:rgba(118,167,255,0.6);}
   .guide-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;align-items:center;}
   .guide-actions .btn-lg{height:50px;}
   .pending{display:inline-flex;align-items:center;height:50px;padding:0 22px;border-radius:999px;font-size:14px;color:rgba(255,255,255,0.5);
@@ -166,9 +173,10 @@
   .faq-a-inner{padding:0 0 26px;color:rgba(255,255,255,0.68);font-size:15px;line-height:1.85;max-width:780px;}
 
   /* ===== contact cta ===== */
-  .cta{width:min(calc(100vw - 96px),1180px);margin:0 auto;padding:96px 0 120px;text-align:center;}
-  .cta h2{margin:0 0 18px;font-size:clamp(34px,4vw,60px);line-height:1.05;font-weight:450;letter-spacing:-0.04em;}
-  .cta p{color:rgba(255,255,255,0.68);font-size:17px;line-height:1.7;margin:0 auto 38px;max-width:580px;}
+  .cta{width:min(calc(100vw - 96px),1180px);margin:0 auto;padding:110px 0 120px;text-align:center;}
+  /* 底部品牌落款（克制，非强 CTA），与 Header 上下呼应 */
+  .signoff-cn{font-size:clamp(28px,3.2vw,44px);font-weight:600;letter-spacing:-0.01em;color:#fff;line-height:1.1;}
+  .signoff-en{margin-top:10px;font-size:clamp(14px,1.4vw,17px);font-weight:500;letter-spacing:0.16em;color:rgba(255,255,255,0.5);}
 
   /* ===== footer ===== */
   .footer{border-top:1px solid rgba(255,255,255,0.07);background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.35) 100%);}
@@ -237,10 +245,13 @@
         <polygon fill="#FFFFFF" points="751.28,286.53 449.74,713.72 248.72,713.72 550.26,286.53"/>
         <path fill="#FFFFFF" d="M487.44,713.72l35.43-50.26c5.53-7.79,14.57-12.56,24.37-12.56h191.48v62.82H487.44z"/>
       </svg>
-      <span class="brand-txt">.AI Scholarship</span>
+      <span class="brand-txt">
+        <span class="brand-cn">智谱Z奖学金</span>
+        <span class="brand-en">Z.AI Scholarship</span>
+      </span>
     </div>
     <nav class="nav-links">
-      <span data-nav="intro">项目理念</span>
+      <span data-nav="intro">项目简介</span>
       <span data-nav="benefits">核心权益</span>
       <span data-nav="apply">申请指南</span>
       <span data-nav="timeline">评审流程</span>
@@ -255,7 +266,7 @@
     </div>
   </header>
   <div class="mobile-menu" id="mobileMenu">
-    <span data-nav="intro">项目理念</span>
+    <span data-nav="intro">项目简介</span>
     <span data-nav="benefits">核心权益</span>
     <span data-nav="apply">申请指南</span>
     <span data-nav="timeline">评审流程</span>
@@ -270,7 +281,8 @@
     <div class="hero-mask"></div>
     <div class="hero-content">
       <p class="hero-eyebrow" data-reveal>Z.AI Scholarship 2026</p>
-      <h1 class="hero-title" data-reveal>问道 AGI，同行未来</h1>
+      <h1 class="hero-title" data-reveal>智谱Z奖学金</h1>
+      <p class="hero-cn-slogan" data-reveal>问道 AGI，同行未来</p>
       <p class="hero-slogan" data-reveal>Toward AGI, with the next generation.</p>
       <div class="hero-cta" data-reveal>
         <a class="btn-lg btn-fill" data-apply href="#">立即申请</a>
@@ -282,9 +294,7 @@
 
   <!-- ===== INTRO NARRATIVE ===== -->
   <section class="intro" id="intro" data-intro>
-    <p class="lead">Z.AI Scholarship 是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，旨在激发具备原创精神和创新潜力的青年学者，持续探索人工智能的能力边界，成为推动人工智能研究及其应用技术突破的青年开拓者。</p>
-    <p>项目坚持开放、公益和学术导向原则，不以实习、就业或成果交付作为奖学金发放条件。</p>
-    <p class="emph">奖学金不是终点。我们希望寻找的，不只是奖学金获得者，<span class="accent">更是 AGI 道路上的同行者。</span></p>
+    <p class="lead">智谱Z奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，旨在激发具备原创精神和创新潜力的青年学者，持续探索人工智能的能力边界，成为推动人工智能研究及其应用技术突破的青年开拓者。</p>
   </section>
 
   <!-- ===== CORE BENEFITS ===== -->
@@ -295,29 +305,29 @@
     </div>
     <div class="benefits-row" data-stagger>
       <div class="benefit" data-reveal>
-        <p class="benefit-label">智谱奖学金</p>
-        <div class="benefit-value"><span data-count="20">20</span><span class="unit">万元</span></div>
-        <p class="benefit-desc">科研支持</p>
+        <p class="benefit-label">智谱Z奖学金</p>
+        <div class="benefit-value"><span data-count="20">20</span><span class="unit">万元人民币</span></div>
+        <p class="benefit-desc">科研支持与前沿探索</p>
       </div>
       <div class="benefit" data-reveal>
         <p class="benefit-label">导师奖励</p>
-        <div class="benefit-value"><span data-count="10">10</span><span class="unit">万元</span></div>
-        <p class="benefit-desc">导师奖励</p>
+        <div class="benefit-value"><span data-count="10">10</span><span class="unit">万元人民币</span></div>
+        <p class="benefit-desc">人才培养的持续投入</p>
       </div>
       <div class="benefit" data-reveal>
-        <p class="benefit-label">Coding Plan 支持</p>
-        <div class="benefit-value is-text">Coding&nbsp;Plan Max</div>
-        <p class="benefit-desc">科研开发支持</p>
+        <p class="benefit-label">Coding Plan</p>
+        <div class="benefit-value is-text">GLM Coding&nbsp;Plan Max</div>
+        <p class="benefit-desc">年包，每位获奖同学与导师均可获得</p>
       </div>
       <div class="benefit" data-reveal>
         <p class="benefit-label">Scholars Club</p>
-        <div class="benefit-value is-text">Z.AI&nbsp;Scholar</div>
-        <p class="benefit-desc">官方认证与青年研究者网络</p>
+        <div class="benefit-value is-text">Z.AI&nbsp;Scholars Club</div>
+        <p class="benefit-desc">青年研究者网络</p>
       </div>
       <div class="benefit" data-reveal>
-        <p class="benefit-label">未来合作</p>
-        <div class="benefit-value is-text">长期机会</div>
-        <p class="benefit-desc">联合研究与岗位机会</p>
+        <p class="benefit-label">共研通道</p>
+        <div class="benefit-value is-text">长期连接</div>
+        <p class="benefit-desc">联合研究与开放课题机会</p>
       </div>
     </div>
     <p class="benefits-note" data-reveal>说明：奖学金不附带实习、就业或成果交付要求。后续合作遵循双向选择原则，不作为获奖条件。</p>
@@ -328,24 +338,22 @@
     <div class="guide-head" data-reveal>
       <p class="eyebrow">APPLICATION GUIDE</p>
       <h2 class="h2">申请指南</h2>
-      <p class="guide-intro">申请人需通过 Z.AI Scholarship 官方申请通道提交材料。具体申请链接及提交方式将在项目正式发布时公布。</p>
     </div>
     <div class="guide-card" data-reveal>
       <div class="guide-col">
         <div class="guide-col-title"><span class="cn">申请条件</span><span class="en">Eligibility</span></div>
-        <div class="elig-item"><div class="elig-label">申请对象</div><div class="elig-value">面向全球高校及研究机构的优秀青年研究者，国内外高校在读学生均可申请。</div></div>
-        <div class="elig-item"><div class="elig-label">学历阶段</div><div class="elig-value">项目以博士生为主要申请对象，特别优秀的硕士生也可申请。</div></div>
+        <div class="elig-item"><div class="elig-label">申请对象</div><div class="elig-value">全球高校及研究机构在读学生。</div></div>
+        <div class="elig-item"><div class="elig-label">学历阶段</div><div class="elig-value">硕士、博士研究生均可申请。</div></div>
         <div class="elig-item"><div class="elig-label">毕业时间</div><div class="elig-value">预计于 2027 年 6 月及以后毕业。</div></div>
-        <div class="elig-item"><div class="elig-label">研究方向</div><div class="elig-value">人工智能、计算机科学、基础科学及 AGI 相关前沿方向。</div></div>
+        <div class="elig-item"><div class="elig-label">研究方向</div><div class="elig-value">大模型、具身智能、通用人工智能、AI for Science 等。</div></div>
         <div class="elig-item"><div class="elig-label">能力要求</div><div class="elig-value">具备较强研究能力、原创潜力，或已取得代表性科研/技术成果。</div></div>
       </div>
       <div class="guide-col">
         <div class="guide-col-title"><span class="cn">申请材料</span><span class="en">Required Materials</span></div>
+        <p class="mat-intro">申请人需提交：</p>
         <div class="mat-list" data-mats></div>
-        <p class="mat-note">推荐信可由申请人随材料提交，也可由推荐人单独发送至项目邮箱。</p>
         <div class="guide-actions">
-          <a class="btn-lg btn-fill" data-apply href="#">进入申请通道</a>
-          <a class="btn-lg btn-ghost" data-guide href="#">查看申请指南</a>
+          <a class="btn-lg btn-fill" data-materials href="#">申请表下载</a>
         </div>
       </div>
     </div>
@@ -356,7 +364,6 @@
     <div class="tl-intro" data-reveal>
       <p class="eyebrow">REVIEW PROCESS</p>
       <h2 class="h2">评审流程</h2>
-      <p>项目采用“材料申报 + 专家函评 + 终审评议”的方式开展评审，每份申请原则上由不少于 3 位专家独立评审。</p>
     </div>
     <div class="timeline" data-reveal data-timeline>
       <div class="tl-line"></div>
@@ -381,10 +388,9 @@
 
   <!-- ===== CONTACT CTA ===== -->
   <section class="cta" id="contact">
-    <div data-reveal>
-      <h2>问道 AGI，同行未来。</h2>
-      <p>如果你愿意围绕重要问题长期探索，欢迎申请 Z.AI Scholarship 2026。</p>
-      <a class="btn-lg btn-fill" data-apply href="#" style="height:54px;padding:0 34px;">立即申请</a>
+    <div class="signoff" data-reveal>
+      <div class="signoff-cn">智谱Z奖学金</div>
+      <div class="signoff-en">Z.AI Scholarship</div>
     </div>
   </section>
 
@@ -400,7 +406,7 @@
           <div>
             <div class="ttl">项目</div>
             <div class="lk">
-              <span data-nav="intro">项目理念</span>
+              <span data-nav="intro">项目简介</span>
               <span data-nav="benefits">核心权益</span>
               <span data-nav="apply">申请条件</span>
               <span data-nav="timeline">评审流程</span>
@@ -452,23 +458,27 @@
   }
   bindLink('[data-apply]', APPLY_URL);
   bindLink('[data-guide]', GUIDE_URL);
+  bindLink('[data-materials]', MATERIALS_URL); // 申请表下载：待补充
 
-  // ===== 申请材料（来源：01 / 04）=====
+  // ===== 申请材料（来源：何芸 12 条修改文档 第 9 条）=====
   var MATERIALS = [
-    'Z.AI Scholarship 2026 申请表',
+    '智谱Z奖学金-Z.AI Scholarship 2026 申请表',
     '个人简历',
-    'Research Statement',
-    'Research Proposal',
-    '代表性成果材料（论文、开源项目、技术报告、系统成果、Benchmark 成绩、专利等）',
-    '1–2 封推荐信',
-    '合作意愿信息表'
+    '未来研究计划',
+    '导师推荐信',
+    { text:'代表性成果证明材料', sub:['论文','开源项目','技术报告','系统成果','专利等'] }
   ];
   var docIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#76a7ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>';
   var matWrap = document.querySelector('[data-mats]');
   if(matWrap){
     MATERIALS.forEach(function(m){
       var d = document.createElement('div'); d.className='mat-item';
-      d.innerHTML = docIcon + '<span>'+m+'</span>';
+      if(typeof m === 'string'){
+        d.innerHTML = docIcon + '<span>'+m+'</span>';
+      } else {
+        var subHtml = m.sub.map(function(s){ return '<span>'+s+'</span>'; }).join('');
+        d.innerHTML = docIcon + '<div><span>'+m.text+'</span><div class="mat-sub">'+subHtml+'</div></div>';
+      }
       matWrap.appendChild(d);
     });
   }

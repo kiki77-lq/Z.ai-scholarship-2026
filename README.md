@@ -110,7 +110,7 @@ git push
 | --- | --- | --- |
 | 申请链接（立即申请 / 进入申请通道） | 已填飞书 wiki 临时链接（`APPLY_URL`） | `index.html` 顶部脚本常量 |
 | 申请指南链接 | 同上（`GUIDE_URL`，与申请链接一致） | `index.html` 顶部脚本常量 |
-| 申请材料包 / 申请表下载链接 | 待补充（`MATERIALS_URL` 为空） | `index.html` 顶部脚本常量 |
+| 申请表下载链接（按钮「申请表下载」） | 待补充（`MATERIALS_URL` 为空）。申请表全称：**Z.AI Scholarship 2026 申请表｜飞书表单配置版** | `index.html` 顶部脚本常量 |
 | 咨询邮箱 | 待补充（`CONTACT_EMAIL` 为空，页脚显示「待补充」） | `index.html` 顶部脚本常量 / 页脚 |
 | 智谱官网链接 | 待补充（页脚显示「待补充」） | `index.html` 页脚 |
 | English 版本 | 待补充（导航语言切换暂为占位） | `index.html` 导航 |
