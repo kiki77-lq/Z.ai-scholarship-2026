@@ -417,14 +417,13 @@
             <div class="lk">
               <span data-nav="apply">申请方式</span>
               <span data-nav="apply">申请材料</span>
-              <a data-apply href="#">立即申请</a>
             </div>
           </div>
           <div>
             <div class="ttl">联系方式</div>
             <div class="lk">
               <span>咨询邮箱：待补充</span>
-              <span>申请链接：待补充</span>
+              <a data-apply href="#">在线申请表（飞书）</a>
               <span>智谱官网：待补充</span>
             </div>
           </div>
@@ -444,10 +443,8 @@
   "use strict";
 
   // ===== 链接常量（集中管理；待补充项留空字符串）=====
-  // 飞书 wiki：同时作为「立即申请 / 申请通道」与「查看申请指南」入口（已确认为同一链接）
-  var APPLY_URL    = 'https://zhipu-ai.feishu.cn/wiki/Xrn4wST4LiApbOkmotrcT2dHnfd?from=from_copylink';
-  var GUIDE_URL    = 'https://zhipu-ai.feishu.cn/wiki/Xrn4wST4LiApbOkmotrcT2dHnfd?from=from_copylink';
-  var MATERIALS_URL = ''; // 申请材料包/申请表下载：待补充
+  // 正式申请入口：Z.AI Scholarship 2026 申请表｜飞书表单配置版（全站「立即申请 / 申请表下载」统一指向此链接）
+  var APPLICATION_FORM_URL = 'https://zhipu-ai.feishu.cn/wiki/Xrn4wST4LiApbOkmotrcT2dHnfd?from=from_copylink';
   var CONTACT_EMAIL = ''; // 咨询邮箱：待补充
 
   function bindLink(sel, url){
@@ -456,9 +453,8 @@
       else { a.setAttribute('href','#'); a.addEventListener('click', function(e){ e.preventDefault(); alert('该链接待补充'); }); }
     });
   }
-  bindLink('[data-apply]', APPLY_URL);
-  bindLink('[data-guide]', GUIDE_URL);
-  bindLink('[data-materials]', MATERIALS_URL); // 申请表下载：待补充
+  bindLink('[data-apply]', APPLICATION_FORM_URL);     // Header / Hero / 移动菜单「立即申请」
+  bindLink('[data-materials]', APPLICATION_FORM_URL); // 申请指南「申请表下载」
 
   // ===== 申请材料（来源：何芸 12 条修改文档 第 9 条）=====
   var MATERIALS = [

@@ -102,17 +102,20 @@ git push
 
 ---
 
+## 正式申请入口
+
+- **链接名称**：Z.AI Scholarship 2026 申请表｜飞书表单配置版
+- **URL**：`https://zhipu-ai.feishu.cn/wiki/Xrn4wST4LiApbOkmotrcT2dHnfd?from=from_copylink`
+- **接入位置**：全站统一由 `index.html` `<script>` 顶部常量 `APPLICATION_FORM_URL` 管理，绑定到 Header「立即申请」、Hero「立即申请」、移动菜单「立即申请」、申请指南「申请表下载」、页脚「在线申请表（飞书）」，均新标签页打开（`target="_blank"` + `rel="noopener noreferrer"`）。更换链接时只改这一个常量即可。
+
 ## 待补充信息
 
-页面中以下字段当前为占位/待补充状态，需后续填入正式内容：
+页面中以下字段当前仍为占位/待补充状态，需后续填入正式内容：
 
 | 字段 | 当前状态 | 位置 |
 | --- | --- | --- |
-| 申请链接（立即申请 / 进入申请通道） | 已填飞书 wiki 临时链接（`APPLY_URL`） | `index.html` 顶部脚本常量 |
-| 申请指南链接 | 同上（`GUIDE_URL`，与申请链接一致） | `index.html` 顶部脚本常量 |
-| 申请表下载链接（按钮「申请表下载」） | 待补充（`MATERIALS_URL` 为空）。申请表全称：**Z.AI Scholarship 2026 申请表｜飞书表单配置版** | `index.html` 顶部脚本常量 |
 | 咨询邮箱 | 待补充（`CONTACT_EMAIL` 为空，页脚显示「待补充」） | `index.html` 顶部脚本常量 / 页脚 |
 | 智谱官网链接 | 待补充（页脚显示「待补充」） | `index.html` 页脚 |
 | English 版本 | 待补充（导航语言切换暂为占位） | `index.html` 导航 |
 
-补充时统一修改 `index.html` `<script>` 顶部的链接常量即可，未填写的链接会提示「该链接待补充」。
+> 申请入口已接入飞书表单，不再「待补充」。其余未确认信息（邮箱、官网、EN）仍保留「待补充」，未填写的链接点击会提示「该链接待补充」。
