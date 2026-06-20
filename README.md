@@ -102,11 +102,19 @@ git push
 
 ---
 
-## 正式申请入口
+## 正式申请入口（两类链接，集中在 `index.html` `<script>` 顶部常量）
 
-- **链接名称**：Z.AI Scholarship 2026 申请表｜飞书表单配置版
-- **URL**：`https://zhipu-ai.feishu.cn/wiki/Xrn4wST4LiApbOkmotrcT2dHnfd?from=from_copylink`
-- **接入位置**：全站统一由 `index.html` `<script>` 顶部常量 `APPLICATION_FORM_URL` 管理，绑定到 Header「立即申请」、Hero「立即申请」、移动菜单「立即申请」、申请指南「申请表下载」、页脚「在线申请表（飞书）」，均新标签页打开（`target="_blank"` + `rel="noopener noreferrer"`）。更换链接时只改这一个常量即可。
+**1. 申请入口（`APPLICATION_FORM_URL`）**
+- URL：`https://zhipu-ai.feishu.cn/wiki/Xrn4wST4LiApbOkmotrcT2dHnfd?from=from_copylink`
+- 绑定：Header「立即申请」、Hero「立即申请」、移动菜单「立即申请」、页脚「在线申请表（飞书）」。
+
+**2. 申请表下载（`FORM_DOWNLOAD_URL`）**
+- 链接文案：**下载申请表**（申请表全称：Z.AI Scholarship 2026 申请表｜飞书表单配置版）
+- URL：`https://zhipu-ai.feishu.cn/wiki/XWtVwYs37iN4EvkzY6ScgFOBnre?from=from_copylink`
+- 位置：申请指南「申请材料」第一项「智谱Z奖学金-Z.AI Scholarship 2026 申请表」后的小号蓝色文字链接（参考字节做法，**非大按钮**）。
+- Application Guide 底部原「申请表下载」大按钮已删除，避免 CTA 重复。
+
+> 以上链接均新标签页打开（`target="_blank"` + `rel="noopener noreferrer"`）。更换链接只改对应常量即可。
 
 ## 待补充信息
 

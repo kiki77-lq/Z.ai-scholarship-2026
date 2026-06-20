@@ -133,6 +133,9 @@
   .mat-item svg{flex-shrink:0;margin-top:3px;}
   .mat-item span{font-size:15.5px;color:rgba(255,255,255,0.85);line-height:1.5;}
   .mat-intro{color:rgba(255,255,255,0.55);font-size:14px;margin:0 0 8px;}
+  /* 申请表小号文字链接（参考字节，非大按钮）；蓝色强调，hover 变亮加下划线 */
+  .mat-dl{margin-left:12px;color:#76a7ff;font-size:14px;text-decoration:none;white-space:nowrap;transition:color .2s ease;}
+  .mat-dl:hover{color:#9dbbff;text-decoration:underline;}
   .mat-sub{margin:8px 0 0 32px;display:flex;flex-direction:column;gap:7px;}
   .mat-sub span{font-size:14px;color:rgba(255,255,255,0.62);line-height:1.4;position:relative;padding-left:14px;}
   .mat-sub span::before{content:"";position:absolute;left:0;top:8px;width:4px;height:4px;border-radius:999px;background:rgba(118,167,255,0.6);}
@@ -352,9 +355,6 @@
         <div class="guide-col-title"><span class="cn">申请材料</span><span class="en">Required Materials</span></div>
         <p class="mat-intro">申请人需提交：</p>
         <div class="mat-list" data-mats></div>
-        <div class="guide-actions">
-          <a class="btn-lg btn-fill" data-materials href="#">申请表下载</a>
-        </div>
       </div>
     </div>
   </section>
@@ -443,8 +443,10 @@
   "use strict";
 
   // ===== 链接常量（集中管理；待补充项留空字符串）=====
-  // 正式申请入口：Z.AI Scholarship 2026 申请表｜飞书表单配置版（全站「立即申请 / 申请表下载」统一指向此链接）
+  // 正式申请入口（Header / Hero / 移动菜单「立即申请」、页脚「在线申请表」统一指向）
   var APPLICATION_FORM_URL = 'https://zhipu-ai.feishu.cn/wiki/Xrn4wST4LiApbOkmotrcT2dHnfd?from=from_copylink';
+  // 申请表下载（申请指南「申请材料」第一项后的「下载申请表」文字链接）
+  var FORM_DOWNLOAD_URL = 'https://zhipu-ai.feishu.cn/wiki/XWtVwYs37iN4EvkzY6ScgFOBnre?from=from_copylink';
   var CONTACT_EMAIL = ''; // 咨询邮箱：待补充
 
   function bindLink(sel, url){
@@ -453,12 +455,13 @@
       else { a.setAttribute('href','#'); a.addEventListener('click', function(e){ e.preventDefault(); alert('该链接待补充'); }); }
     });
   }
-  bindLink('[data-apply]', APPLICATION_FORM_URL);     // Header / Hero / 移动菜单「立即申请」
-  bindLink('[data-materials]', APPLICATION_FORM_URL); // 申请指南「申请表下载」
+  bindLink('[data-apply]', APPLICATION_FORM_URL);     // Header / Hero / 移动菜单 / 页脚「立即申请 / 在线申请表」
 
   // ===== 申请材料（来源：何芸 12 条修改文档 第 9 条）=====
+  // 第一项后附小号「下载申请表」文字链接（飞书申请表），其余为纯文本；第五项含子项
+  var dlLink = ' <a class="mat-dl" href="'+FORM_DOWNLOAD_URL+'" target="_blank" rel="noopener noreferrer">下载申请表</a>';
   var MATERIALS = [
-    '智谱Z奖学金-Z.AI Scholarship 2026 申请表',
+    { text:'智谱Z奖学金-Z.AI Scholarship 2026 申请表', dl:true },
     '个人简历',
     '未来研究计划',
     '导师推荐信',
@@ -471,9 +474,11 @@
       var d = document.createElement('div'); d.className='mat-item';
       if(typeof m === 'string'){
         d.innerHTML = docIcon + '<span>'+m+'</span>';
-      } else {
+      } else if(m.sub){
         var subHtml = m.sub.map(function(s){ return '<span>'+s+'</span>'; }).join('');
         d.innerHTML = docIcon + '<div><span>'+m.text+'</span><div class="mat-sub">'+subHtml+'</div></div>';
+      } else {
+        d.innerHTML = docIcon + '<span>'+m.text+(m.dl ? dlLink : '')+'</span>';
       }
       matWrap.appendChild(d);
     });
