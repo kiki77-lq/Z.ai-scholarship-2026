@@ -21,7 +21,7 @@
       #05070d;
   }
   .wrap{width:min(calc(100vw - 96px),1180px);margin:0 auto;}
-  .sec{width:min(calc(100vw - 96px),1180px);margin:0 auto;padding:112px 0;}
+  .sec{width:min(calc(100vw - 96px),1180px);margin:0 auto;padding:88px 0;}
   .eyebrow{margin:0 0 18px;color:#76a7ff;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;}
   .h2{margin:0;font-size:clamp(36px,4vw,66px);line-height:1.05;font-weight:450;letter-spacing:-0.04em;}
 
@@ -89,14 +89,15 @@
   @keyframes scrollLine{0%,100%{transform:scaleX(0.45);opacity:0.4;}50%{transform:scaleX(1);opacity:0.9;}}
 
   /* ===== intro narrative ===== */
-  /* 项目简介：内容自适应高度（不用 100vh），padding 控制节奏；宽容器 + 较大字号，桌面端约 2–3 行 */
-  .intro{width:min(calc(100vw - 96px),1240px);margin:0 auto;padding:120px 0 124px;text-align:center;}
-  /* 项目简介：单段居中、加大行间距、字形更规整、balance 断行避免孤字掉行 */
-  /* 正文：宽容器、较大字号、稳定行高、balance 断行（高级叙事段） */
-  .intro p.lead{margin:0 auto;max-width:1180px;font-size:clamp(26px,2.2vw,40px);line-height:1.5;font-weight:450;letter-spacing:0;color:rgba(255,255,255,0.94);text-wrap:balance;}
-  /* 关键词：保持 inline 不换行，初始同正文色，进入视口后延迟点亮为冷蓝（避免逐字闪烁/掉字） */
-  .intro .accent{display:inline;white-space:nowrap;font-weight:600;color:inherit;transition:color .6s cubic-bezier(0.2,0.8,0.2,1);}
-  .intro.lit .accent{color:#76a7ff;}
+  /* 项目简介：内容自适应高度（不用 100vh），padding 控制节奏；宽容器使三行各自单行 */
+  .intro{width:min(calc(100vw - 96px),1280px);margin:0 auto;padding:100px 0 96px;text-align:center;}
+  .intro p.lead{margin:0 auto;font-size:clamp(20px,1.9vw,28px);line-height:1.55;font-weight:450;letter-spacing:0;color:rgba(255,255,255,0.94);}
+  /* 三行固定断行：每行独立成块，逐行 scroll reveal（fade-up） */
+  .intro-line{display:block;}
+  .intro-line + .intro-line{margin-top:12px;}
+  /* 关键词：inline 不换行，所在行揭示后点亮为冷蓝 */
+  .intro .accent{display:inline;white-space:nowrap;font-weight:600;color:inherit;transition:color .55s cubic-bezier(0.2,0.8,0.2,1);}
+  .intro-line.is-visible .accent{color:#76a7ff;}
 
   /* ===== core benefits (字节式横向权益列) ===== */
   .benefits-head{text-align:center;max-width:760px;margin:0 auto 72px;}
@@ -117,6 +118,8 @@
   .benefit:hover .benefit-value{color:#9dbbff;}
   .benefit-value .unit{font-size:0.46em;font-weight:400;color:rgba(255,255,255,0.72);margin-left:5px;letter-spacing:0;}
   .benefit-desc{margin:16px 0 0;color:rgba(230,238,255,0.55);font-size:14px;line-height:1.6;letter-spacing:0.01em;}
+  /* Coding Plan 说明保持单行 */
+  .benefit-desc.bv-coding-desc{white-space:nowrap;letter-spacing:0;}
   .benefits-note{color:rgba(255,255,255,0.4);font-size:13px;line-height:1.7;margin:44px 0 0;text-align:center;}
 
   /* ===== application guide (合并大卡) ===== */
@@ -183,7 +186,7 @@
   .faq-a-inner li{margin:5px 0;}
 
   /* ===== contact cta ===== */
-  .cta{width:min(calc(100vw - 96px),1180px);margin:0 auto;padding:110px 0 120px;text-align:center;}
+  .cta{width:min(calc(100vw - 96px),1180px);margin:0 auto;padding:88px 0 104px;text-align:center;}
   /* 底部品牌落款（克制，非强 CTA），与 Header 上下呼应 */
   .signoff-cn{font-size:clamp(28px,3.2vw,44px);font-weight:600;letter-spacing:-0.01em;color:#fff;line-height:1.1;}
   .signoff-en{margin-top:10px;font-size:clamp(14px,1.4vw,17px);font-weight:500;letter-spacing:0.16em;color:rgba(255,255,255,0.5);}
@@ -218,9 +221,9 @@
     .hero{min-height:760px;padding-top:128px;}
     .hero-content{width:calc(100vw - 40px) !important;}
     .hero-title{font-size:clamp(40px,9vw,58px) !important;white-space:normal !important;}
-    .sec{width:calc(100vw - 40px) !important;padding:84px 0 !important;}
-    .intro{width:calc(100vw - 40px) !important;padding:84px 0 !important;}
-    .intro p.lead{max-width:100% !important;font-size:clamp(20px,5.4vw,28px) !important;line-height:1.62 !important;}
+    .sec{width:calc(100vw - 40px) !important;padding:64px 0 !important;}
+    .intro{width:calc(100vw - 40px) !important;padding:72px 0 !important;}
+    .intro p.lead{font-size:clamp(20px,5.4vw,28px) !important;line-height:1.62 !important;}
     .guide-card{grid-template-columns:1fr !important;gap:40px !important;padding:40px 30px !important;}
     .timeline{grid-template-columns:1fr !important;border-top:none !important;border-left:1px solid rgba(255,255,255,0.1) !important;padding-left:24px;}
     .tl-line{display:none;}
@@ -305,8 +308,12 @@
   </section>
 
   <!-- ===== INTRO NARRATIVE ===== -->
-  <section class="intro" id="intro" data-intro>
-    <p class="lead" data-reveal>智谱Z奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，旨在激发具备<span class="accent">原创</span>精神和<span class="accent">创新</span>潜力的青年学者，持续探索人工智能的<span class="accent">能力边界</span>，成为推动人工智能研究及其应用技术突破的<span class="accent">青年开拓者</span>。</p>
+  <section class="intro" id="intro">
+    <p class="lead" data-stagger>
+      <span class="intro-line" data-reveal>智谱Z奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，</span>
+      <span class="intro-line" data-reveal>旨在激发具备<span class="accent">原创</span>精神和<span class="accent">创新</span>潜力的青年学者，持续探索人工智能的<span class="accent">能力边界</span>，</span>
+      <span class="intro-line" data-reveal>成为推动人工智能研究及其应用技术突破的<span class="accent">青年开拓者</span>。</span>
+    </p>
   </section>
 
   <!-- ===== CORE BENEFITS ===== -->
@@ -329,7 +336,7 @@
       <div class="benefit" data-reveal>
         <p class="benefit-label">Coding Plan</p>
         <div class="benefit-value is-text bv-coding">GLM Coding&nbsp;Plan Max&nbsp;年包</div>
-        <p class="benefit-desc">每位获奖同学与导师均可获得</p>
+        <p class="benefit-desc bv-coding-desc">每位获奖同学与导师均可获得</p>
       </div>
       <div class="benefit" data-reveal>
         <p class="benefit-label">Scholars Club</p>
@@ -605,19 +612,7 @@
   window.addEventListener('scroll', onScroll, { passive:true });
   onScroll();
 
-  // ===== Intro：整段 fade-up（data-reveal）+ 关键词延迟冷蓝高亮（稳定，不逐字、不掉字、不跳动）=====
-  var introEl = document.querySelector('[data-intro]');
-  if(introEl){
-    var introObs = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(!en.isIntersecting) return;
-        // 段落 fade-up 后再延迟点亮关键词
-        setTimeout(function(){ en.target.classList.add('lit'); }, 480);
-        introObs.unobserve(en.target);
-      });
-    }, { threshold:0.35 });
-    introObs.observe(introEl);
-  }
+  // Intro 三行逐行 reveal 复用通用 [data-reveal] + [data-stagger] 机制；关键词点亮由 .intro-line.is-visible 触发（CSS）。
 })();
 </script>
 </body>
