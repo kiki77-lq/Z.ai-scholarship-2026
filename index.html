@@ -89,12 +89,15 @@
   @keyframes scrollLine{0%,100%{transform:scaleX(0.45);opacity:0.4;}50%{transform:scaleX(1);opacity:0.9;}}
 
   /* ===== intro narrative ===== */
-  .intro{width:min(calc(100vw - 96px),900px);margin:0 auto;padding:150px 0 140px;text-align:center;}
+  .intro{width:min(calc(100vw - 96px),1200px);margin:0 auto;padding:150px 0 140px;text-align:center;}
   /* 项目简介：单段居中、加大行间距、字形更规整、balance 断行避免孤字掉行 */
-  .intro p.lead{margin:0 auto;max-width:860px;font-size:clamp(20px,2vw,25px);line-height:1.95;font-weight:400;letter-spacing:0.01em;color:rgba(255,255,255,0.9);text-wrap:balance;}
+  /* 项目简介：拉宽容器使桌面端约 3 行，行高加大、字号克制、balance 断行 */
+  .intro p.lead{margin:0 auto;max-width:1120px;font-size:clamp(19px,1.7vw,23px);line-height:2.0;font-weight:400;letter-spacing:0.01em;color:rgba(255,255,255,0.9);text-wrap:balance;}
   /* 滚动驱动文字高亮：初始低透明灰，随滚动逐词点亮 */
   .st-word{color:rgba(255,255,255,0.22);transition:color .4s cubic-bezier(0.2,0.8,0.2,1);}
   .st-word.lit{color:rgba(255,255,255,0.92);}
+  /* 关键词：半粗字重，点亮后冷蓝高亮 */
+  .st-word.accent{font-weight:600;}
   .st-word.accent.lit{color:#76a7ff;}
 
   /* ===== core benefits (字节式横向权益列) ===== */
@@ -109,6 +112,10 @@
     word-break:keep-all;overflow-wrap:normal;transition:color .35s ease;}
   /* 文本型大字（Coding Plan Max / Z.AI Scholar / 长期机会）：略小，整词换行不拆字 */
   .benefit-value.is-text{font-size:clamp(26px,2vw,34px);line-height:1.18;letter-spacing:-0.02em;}
+  /* Coding Plan：含「Max 年包」较长，略缩小确保整词不拆奇怪 */
+  .benefit-value.bv-coding{font-size:clamp(21px,1.6vw,27px);line-height:1.2;}
+  /* Scholars Club：缩小并强制一行展示，不让 Club 掉行 */
+  .benefit-value.bv-club{font-size:clamp(14px,1.2vw,18px);letter-spacing:-0.01em;white-space:nowrap;font-weight:500;}
   .benefit:hover .benefit-value{color:#9dbbff;}
   .benefit-value .unit{font-size:0.46em;font-weight:400;color:rgba(255,255,255,0.72);margin-left:5px;letter-spacing:0;}
   .benefit-desc{margin:16px 0 0;color:rgba(230,238,255,0.55);font-size:14px;line-height:1.6;letter-spacing:0.01em;}
@@ -173,7 +180,9 @@
   .faq-item.open .faq-icon::before{background:#76a7ff;}
   .faq-item.open .faq-icon::after{transform:scaleY(0);background:#76a7ff;}
   .faq-a{overflow:hidden;max-height:0;transition:max-height .35s cubic-bezier(0.4,0,0.2,1);}
-  .faq-a-inner{padding:0 0 26px;color:rgba(255,255,255,0.68);font-size:15px;line-height:1.85;max-width:780px;}
+  .faq-a-inner{padding:0 0 26px;color:rgba(255,255,255,0.68);font-size:15px;line-height:1.85;max-width:820px;}
+  .faq-a-inner ul,.faq-a-inner ol{margin:10px 0 0;padding-left:22px;}
+  .faq-a-inner li{margin:5px 0;}
 
   /* ===== contact cta ===== */
   .cta{width:min(calc(100vw - 96px),1180px);margin:0 auto;padding:110px 0 120px;text-align:center;}
@@ -297,7 +306,7 @@
 
   <!-- ===== INTRO NARRATIVE ===== -->
   <section class="intro" id="intro" data-intro>
-    <p class="lead">智谱Z奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，旨在激发具备原创精神和创新潜力的青年学者，持续探索人工智能的能力边界，成为推动人工智能研究及其应用技术突破的青年开拓者。</p>
+    <p class="lead">智谱Z奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，旨在激发具备<span class="accent">原创</span>精神和<span class="accent">创新</span>潜力的青年学者，持续探索人工智能的<span class="accent">能力边界</span>，成为推动人工智能研究及其应用技术突破的<span class="accent">青年开拓者</span>。</p>
   </section>
 
   <!-- ===== CORE BENEFITS ===== -->
@@ -319,12 +328,12 @@
       </div>
       <div class="benefit" data-reveal>
         <p class="benefit-label">Coding Plan</p>
-        <div class="benefit-value is-text">GLM Coding&nbsp;Plan Max</div>
-        <p class="benefit-desc">年包，每位获奖同学与导师均可获得</p>
+        <div class="benefit-value is-text bv-coding">GLM Coding&nbsp;Plan Max&nbsp;年包</div>
+        <p class="benefit-desc">每位获奖同学与导师均可获得</p>
       </div>
       <div class="benefit" data-reveal>
         <p class="benefit-label">Scholars Club</p>
-        <div class="benefit-value is-text">Z.AI&nbsp;Scholars Club</div>
+        <div class="benefit-value is-text bv-club">Z.AI Scholars Club</div>
         <p class="benefit-desc">青年研究者网络</p>
       </div>
       <div class="benefit" data-reveal>
@@ -484,23 +493,25 @@
     });
   }
 
-  // ===== FAQ（来源：02_qa.md 完整 15 题，原文照录）=====
+  // ===== FAQ（来源：何芸最新确认 17 题版本，原文照录）=====
   var FAQS = [
-    ['哪些地区的同学可以申请？','Z.AI Scholarship 2026 面向全球高校及研究机构的优秀青年研究者开放申请。国内外高校在读学生均可申请。'],
-    ['对学历阶段是否有要求？','项目以博士生为主要申请对象，特别优秀的硕士生也可申请。我们更关注申请人在人工智能相关方向的研究能力、原创潜力和长期发展空间。'],
-    ['对专业和研究方向是否有要求？','申请人研究方向需与人工智能、计算机科学、基础科学或 AGI 相关前沿问题相关。重点支持方向包括但不限于：Foundation Models、Multimodal Intelligence、Agent Systems、Reinforcement Learning、AI Infrastructure、AI Native Systems、AI for Science，以及其他与通用人工智能相关的重要方向。'],
-    ['奖学金发放给谁？','Z.AI Scholarship 的学生奖学金发放给获奖学生本人。2026 年首届计划遴选 10 名 Z.AI Scholar，每位 Scholar 将获得 20 万元人民币奖学金支持。'],
-    ['导师奖励如何发放？','每位获奖 Scholar 对应导师将获得 10 万元人民币导师奖励，用于致谢导师在青年研究者成长过程中的长期指导与支持。具体发放方式以项目后续通知为准。'],
-    ['获得奖学金后是否必须到智谱实习或工作？','不强制。Z.AI Scholarship 坚持开放、公益和学术导向原则，奖学金评选不附带实习、就业或成果交付要求。对于有进一步合作意愿的 Scholar，智谱将优先开放联合研究、企业开放课题、实习实践、博士后计划及长期研究岗位等机会，相关合作遵循双向选择原则。'],
-    ['实习经历是否影响评审结果？','不影响。申请人是否有智谱或其他企业实习经历，不作为加分或减分因素。评审将重点关注申请人的研究成果、原创能力、Research Proposal 质量、长期发展潜力及综合推荐意见。'],
-    ['奖学金用途是否有限制？','奖学金主要用于支持获奖学生开展科研探索、学术交流及个人研究发展。具体使用应符合合法、合规和学术诚信原则。'],
-    ['是否可以同时申请或获得其他奖学金？','可以。Z.AI Scholarship 与其他企业奖学金、学者计划或高校奖助项目原则上不冲突。如申请人已获得其他重要奖项或学者计划，也欢迎在申请材料中说明。'],
-    ['导师推荐信是否必须提交？','建议提交 1-2 封推荐信。推荐人可以是申请人的导师、合作导师或熟悉申请人研究工作的专家。推荐信需注明推荐人姓名、单位、职务、联系方式及与申请人的关系。'],
-    ['推荐信是否可以由导师单独提交？','可以。推荐信可由申请人随申请材料一并上传，也可由推荐人单独发送至项目指定邮箱。单独发送时，请在邮件中注明申请人姓名、所在学校及申请项目名称。'],
+    ['哪些人可以申请 Z.AI Scholarship 2026？','Z.AI Scholarship 2026 面向全球高校及研究机构的硕士、博士研究生开放申请。'],
+    ['对学历阶段有要求吗？','申请人应为硕士或博士研究生。评审将重点关注申请人在人工智能相关方向的研究能力、原创潜力、代表性成果和长期发展空间。'],
+    ['本科生可以申请吗？','本科生原则上不是首届项目的主要申请对象。如申请人已在人工智能相关方向取得突出科研或技术成果，也可提交申请，评审委员会将结合材料综合判断。'],
+    ['对毕业时间有要求吗？','申请人预计毕业时间应为 2027 年 6 月及以后。'],
+    ['哪些研究方向可以申请？','申请人的研究方向需与人工智能、计算机科学、基础科学或 AGI 相关前沿问题相关。重点支持方向包括但不限于：<ul><li>Foundation Models</li><li>Multimodal Intelligence</li><li>Agent Systems</li><li>Reinforcement Learning</li><li>AI Infrastructure</li><li>AI Native Systems</li><li>AI for Science</li><li>Embodied Intelligence</li><li>其他与通用人工智能相关的重要方向</li></ul>'],
+    ['评审更看重什么？','评审将重点关注申请人的研究能力、原创潜力、技术判断力、代表性科研 / 技术成果，以及未来持续探索重要问题的潜力。'],
+    ['申请需要提交哪些材料？','申请人需提交以下材料：<ol><li>Z.AI Scholarship 2026 申请表</li><li>个人简历</li><li>申请补充表</li><li>代表性成果材料</li><li>1–2 封导师推荐信</li></ol>其中，代表性成果材料可包括论文、开源项目、技术报告、系统成果、Benchmark 成绩、专利、竞赛奖项等。'],
+    ['是否必须提交导师推荐信？','必须，建议提交 1–2 封导师推荐信。推荐人可以是申请人的导师和合作导师。'],
+    ['导师推荐信如何提交？','导师推荐信可由申请人随申请材料一并上传，也可由推荐人单独发送至项目指定邮箱。单独发送时，请在邮件中注明申请人姓名、所在学校及申请项目名称。'],
+    ['是否需要智谱实习或工作经历？','不需要。申请人是否有智谱或其他企业实习经历，不作为加分或减分因素。'],
+    ['获得奖学金后，是否必须到智谱实习或工作？','不强制。Z.AI Scholarship 坚持开放、公益和学术导向原则，奖学金评选不附带实习、就业或成果交付要求。'],
+    ['可以同时申请或获得其他奖学金吗？','可以。Z.AI Scholarship 与其他企业奖学金、学者计划或高校奖助项目原则上不冲突。如申请人已获得其他重要奖项或学者计划，也欢迎在申请材料中说明。'],
     ['如何提交申请材料？','申请人需通过 Z.AI Scholarship 官方申请通道提交材料。具体申请链接及提交方式将在项目正式发布时公布。'],
-    ['提交后是否可以修改申请材料？','在申请截止前，申请人可根据系统规则修改或补充材料。申请截止后，原则上不再接受材料修改。'],
-    ['评审流程是怎样的？','项目采用“材料申报 + 专家函评 + 终审评议”的方式开展评审。评审委员会将综合申请人的学术成果、原创研究能力、Research Proposal、长期潜力及推荐意见，最终确定年度 Scholar 名单。'],
-    ['获奖后是否会加入 Z.AI Scholars Club？','是。所有获奖者将自动成为 Z.AI Scholars Club 成员，并有机会参与 AI TIME Scholar Session、AGI 闭门研讨、Z.AI Scholars Summit 等学术交流活动。']
+    ['提交后可以修改材料吗？','在申请截止前，申请人可根据系统规则修改或补充材料。申请截止后，原则上不再接受材料修改。'],
+    ['评审流程是怎样的？','项目采用“材料申报 + 专家函评 + 终审评议”的方式开展评审。评审委员会将综合申请人的研究成果、原创能力、项目提案质量、长期潜力及推荐意见，最终确定年度 Scholar 名单。'],
+    ['申请信息会用于哪些用途？','申请人提交的信息和材料仅用于 Z.AI Scholarship 2026 奖学金申请、评审、沟通及发放相关工作，不用于其他无关用途。'],
+    ['获奖后是否有后续合作机会？','有。对于有进一步合作意愿的 Scholar，智谱将优先开放联合研究、开放课题、暑期研究、实习实践、博士后计划及长期研究岗位等机会，均遵循双向选择原则。']
   ];
   var faqWrap = document.querySelector('[data-faq]');
   if(faqWrap){
