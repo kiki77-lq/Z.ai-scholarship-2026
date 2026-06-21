@@ -89,16 +89,14 @@
   @keyframes scrollLine{0%,100%{transform:scaleX(0.45);opacity:0.4;}50%{transform:scaleX(1);opacity:0.9;}}
 
   /* ===== intro narrative ===== */
-  .intro{width:min(calc(100vw - 96px),1200px);margin:0 auto;padding:150px 0 140px;text-align:center;}
+  /* 项目简介：内容自适应高度（不用 100vh），padding 控制节奏；宽容器 + 较大字号，桌面端约 2–3 行 */
+  .intro{width:min(calc(100vw - 96px),1240px);margin:0 auto;padding:120px 0 124px;text-align:center;}
   /* 项目简介：单段居中、加大行间距、字形更规整、balance 断行避免孤字掉行 */
-  /* 项目简介：拉宽容器使桌面端约 3 行，行高加大、字号克制、balance 断行 */
-  .intro p.lead{margin:0 auto;max-width:1120px;font-size:clamp(19px,1.7vw,23px);line-height:2.0;font-weight:400;letter-spacing:0.01em;color:rgba(255,255,255,0.9);text-wrap:balance;}
-  /* 滚动驱动文字高亮：初始低透明灰，随滚动逐词点亮 */
-  .st-word{color:rgba(255,255,255,0.22);transition:color .4s cubic-bezier(0.2,0.8,0.2,1);}
-  .st-word.lit{color:rgba(255,255,255,0.92);}
-  /* 关键词：半粗字重，点亮后冷蓝高亮 */
-  .st-word.accent{font-weight:600;}
-  .st-word.accent.lit{color:#76a7ff;}
+  /* 正文：宽容器、较大字号、稳定行高、balance 断行（高级叙事段） */
+  .intro p.lead{margin:0 auto;max-width:1180px;font-size:clamp(26px,2.2vw,40px);line-height:1.5;font-weight:450;letter-spacing:0;color:rgba(255,255,255,0.94);text-wrap:balance;}
+  /* 关键词：保持 inline 不换行，初始同正文色，进入视口后延迟点亮为冷蓝（避免逐字闪烁/掉字） */
+  .intro .accent{display:inline;white-space:nowrap;font-weight:600;color:inherit;transition:color .6s cubic-bezier(0.2,0.8,0.2,1);}
+  .intro.lit .accent{color:#76a7ff;}
 
   /* ===== core benefits (字节式横向权益列) ===== */
   .benefits-head{text-align:center;max-width:760px;margin:0 auto 72px;}
@@ -221,6 +219,8 @@
     .hero-content{width:calc(100vw - 40px) !important;}
     .hero-title{font-size:clamp(40px,9vw,58px) !important;white-space:normal !important;}
     .sec{width:calc(100vw - 40px) !important;padding:84px 0 !important;}
+    .intro{width:calc(100vw - 40px) !important;padding:84px 0 !important;}
+    .intro p.lead{max-width:100% !important;font-size:clamp(20px,5.4vw,28px) !important;line-height:1.62 !important;}
     .guide-card{grid-template-columns:1fr !important;gap:40px !important;padding:40px 30px !important;}
     .timeline{grid-template-columns:1fr !important;border-top:none !important;border-left:1px solid rgba(255,255,255,0.1) !important;padding-left:24px;}
     .tl-line{display:none;}
@@ -306,7 +306,7 @@
 
   <!-- ===== INTRO NARRATIVE ===== -->
   <section class="intro" id="intro" data-intro>
-    <p class="lead">智谱Z奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，旨在激发具备<span class="accent">原创</span>精神和<span class="accent">创新</span>潜力的青年学者，持续探索人工智能的<span class="accent">能力边界</span>，成为推动人工智能研究及其应用技术突破的<span class="accent">青年开拓者</span>。</p>
+    <p class="lead" data-reveal>智谱Z奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，旨在激发具备<span class="accent">原创</span>精神和<span class="accent">创新</span>潜力的青年学者，持续探索人工智能的<span class="accent">能力边界</span>，成为推动人工智能研究及其应用技术突破的<span class="accent">青年开拓者</span>。</p>
   </section>
 
   <!-- ===== CORE BENEFITS ===== -->
@@ -605,46 +605,19 @@
   window.addEventListener('scroll', onScroll, { passive:true });
   onScroll();
 
-  // ===== Scroll-driven Text Highlight（Intro 滚动驱动文字高亮）=====
+  // ===== Intro：整段 fade-up（data-reveal）+ 关键词延迟冷蓝高亮（稳定，不逐字、不掉字、不跳动）=====
   var introEl = document.querySelector('[data-intro]');
-  var stWords = [];
   if(introEl){
-    // 把每个段落的文字拆为词 span，保留 .accent 高亮
-    introEl.querySelectorAll('p').forEach(function(p){
-      var nodes = Array.prototype.slice.call(p.childNodes);
-      p.innerHTML = '';
-      nodes.forEach(function(node){
-        var isAccent = node.nodeType === 1 && node.classList && node.classList.contains('accent');
-        var text = node.textContent;
-        // 中文按字、英文/数字按词切分
-        var tokens = text.match(/[A-Za-z0-9.\-]+|[^\s]|\s+/g) || [];
-        tokens.forEach(function(tok){
-          if(/^\s+$/.test(tok)){ p.appendChild(document.createTextNode(tok)); return; }
-          var s = document.createElement('span');
-          s.className = 'st-word' + (isAccent ? ' accent' : '');
-          s.textContent = tok;
-          p.appendChild(s);
-          stWords.push(s);
-        });
+    var introObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        // 段落 fade-up 后再延迟点亮关键词
+        setTimeout(function(){ en.target.classList.add('lit'); }, 480);
+        introObs.unobserve(en.target);
       });
-    });
+    }, { threshold:0.35 });
+    introObs.observe(introEl);
   }
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function updateTextHighlight(){
-    if(!introEl || !stWords.length) return;
-    if(reduceMotion){ stWords.forEach(function(s){ s.classList.add('lit'); }); return; }
-    var r = introEl.getBoundingClientRect(), vh = window.innerHeight;
-    // 进度：区块顶部到达视口 78% 时开始，滚过其 60% 高度时点亮完毕
-    var prog = (vh * 0.78 - r.top) / (r.height * 0.6);
-    prog = Math.max(0, Math.min(1, prog));
-    var lit = prog * stWords.length;
-    stWords.forEach(function(s, i){
-      if(i < lit) s.classList.add('lit'); else s.classList.remove('lit');
-    });
-  }
-  window.addEventListener('scroll', updateTextHighlight, { passive:true });
-  window.addEventListener('resize', updateTextHighlight);
-  updateTextHighlight();
 })();
 </script>
 </body>
