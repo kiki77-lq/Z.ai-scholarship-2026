@@ -102,12 +102,17 @@ git push
 
 ---
 
-## 正式申请入口（全站统一一个飞书表单链接）
+## 正式申请入口（两个飞书链接，集中在 `index.html` `<script>` 顶部常量）
 
-- **URL（飞书表单）**：`https://zhipu-ai.feishu.cn/share/base/form/shrcnAJYvhX1QOm2G42Uq4TEwwb`
-- **配置**：集中在 `index.html` `<script>` 顶部常量 `APPLICATION_FORM_URL`；`FORM_DOWNLOAD_URL = APPLICATION_FORM_URL`（申请表下载与申请入口同一链接）。更换链接只改 `APPLICATION_FORM_URL` 一处即可。
-- **绑定位置**：Header「立即申请」、Hero「立即申请」、移动菜单「立即申请」、页脚「在线申请表（飞书）」、申请指南「申请材料」第一项后的小号文字链接「下载申请表」。
-- 全部新标签页打开（`target="_blank"` + `rel="noopener noreferrer"`）。Application Guide 底部不再有大按钮，避免 CTA 重复。
+**1. 申请入口（`APPLICATION_FORM_URL`，飞书表单）**
+- URL：`https://zhipu-ai.feishu.cn/share/base/form/shrcnAJYvhX1QOm2G42Uq4TEwwb`
+- 绑定：Header「立即申请」、Hero「立即申请」、移动菜单「立即申请」、页脚「在线申请表（飞书）」。
+
+**2. 申请表下载（`FORM_DOWNLOAD_URL`，飞书 wiki）**
+- URL：`https://zhipu-ai.feishu.cn/wiki/XWtVwYs37iN4EvkzY6ScgFOBnre?from=from_copylink`
+- 绑定：申请指南「申请材料」第一项后的小号文字链接「下载申请表」。
+
+> 两者均新标签页打开（`target="_blank"` + `rel="noopener noreferrer"`）。更换对应链接只改对应常量即可；Application Guide 底部无大按钮。
 
 ## 待补充信息
 

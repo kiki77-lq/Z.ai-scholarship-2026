@@ -461,8 +461,8 @@
   // ===== 链接常量（集中管理；待补充项留空字符串）=====
   // 正式申请入口（飞书表单）：全站「立即申请 / 申请表下载 / 在线申请表」统一指向此链接
   var APPLICATION_FORM_URL = 'https://zhipu-ai.feishu.cn/share/base/form/shrcnAJYvhX1QOm2G42Uq4TEwwb';
-  // 申请表下载入口同样指向上述飞书表单（与申请入口一致）
-  var FORM_DOWNLOAD_URL = APPLICATION_FORM_URL;
+  // 申请表下载（仅申请指南「申请材料」首项后的「下载申请表」文字链接，独立于申请入口）
+  var FORM_DOWNLOAD_URL = 'https://zhipu-ai.feishu.cn/wiki/XWtVwYs37iN4EvkzY6ScgFOBnre?from=from_copylink';
   var CONTACT_EMAIL = ''; // 咨询邮箱：待补充
 
   function bindLink(sel, url){
