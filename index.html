@@ -63,17 +63,17 @@
   /* ===== hero ===== */
   /* Hero section 底色：CSS 浅色径向弥散背景（与正文 .root 同一浅色系），不再用图片满铺，从根本消除图底白带与正文的横向断层 */
   #top{margin-left:0;margin-right:0;}
-  .hero{position:relative;min-height:calc(100vh - 40px);padding:140px 0 96px;display:flex;align-items:center;overflow:hidden;
+  .hero{position:relative;min-height:100vh;padding:150px 0 120px;display:flex;align-items:center;overflow:hidden;
     background:
       radial-gradient(circle at 80% 18%, rgba(90,135,255,0.16), transparent 36%),
       radial-gradient(circle at 40% 78%, rgba(150,195,255,0.10), transparent 44%),
       linear-gradient(180deg,#f7f9ff 0%,#f4f8ff 64%,#f7f9ff 100%);}
   /* Paper Sail 视觉图层：仅右侧装饰，不决定 section 底色；底部 mask 渐隐 + 左侧由 .hero-mask 洗白，杜绝硬边与白带 */
-  .hero-bg{position:absolute;top:0;right:0;width:74%;height:100%;opacity:0;transform:scale(1.04);
+  .hero-bg{position:absolute;top:0;right:0;width:80%;height:100%;opacity:0;transform:scale(1.04);
     background-image:url('./assets/images/z-scholarship-hero-light.png');
     background-size:cover;background-position:center right;background-repeat:no-repeat;z-index:0;pointer-events:none;
-    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 58%,rgba(0,0,0,0.5) 80%,rgba(0,0,0,0) 100%);
-    mask-image:linear-gradient(to bottom,#000 0%,#000 58%,rgba(0,0,0,0.5) 80%,rgba(0,0,0,0) 100%);
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 68%,rgba(0,0,0,0.45) 87%,rgba(0,0,0,0) 100%);
+    mask-image:linear-gradient(to bottom,#000 0%,#000 68%,rgba(0,0,0,0.45) 87%,rgba(0,0,0,0) 100%);
     animation:heroIn 1.4s cubic-bezier(0.2,0.8,0.2,1) forwards,heroDrift 26s ease-in-out 1.4s infinite alternate;}
   @keyframes heroIn{to{opacity:0.95;transform:scale(1.0);}}
   @keyframes heroDrift{from{transform:scale(1.0) translate(0,0);}to{transform:scale(1.04) translate(-1.2%,-0.8%);}}
@@ -89,6 +89,11 @@
   /* 可复用品牌「Z」字标：全站「智谱Z奖学金」统一使用智谱 logo 的 Z 字形（内联 SVG，随字号缩放、跟随文字颜色） */
   .brand-z{display:inline-block;height:0.84em;width:auto;vertical-align:-0.1em;margin:0 0.03em;}
   .brand-z svg{display:block;height:100%;width:auto;fill:currentColor;}
+  /* 仅 Hero 标题的 Z 加轻量动效（不影响全站其它 .brand-z）：蓝紫呼吸光感 + 极轻色彩流动，克制、不闪烁、不影响可读性 */
+  .brand-z-animated{animation:zHueFlow 6.5s ease-in-out infinite;}
+  .brand-z-animated svg{animation:zBreathe 6.5s ease-in-out infinite;will-change:filter;}
+  @keyframes zHueFlow{0%,100%{color:#141b2b;}50%{color:#2f3fb0;}}
+  @keyframes zBreathe{0%,100%{filter:drop-shadow(0 0 0 rgba(99,102,241,0));}50%{filter:drop-shadow(0 0 9px rgba(99,102,241,0.32));}}
   /* 中文 slogan「问道 AGI，同行未来」：小一号，放在主标题下方 */
   .hero-cn-slogan{margin:22px 0 0;color:rgba(20,30,50,0.78);font-size:clamp(21px,2.3vw,32px);font-weight:450;letter-spacing:0.01em;}
   /* 英文 slogan：层级最小 */
@@ -273,6 +278,7 @@
     .hero-bg{animation:none;opacity:0.96;transform:scale(1.04);}
     [data-reveal]{transition:none;opacity:1;transform:none;}
     .scroll-cue i{animation:none;}
+    .brand-z-animated,.brand-z-animated svg{animation:none;color:#141b2b;filter:none;}
   }
 
   /* ============================================================
@@ -414,7 +420,7 @@
     <div class="hero-mask"></div>
     <div class="hero-content">
       <p class="hero-eyebrow" data-reveal>Z.AI Scholarship 2026</p>
-      <h1 class="hero-title" data-reveal>智谱<span class="brand-z" aria-label="Z" role="img"></span>奖学金</h1>
+      <h1 class="hero-title" data-reveal>智谱<span class="brand-z brand-z-animated" aria-label="Z" role="img"></span>奖学金</h1>
       <p class="hero-cn-slogan" data-reveal>问道 AGI，同行未来</p>
       <p class="hero-slogan" data-reveal>Toward AGI, with the next generation.</p>
       <div class="hero-cta" data-reveal>
