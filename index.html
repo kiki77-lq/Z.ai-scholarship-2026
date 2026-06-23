@@ -63,7 +63,7 @@
   /* ===== hero ===== */
   /* Hero section 底色：CSS 浅色径向弥散背景（与正文 .root 同一浅色系），不再用图片满铺，从根本消除图底白带与正文的横向断层 */
   #top{margin-left:0;margin-right:0;}
-  .hero{position:relative;min-height:640px;padding:140px 0 96px;display:flex;align-items:center;overflow:hidden;
+  .hero{position:relative;min-height:calc(100vh - 40px);padding:140px 0 96px;display:flex;align-items:center;overflow:hidden;
     background:
       radial-gradient(circle at 80% 18%, rgba(90,135,255,0.16), transparent 36%),
       radial-gradient(circle at 40% 78%, rgba(150,195,255,0.10), transparent 44%),
@@ -80,8 +80,8 @@
   /* 左侧→右侧浅色洗白：把图层左边缘融进 CSS 浅底，保证左侧文字区干净、纸帆右侧清晰 */
   .hero-mask{position:absolute;top:-141px;right:0;bottom:0;left:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(247,249,255,0.96) 0%,rgba(247,249,255,0.82) 26%,rgba(247,249,255,0.34) 52%,rgba(247,249,255,0) 78%);}
   /* Hero 底部垂直向下弥散渐变蒙版：透明→页面浅蓝白底色（#f7f9ff，匹配正文，不用纯白），四段平滑无色带；只盖底部、不挡文案/按钮，z-index 低于内容 */
-  .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:200px;z-index:1;pointer-events:none;
-    background:linear-gradient(180deg,rgba(247,249,255,0) 0%,rgba(247,249,255,0.62) 65%,#f7f9ff 100%);}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:180px;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,rgba(247,249,255,0) 0%,rgba(247,249,255,0.55) 68%,#f7f9ff 100%);}
   .hero-content{position:relative;z-index:2;width:min(calc(100vw - 96px),1320px);margin:0 auto;}
   .hero-eyebrow{color:rgba(20,30,50,0.5);font-size:14px;margin:0 0 20px;letter-spacing:0.08em;}
   /* Hero 主标题「智谱Z奖学金」：首屏重点，桌面端单行；移动端在媒体查询里允许换行 */
@@ -108,7 +108,7 @@
   @keyframes scrollLine{0%,100%{transform:scaleX(0.45);opacity:0.4;}50%{transform:scaleX(1);opacity:0.9;}}
 
   /* ===== intro narrative（Hero 之后的独立项目简介 section；浅色样式内置，不依赖 .light-zone；与页面共用浅底自然衔接） ===== */
-  .intro{position:relative;z-index:2;width:min(calc(100vw - 96px),1280px);margin:10px auto 0;padding:64px 0 92px;text-align:center;}
+  .intro{position:relative;z-index:2;width:min(calc(100vw - 96px),1280px);margin:0 auto;padding:72px 0 92px;text-align:center;}
   .intro .lead{margin:0 auto;font-size:clamp(20px,1.9vw,28px);line-height:1.72;font-weight:450;letter-spacing:0;color:#27303f;}
   /* 三行固定断行：每行独立成块，逐行 scroll reveal（fade-up） */
   .intro-line{display:block;}
@@ -245,8 +245,8 @@
     .nav-links,.nav-right{display:none !important;}
     .nav-burger{display:inline-flex !important;}
     .nav{width:calc(100vw - 32px) !important;top:16px !important;height:58px !important;}
-    /* 移动端：Hero 独立首屏（仅标题/slogan/CTA），高度收敛 */
-    .hero{min-height:560px;padding:116px 0 64px;}
+    /* 移动端：Hero 独立首屏（仅标题/slogan/CTA），接近整屏，避免下方简介在首屏半露 */
+    .hero{min-height:calc(100vh - 40px);padding:112px 0 56px;}
     /* 移动端：纸帆主体推向右侧边缘，左上文字区让出；顶部加竖向浅色洗白确保标题在图上清晰可读 */
     .hero-bg{width:100% !important;background-position:78% center !important;}
     .hero-mask{background:linear-gradient(180deg,rgba(247,249,255,0.92) 0%,rgba(247,249,255,0.6) 30%,rgba(247,249,255,0.2) 62%,rgba(247,249,255,0.05) 100%) !important;}
