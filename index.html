@@ -61,18 +61,23 @@
   .mobile-menu .div{border-top:1px solid rgba(40,70,130,0.10);margin:6px 0;}
 
   /* ===== hero ===== */
-  .hero{position:relative;min-height:700px;padding:132px 0 56px;display:flex;align-items:center;overflow:hidden;}
-  /* 浅色 Hero 主视觉：使用浅色纸帆/抽象 Z 主视觉图（右侧纸帆主体，左侧留白放文字）；cover 铺满，center right 保纸帆完整 */
-  /* 关键：图片底部用 mask 溶解为透明，露出与下方项目简介同一个 .root 浅色基底（连续基底，杜绝硬切色块） */
-  .hero-bg{position:absolute;inset:0;opacity:0;transform:scale(1.04);background-color:#eef3fb;
+  /* Hero section 底色：CSS 浅色径向弥散背景（与正文 .root 同一浅色系），不再用图片满铺，从根本消除图底白带与正文的横向断层 */
+  .hero{position:relative;min-height:700px;padding:132px 0 56px;display:flex;align-items:center;overflow:hidden;
+    background:
+      radial-gradient(circle at 80% 18%, rgba(90,135,255,0.16), transparent 36%),
+      radial-gradient(circle at 40% 78%, rgba(150,195,255,0.10), transparent 44%),
+      linear-gradient(180deg,#f7f9ff 0%,#f4f8ff 64%,#f7f9ff 100%);}
+  /* Paper Sail 视觉图层：仅右侧装饰，不决定 section 底色；底部 mask 渐隐 + 左侧由 .hero-mask 洗白，杜绝硬边与白带 */
+  .hero-bg{position:absolute;top:0;right:0;width:74%;height:100%;opacity:0;transform:scale(1.04);
     background-image:url('./assets/images/z-scholarship-hero-light.png');
-    background-size:cover;background-position:center right;background-repeat:no-repeat;
-    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 46%,rgba(0,0,0,0.55) 74%,rgba(0,0,0,0) 100%);
-    mask-image:linear-gradient(to bottom,#000 0%,#000 46%,rgba(0,0,0,0.55) 74%,rgba(0,0,0,0) 100%);
+    background-size:cover;background-position:center right;background-repeat:no-repeat;z-index:0;pointer-events:none;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 58%,rgba(0,0,0,0.5) 80%,rgba(0,0,0,0) 100%);
+    mask-image:linear-gradient(to bottom,#000 0%,#000 58%,rgba(0,0,0,0.5) 80%,rgba(0,0,0,0) 100%);
     animation:heroIn 1.4s cubic-bezier(0.2,0.8,0.2,1) forwards,heroDrift 26s ease-in-out 1.4s infinite alternate;}
-  @keyframes heroIn{to{opacity:1;transform:scale(1.0);}}
-  @keyframes heroDrift{from{transform:scale(1.0) translate(0,0);}to{transform:scale(1.05) translate(-1.4%,-1%);}}
-  .hero-mask{position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,249,255,0.86) 0%,rgba(247,249,255,0.55) 38%,rgba(247,249,255,0.08) 72%,transparent 100%);}
+  @keyframes heroIn{to{opacity:0.95;transform:scale(1.0);}}
+  @keyframes heroDrift{from{transform:scale(1.0) translate(0,0);}to{transform:scale(1.04) translate(-1.2%,-0.8%);}}
+  /* 左侧→右侧浅色洗白：把图层左边缘融进 CSS 浅底，保证左侧文字区干净、纸帆右侧清晰 */
+  .hero-mask{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(247,249,255,0.96) 0%,rgba(247,249,255,0.82) 26%,rgba(247,249,255,0.34) 52%,rgba(247,249,255,0) 78%);}
   /* 浅色 Hero 底部柔和收尾，与下方浅色内容区无缝衔接 */
   .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:170px;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(247,249,255,0) 0%,rgba(247,249,255,0.6) 60%,#f7f9ff 100%);}
   .hero-content{position:relative;z-index:2;width:min(calc(100vw - 96px),1320px);margin:0 auto;}
@@ -102,7 +107,7 @@
 
   /* ===== intro narrative ===== */
   /* 项目简介：内容自适应高度（不用 100vh），padding 控制节奏；宽容器使三行各自单行 */
-  .intro{position:relative;z-index:3;width:min(calc(100vw - 96px),1280px);margin:0 auto;padding:52px 0 92px;text-align:center;}
+  .intro{position:relative;z-index:3;width:min(calc(100vw - 96px),1280px);margin:0 auto;padding:56px 0 92px;text-align:center;}
   .intro p.lead{margin:0 auto;font-size:clamp(20px,1.9vw,28px);line-height:1.55;font-weight:450;letter-spacing:0;color:rgba(255,255,255,0.94);}
   /* 三行固定断行：每行独立成块，逐行 scroll reveal（fade-up） */
   .intro-line{display:block;}
@@ -241,7 +246,7 @@
     .nav{width:calc(100vw - 32px) !important;top:16px !important;height:58px !important;}
     .hero{min-height:600px;padding:120px 0 40px;}
     /* 移动端：纸帆主体推向右侧边缘，左上文字区让出；顶部加竖向浅色洗白确保标题在图上清晰可读 */
-    .hero-bg{background-position:82% center !important;}
+    .hero-bg{width:100% !important;background-position:78% center !important;}
     .hero-mask{background:linear-gradient(180deg,rgba(247,249,255,0.92) 0%,rgba(247,249,255,0.6) 30%,rgba(247,249,255,0.2) 62%,rgba(247,249,255,0.05) 100%) !important;}
     .hero-content{width:calc(100vw - 40px) !important;}
     .hero-title{font-size:clamp(40px,9vw,58px) !important;white-space:normal !important;}
