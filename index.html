@@ -9,16 +9,16 @@
   /* ===== base ===== */
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{margin:0;padding:0;background:#05070d;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-    font-family:Inter,'Noto Sans SC','PingFang SC',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;color:#fff;overflow-x:hidden;}
+  body{margin:0;padding:0;background:#f7f9ff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    font-family:Inter,'Noto Sans SC','PingFang SC',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;color:#1b2435;overflow-x:hidden;}
   a{color:inherit;}
-  /* 全站统一连续背景：单一深蓝黑基底 + 极轻 radial 辉光，section 全部透明叠加，无逐块硬切 */
+  /* 全屏径向弥散渐变 / 浅色弥散光底（BigModel 式）：低饱和、大面积、柔和，覆盖 Hero 与全部内容 */
   .root{
     background:
-      radial-gradient(1200px 820px at 80% 2%, rgba(64,124,255,0.13), transparent 60%),
-      radial-gradient(1100px 1100px at 50% 40%, rgba(46,86,180,0.07), transparent 62%),
-      radial-gradient(1000px 900px at 20% 86%, rgba(64,110,220,0.05), transparent 60%),
-      #05070d;
+      radial-gradient(circle at 18% 8%, rgba(90,130,255,0.16), transparent 34%),
+      radial-gradient(circle at 84% 14%, rgba(120,205,255,0.14), transparent 32%),
+      radial-gradient(circle at 50% 82%, rgba(150,130,255,0.10), transparent 40%),
+      #f7f9ff;
   }
   .wrap{width:min(calc(100vw - 96px),1180px);margin:0 auto;}
   .sec{width:min(calc(100vw - 96px),1180px);margin:0 auto;padding:88px 0;}
@@ -30,65 +30,72 @@
   [data-reveal].is-visible{opacity:1;transform:none;}
 
   /* ===== nav ===== */
+  /* 毛玻璃 / 磨砂玻璃半透明背滤导航（BigModel 式）：透出下方页面并模糊雾化，叠加极淡蓝紫→白渐变 */
   .nav{position:fixed;z-index:50;top:52px;left:50%;transform:translateX(-50%);width:min(calc(100vw - 96px),1320px);height:64px;
-    padding:0 16px 0 24px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,0.08);
-    border-radius:999px;background:rgba(7,10,18,0.6);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-    box-shadow:0 20px 80px rgba(0,0,0,0.2);transition:background .25s ease,border-color .25s ease,box-shadow .25s ease;}
-  .nav-brand{display:flex;align-items:center;gap:9px;color:#fff;white-space:nowrap;text-decoration:none;}
+    padding:0 16px 0 24px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(40,70,130,0.12);
+    border-radius:999px;background:linear-gradient(100deg,rgba(120,130,255,0.10),rgba(255,255,255,0.04)),rgba(255,255,255,0.22);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    box-shadow:0 12px 40px rgba(40,70,130,0.10);transition:background .25s ease,border-color .25s ease,box-shadow .25s ease;}
+  .nav-brand{display:flex;align-items:center;gap:9px;color:#141b2b;white-space:nowrap;text-decoration:none;}
   .nav-brand svg{display:block;border-radius:6px;flex-shrink:0;}
   .nav-brand .brand-txt{display:flex;flex-direction:column;justify-content:center;line-height:1.12;}
-  .nav-brand .brand-cn{font-size:14px;font-weight:600;color:#fff;letter-spacing:0.02em;}
-  .nav-brand .brand-en{font-size:10.5px;font-weight:500;color:rgba(255,255,255,0.52);letter-spacing:0.07em;margin-top:1px;}
+  .nav-brand .brand-cn{font-size:14px;font-weight:600;color:#141b2b;letter-spacing:0.02em;}
+  .nav-brand .brand-en{font-size:10.5px;font-weight:500;color:rgba(20,30,50,0.5);letter-spacing:0.07em;margin-top:1px;}
   .nav-links{display:flex;gap:34px;}
-  .nav-links span{color:rgba(255,255,255,0.68);font-size:14px;cursor:pointer;transition:color .22s ease;}
-  .nav-links span:hover{color:#fff;}
+  .nav-links span{color:rgba(20,30,50,0.7);font-size:14px;cursor:pointer;transition:color .22s ease;}
+  .nav-links span:hover{color:#3f6bff;}
   .nav-right{display:flex;align-items:center;gap:18px;}
-  .nav-lang{color:rgba(255,255,255,0.68);font-size:14px;cursor:pointer;transition:color .22s ease;}
-  .nav-lang:hover{color:#fff;}
+  .nav-lang{color:rgba(20,30,50,0.7);font-size:14px;cursor:pointer;transition:color .22s ease;}
+  .nav-lang:hover{color:#3f6bff;}
   .btn-primary{display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0 20px;border-radius:999px;color:#fff;
     background:linear-gradient(135deg,#3f7cff,#6e8cff);text-decoration:none;font-size:14px;font-weight:600;transition:box-shadow .22s ease,transform .22s ease;}
   .btn-primary:hover{box-shadow:0 0 22px rgba(63,124,255,0.4);}
   .nav-burger{display:none;cursor:pointer;padding:8px;border-radius:999px;align-items:center;justify-content:center;}
-  .nav-burger:hover{background:rgba(255,255,255,0.06);}
+  .nav-burger:hover{background:rgba(40,70,130,0.08);}
   .mobile-menu{position:fixed;top:112px;left:50%;transform:translateX(-50%);z-index:49;width:calc(100vw - 32px);max-width:420px;
-    background:rgba(9,13,24,0.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.1);
-    border-radius:22px;padding:10px 0;box-shadow:0 16px 48px rgba(0,0,0,0.55);display:none;}
+    background:rgba(255,255,255,0.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(40,70,130,0.12);
+    border-radius:22px;padding:10px 0;box-shadow:0 16px 48px rgba(40,70,130,0.18);display:none;}
   .mobile-menu.open{display:block;}
-  .mobile-menu span{display:block;font-size:15px;color:rgba(255,255,255,0.72);cursor:pointer;padding:14px 28px;}
-  .mobile-menu span:hover{background:rgba(255,255,255,0.04);}
-  .mobile-menu .div{border-top:1px solid rgba(255,255,255,0.08);margin:6px 0;}
+  .mobile-menu span{display:block;font-size:15px;color:rgba(20,30,50,0.78);cursor:pointer;padding:14px 28px;}
+  .mobile-menu span:hover{background:rgba(63,124,255,0.07);}
+  .mobile-menu .div{border-top:1px solid rgba(40,70,130,0.10);margin:6px 0;}
 
   /* ===== hero ===== */
   .hero{position:relative;min-height:100vh;padding:160px 0 70px;display:flex;align-items:center;overflow:hidden;}
-  .hero-bg{position:absolute;inset:0;background-image:url('./assets/images/z-scholarship-hero-real.png');background-size:cover;
-    background-position:center right;opacity:0;transform:scale(1.08);animation:heroIn 1.4s cubic-bezier(0.2,0.8,0.2,1) forwards,heroDrift 26s ease-in-out 1.4s infinite alternate;}
-  @keyframes heroIn{to{opacity:0.96;transform:scale(1.04);}}
-  @keyframes heroDrift{from{transform:scale(1.04) translate(0,0);}to{transform:scale(1.09) translate(-1.6%,-1.2%);}}
-  .hero-mask{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,7,13,0.96) 0%,rgba(5,7,13,0.78) 34%,rgba(5,7,13,0.18) 72%,rgba(5,7,13,0.42) 100%),linear-gradient(180deg,rgba(5,7,13,0.7) 0%,transparent 34%,rgba(5,7,13,0.55) 82%,#05070d 100%);}
-  /* 长渐变收尾：Hero 深色底部柔和过渡到下方浅色科技官网内容区（dark → light），不硬切 */
-  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:380px;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 0%,rgba(5,7,13,0.3) 46%,rgba(28,40,70,0.5) 74%,#eef3fb 100%);}
+  /* 浅色 Hero 主视觉：保留「纸帆 / 抽象 Z」概念，改为白底冰蓝/淡紫蓝弥散柔光（无真实人物/二维码/芯片堆） */
+  .hero-bg{position:absolute;inset:0;opacity:0;transform:scale(1.04);
+    background:
+      radial-gradient(720px 560px at 78% 30%, rgba(120,150,255,0.22), transparent 62%),
+      radial-gradient(560px 520px at 92% 72%, rgba(140,200,255,0.20), transparent 62%),
+      radial-gradient(640px 640px at 60% 96%, rgba(170,150,255,0.14), transparent 62%);
+    animation:heroIn 1.4s cubic-bezier(0.2,0.8,0.2,1) forwards,heroDrift 26s ease-in-out 1.4s infinite alternate;}
+  @keyframes heroIn{to{opacity:1;transform:scale(1.0);}}
+  @keyframes heroDrift{from{transform:scale(1.0) translate(0,0);}to{transform:scale(1.05) translate(-1.4%,-1%);}}
+  .hero-mask{position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,249,255,0.86) 0%,rgba(247,249,255,0.55) 38%,rgba(247,249,255,0.08) 72%,transparent 100%);}
+  /* 浅色 Hero 底部柔和收尾，与下方浅色内容区无缝衔接 */
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:200px;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 0%,rgba(247,249,255,0.6) 70%,#f7f9ff 100%);}
   .hero-content{position:relative;z-index:2;width:min(calc(100vw - 96px),1320px);margin:0 auto;}
-  .hero-eyebrow{color:rgba(255,255,255,0.42);font-size:14px;margin:0 0 20px;letter-spacing:0.08em;}
+  .hero-eyebrow{color:rgba(20,30,50,0.5);font-size:14px;margin:0 0 20px;letter-spacing:0.08em;}
   /* Hero 主标题「智谱Z奖学金」：首屏重点，桌面端单行；移动端在媒体查询里允许换行 */
-  .hero-title{margin:0;font-size:clamp(48px,6vw,96px);line-height:1.06;font-weight:600;letter-spacing:-0.01em;color:#fff;white-space:nowrap;}
-  /* 标题中的「Z」使用与 logo 一致的设计字形（内联 SVG 字标） */
-  .hero-title .logo-z{display:inline-block;height:0.74em;width:auto;vertical-align:-0.045em;margin:0 0.06em;}
-  .hero-title .logo-z svg{display:block;height:100%;width:auto;fill:currentColor;}
+  .hero-title{margin:0;font-size:clamp(48px,6vw,96px);line-height:1.06;font-weight:600;letter-spacing:-0.01em;color:#141b2b;white-space:nowrap;}
+  /* 可复用品牌「Z」字标：全站「智谱Z奖学金」统一使用智谱 logo 的 Z 字形（内联 SVG，随字号缩放、跟随文字颜色） */
+  .brand-z{display:inline-block;height:0.84em;width:auto;vertical-align:-0.1em;margin:0 0.03em;}
+  .brand-z svg{display:block;height:100%;width:auto;fill:currentColor;}
   /* 中文 slogan「问道 AGI，同行未来」：小一号，放在主标题下方 */
-  .hero-cn-slogan{margin:22px 0 0;color:rgba(255,255,255,0.82);font-size:clamp(21px,2.3vw,32px);font-weight:450;letter-spacing:0.01em;}
+  .hero-cn-slogan{margin:22px 0 0;color:rgba(20,30,50,0.78);font-size:clamp(21px,2.3vw,32px);font-weight:450;letter-spacing:0.01em;}
   /* 英文 slogan：层级最小 */
-  .hero-slogan{margin:14px 0 0;color:rgba(255,255,255,0.5);font-size:16px;font-style:italic;}
+  .hero-slogan{margin:14px 0 0;color:rgba(20,30,50,0.5);font-size:16px;font-style:italic;}
   .hero-copy{max-width:620px;margin:28px 0 0;color:rgba(255,255,255,0.68);font-size:17px;line-height:1.85;}
   .hero-cta{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
   .btn-lg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;text-decoration:none;
     font-weight:600;font-size:15px;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease;}
   .btn-fill{color:#fff;background:linear-gradient(135deg,#3f7cff,#6d8dff);box-shadow:0 0 34px rgba(63,124,255,0.28);border:none;}
   .btn-fill:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(63,124,255,0.45);}
-  .btn-ghost{color:#fff;border:1px solid rgba(255,255,255,0.22);background:rgba(255,255,255,0.03);}
-  .btn-ghost:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.52);background:rgba(255,255,255,0.07);}
+  .btn-ghost{color:#1b2435;border:1px solid rgba(40,70,130,0.26);background:rgba(255,255,255,0.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+  .btn-ghost:hover{transform:translateY(-2px);border-color:#3f6bff;background:#ffffff;}
   .scroll-cue{position:absolute;z-index:2;left:max(48px,calc((100vw - 1320px) / 2));bottom:34px;display:flex;align-items:center;gap:12px;
-    color:rgba(255,255,255,0.42);text-decoration:none;font-size:14px;}
-  .scroll-cue i{width:34px;height:1px;background:rgba(255,255,255,0.42);display:block;transform-origin:left center;animation:scrollLine 1.6s ease-in-out infinite;}
+    color:rgba(20,30,50,0.5);text-decoration:none;font-size:14px;}
+  .scroll-cue i{width:34px;height:1px;background:rgba(20,30,50,0.45);display:block;transform-origin:left center;animation:scrollLine 1.6s ease-in-out infinite;}
   @keyframes scrollLine{0%,100%{transform:scaleX(0.45);opacity:0.4;}50%{transform:scaleX(1);opacity:0.9;}}
 
   /* ===== intro narrative ===== */
@@ -104,13 +111,23 @@
 
   /* ===== core benefits (字节式横向权益列) ===== */
   .benefits-head{text-align:center;max-width:760px;margin:0 auto 72px;}
-  .benefits-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid rgba(255,255,255,0.08);}
-  .benefit{position:relative;min-width:0;padding:36px 28px 38px;border-left:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;
-    transition:background .35s ease;}
-  .benefit:first-child{border-left:none;}
-  .benefit:hover{background:rgba(118,167,255,0.04);}
+  /* BigModel 式浅色卡片矩阵：5 张白底圆角卡片横向排列，内部单色径向弥散柔光 */
+  .benefits-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;}
+  .benefit{position:relative;overflow:hidden;min-width:0;padding:30px 24px 32px;border:1px solid rgba(40,70,130,0.10);border-radius:20px;
+    background:#ffffff;box-shadow:0 10px 30px rgba(40,70,130,0.06);display:flex;flex-direction:column;
+    transition:transform .3s ease,box-shadow .3s ease;}
+  /* 卡片内弥散柔光：大模糊半径 + 径向圆形渐变，边缘柔和消散、无硬边界（单色同系，不混色） */
+  .benefit::before{content:"";position:absolute;z-index:0;top:-96px;right:-76px;width:268px;height:268px;border-radius:50%;
+    filter:blur(48px);opacity:0.72;pointer-events:none;
+    background:radial-gradient(circle, rgba(99,140,255,0.30), transparent 70%);}
+  .benefit:nth-child(2)::before{background:radial-gradient(circle, rgba(110,200,255,0.28), transparent 70%);}
+  .benefit:nth-child(3)::before{background:radial-gradient(circle, rgba(150,140,255,0.26), transparent 70%);}
+  .benefit:nth-child(4)::before{background:radial-gradient(circle, rgba(120,165,255,0.26), transparent 70%);}
+  .benefit:nth-child(5)::before{background:radial-gradient(circle, rgba(160,150,235,0.24), transparent 70%);}
+  .benefit > *{position:relative;z-index:1;}
+  .benefit:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(40,70,130,0.13);}
   .benefit-label{margin:0;color:rgba(190,210,255,0.62);font-size:16.5px;font-weight:500;letter-spacing:0.02em;}
-  .benefit-value{margin:54px 0 0;font-size:clamp(34px,2.9vw,50px);line-height:1.04;font-weight:450;letter-spacing:-0.04em;color:#fff;
+  .benefit-value{margin:22px 0 0;font-size:clamp(30px,2.6vw,46px);line-height:1.06;font-weight:600;letter-spacing:-0.03em;color:#141b2b;
     word-break:keep-all;overflow-wrap:normal;transition:color .35s ease;}
   /* 文本型大字（Coding Plan Max / Z.AI Scholar / 长期机会）：略小，整词换行不拆字 */
   .benefit-value.is-text{font-size:clamp(26px,2vw,34px);line-height:1.18;letter-spacing:-0.02em;}
@@ -118,7 +135,7 @@
   .benefit-value.bv-coding{font-size:clamp(21px,1.6vw,27px);line-height:1.2;}
   /* Scholars Club：缩小并强制一行展示，不让 Club 掉行 */
   .benefit-value.bv-club{font-size:clamp(14px,1.2vw,18px);letter-spacing:-0.01em;white-space:nowrap;font-weight:500;}
-  .benefit:hover .benefit-value{color:#9dbbff;}
+  .benefit:hover .benefit-value{color:#3f6bff;}
   .benefit-value .unit{font-size:0.46em;font-weight:400;color:rgba(255,255,255,0.72);margin-left:5px;letter-spacing:0;}
   .benefit-desc{margin:16px 0 0;color:rgba(230,238,255,0.55);font-size:14px;line-height:1.6;letter-spacing:0.01em;}
   /* Coding Plan 说明保持单行 */
@@ -214,8 +231,7 @@
   /* ===== responsive ===== */
   @media (max-width:980px){
     .benefits-row{grid-template-columns:repeat(2,1fr);}
-    .benefit{border-left:1px solid rgba(255,255,255,0.08);border-top:1px solid rgba(255,255,255,0.08);min-height:auto;}
-    .benefit:nth-child(odd){border-left:none;}
+    .benefit{min-height:auto;}
   }
   @media (max-width:900px){
     .nav-links,.nav-right{display:none !important;}
@@ -239,7 +255,6 @@
     .hero-title{font-size:46px !important;}
     .scroll-cue{display:none !important;}
     .benefits-row{grid-template-columns:1fr;}
-    .benefit{border-left:none !important;}
     .footer-cols{grid-template-columns:1fr;gap:28px;}
   }
   @media (prefers-reduced-motion:reduce){
@@ -268,24 +283,18 @@
   /* ============================================================
      Hero 以下浅色科技官网内容区（参考 BigModel）
      ============================================================ */
-  .light-zone{position:relative;
-    background:
-      radial-gradient(900px 560px at 88% -2%, rgba(122,92,255,0.10), transparent 60%),
-      radial-gradient(820px 640px at 6% 22%, rgba(63,124,255,0.09), transparent 60%),
-      linear-gradient(180deg,#eef3fb 0%, #f5f7fc 44%, #eef2f9 100%);
-    color:#1b2435;}
+  .light-zone{position:relative;background:transparent;color:#1b2435;}
   .light-zone .eyebrow{color:#3f6bff;}
   .light-zone .h2{color:#141b2b;}
   /* 项目简介 */
   .light-zone .intro p.lead{color:#27303f;}
   .light-zone .intro .accent{background:linear-gradient(120deg,#3f6bff,#7a5cff);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;}
   .light-zone .intro-line.is-visible .accent{color:transparent;}
-  /* 核心权益（浅色分栏） */
-  .light-zone .benefits-row{border-top:1px solid rgba(30,55,110,0.12);}
-  .light-zone .benefit{border-left-color:rgba(30,55,110,0.10);border-top-color:rgba(30,55,110,0.10);}
-  .light-zone .benefit:hover{background:rgba(63,124,255,0.05);}
+  /* 核心权益卡片文字 */
   .light-zone .benefit-label{color:#5b6a86;}
   .light-zone .benefit-value{color:#141b2b;}
+  /* 金额数字（20/10 万元人民币）冷蓝突出，比其余权益文字更醒目 */
+  .light-zone .benefit-value:not(.is-text){color:#2f54ff;}
   .light-zone .benefit:hover .benefit-value{color:#3f6bff;}
   .light-zone .benefit-value .unit{color:#5b6a86;}
   .light-zone .benefit-desc{color:#5b6678;}
@@ -362,7 +371,7 @@
         <path fill="#FFFFFF" d="M487.44,713.72l35.43-50.26c5.53-7.79,14.57-12.56,24.37-12.56h191.48v62.82H487.44z"/>
       </svg>
       <span class="brand-txt">
-        <span class="brand-cn">智谱Z奖学金</span>
+        <span class="brand-cn">智谱<span class="brand-z"></span>奖学金</span>
         <span class="brand-en">Z.AI Scholarship</span>
       </span>
     </div>
@@ -378,7 +387,7 @@
       <a class="btn-primary" data-apply href="#">立即申请</a>
     </div>
     <div class="nav-burger" id="burger" aria-label="menu">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(20,30,50,0.75)" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
     </div>
   </header>
   <div class="mobile-menu" id="mobileMenu">
@@ -397,7 +406,7 @@
     <div class="hero-mask"></div>
     <div class="hero-content">
       <p class="hero-eyebrow" data-reveal>Z.AI Scholarship 2026</p>
-      <h1 class="hero-title" data-reveal>智谱<span class="logo-z" aria-label="Z" role="img"><svg viewBox="248 286 504 428" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M512.56,286.53l-35.18,50.01c-5.53,7.79-14.57,12.56-24.37,12.56H261.28v-62.82C261.28,286.53,512.56,286.53,512.56,286.53z"/><polygon points="751.28,286.53 449.74,713.72 248.72,713.72 550.26,286.53"/><path d="M487.44,713.72l35.43-50.26c5.53-7.79,14.57-12.56,24.37-12.56h191.48v62.82H487.44z"/></svg></span>奖学金</h1>
+      <h1 class="hero-title" data-reveal>智谱<span class="brand-z" aria-label="Z" role="img"></span>奖学金</h1>
       <p class="hero-cn-slogan" data-reveal>问道 AGI，同行未来</p>
       <p class="hero-slogan" data-reveal>Toward AGI, with the next generation.</p>
       <div class="hero-cta" data-reveal>
@@ -414,7 +423,7 @@
   <!-- ===== INTRO NARRATIVE ===== -->
   <section class="intro" id="intro">
     <p class="lead" data-stagger>
-      <span class="intro-line" data-reveal>智谱Z奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，</span>
+      <span class="intro-line" data-reveal>智谱<span class="brand-z"></span>奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，</span>
       <span class="intro-line" data-reveal>旨在激发具备<span class="accent">原创</span>精神和<span class="accent">创新</span>潜力的青年学者，持续探索人工智能的<span class="accent">能力边界</span>，</span>
       <span class="intro-line" data-reveal>成为推动人工智能研究及其应用技术突破的<span class="accent">青年开拓者</span>。</span>
     </p>
@@ -428,7 +437,7 @@
     </div>
     <div class="benefits-row" data-stagger>
       <div class="benefit" data-reveal>
-        <p class="benefit-label">智谱Z奖学金</p>
+        <p class="benefit-label">智谱<span class="brand-z"></span>奖学金</p>
         <div class="benefit-value"><span data-count="20">20</span><span class="unit">万元人民币</span></div>
         <p class="benefit-desc">科研支持与前沿探索</p>
       </div>
@@ -509,7 +518,7 @@
   <!-- ===== CONTACT CTA ===== -->
   <section class="cta" id="contact">
     <div class="signoff" data-reveal>
-      <div class="signoff-cn">智谱Z奖学金</div>
+      <div class="signoff-cn">智谱<span class="brand-z"></span>奖学金</div>
       <div class="signoff-en">Z.AI Scholarship</div>
     </div>
   </section>
@@ -543,8 +552,6 @@
             <div class="ttl">联系方式</div>
             <div class="lk">
               <span>咨询邮箱：<a href="mailto:zpsy@aminer.cn">zpsy@aminer.cn</a></span>
-              <a data-apply href="#">在线申请表（飞书）</a>
-              <span>智谱官网：待补充</span>
             </div>
           </div>
         </div>
@@ -565,7 +572,7 @@
   "use strict";
 
   // ===== 链接常量（集中管理；待补充项留空字符串）=====
-  // 正式申请入口（飞书表单）：全站「立即申请 / 申请表下载 / 在线申请表」统一指向此链接
+  // 正式申请入口（飞书表单）：全站「立即申请」（顶部公告 / Header / Hero / 移动菜单）统一指向此链接
   var APPLICATION_FORM_URL = 'https://zhipu-ai.feishu.cn/share/base/form/shrcnAJYvhX1QOm2G42Uq4TEwwb';
   // 申请表下载（仅申请指南「申请材料」首项后的「下载申请表」文字链接，独立于申请入口）
   var FORM_DOWNLOAD_URL = 'https://zhipu-ai.feishu.cn/wiki/XWtVwYs37iN4EvkzY6ScgFOBnre?from=from_copylink';
@@ -577,7 +584,11 @@
       else { a.setAttribute('href','#'); a.addEventListener('click', function(e){ e.preventDefault(); alert('该链接待补充'); }); }
     });
   }
-  bindLink('[data-apply]', APPLICATION_FORM_URL);     // Header / Hero / 移动菜单 / 页脚「立即申请 / 在线申请表」
+  bindLink('[data-apply]', APPLICATION_FORM_URL);     // Header / Hero / 移动菜单 / 顶部公告「立即申请」
+
+  // ===== 品牌「Z」字标：将全站 .brand-z 占位注入智谱 logo 的 Z 字形（统一视觉）=====
+  var BRAND_Z_SVG = '<svg viewBox="248 286 504 428" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M512.56,286.53l-35.18,50.01c-5.53,7.79-14.57,12.56-24.37,12.56H261.28v-62.82C261.28,286.53,512.56,286.53,512.56,286.53z"/><polygon points="751.28,286.53 449.74,713.72 248.72,713.72 550.26,286.53"/><path d="M487.44,713.72l35.43-50.26c5.53-7.79,14.57-12.56,24.37-12.56h191.48v62.82H487.44z"/></svg>';
+  document.querySelectorAll('.brand-z').forEach(function(el){ el.innerHTML = BRAND_Z_SVG; });
 
   // ===== 申请材料（来源：何芸 12 条修改文档 第 9 条）=====
   // 第一项后附小号「下载申请表」文字链接（飞书申请表），其余为纯文本；第五项含子项
@@ -703,14 +714,14 @@
   }, { threshold:0.6 });
   document.querySelectorAll('[data-count]').forEach(function(el){ cntObs.observe(el); });
 
-  // ===== nav scroll state (stays dark) =====
+  // ===== nav scroll state（毛玻璃浅色：滚动后略加白、描边略深，仍透出下方模糊）=====
   var nav = document.getElementById('nav');
   function onScroll(){
     if(!nav) return;
     if(window.pageYOffset > 60){
-      nav.style.background='rgba(7,10,18,0.86)'; nav.style.borderColor='rgba(255,255,255,0.16)'; nav.style.boxShadow='0 22px 80px rgba(0,0,0,0.34)';
+      nav.style.background='linear-gradient(100deg,rgba(120,130,255,0.12),rgba(255,255,255,0.05)),rgba(255,255,255,0.42)'; nav.style.borderColor='rgba(40,70,130,0.18)'; nav.style.boxShadow='0 14px 44px rgba(40,70,130,0.14)';
     } else {
-      nav.style.background='rgba(7,10,18,0.6)'; nav.style.borderColor='rgba(255,255,255,0.08)'; nav.style.boxShadow='0 20px 80px rgba(0,0,0,0.2)';
+      nav.style.background='linear-gradient(100deg,rgba(120,130,255,0.10),rgba(255,255,255,0.04)),rgba(255,255,255,0.22)'; nav.style.borderColor='rgba(40,70,130,0.12)'; nav.style.boxShadow='0 12px 40px rgba(40,70,130,0.10)';
     }
   }
   window.addEventListener('scroll', onScroll, { passive:true });
