@@ -78,8 +78,9 @@
   @keyframes heroDrift{from{transform:scale(1.0) translate(0,0);}to{transform:scale(1.04) translate(-1.2%,-0.8%);}}
   /* 左侧→右侧浅色洗白：把图层左边缘融进 CSS 浅底，保证左侧文字区干净、纸帆右侧清晰 */
   .hero-mask{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(247,249,255,0.96) 0%,rgba(247,249,255,0.82) 26%,rgba(247,249,255,0.34) 52%,rgba(247,249,255,0) 78%);}
-  /* 浅色 Hero 底部柔和收尾，与下方浅色内容区无缝衔接 */
-  .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:170px;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(247,249,255,0) 0%,rgba(247,249,255,0.6) 60%,#f7f9ff 100%);}
+  /* Hero 底部垂直向下弥散渐变蒙版：透明→页面浅蓝白底色（#f7f9ff，匹配正文，不用纯白），四段平滑无色带；只盖底部、不挡文案/按钮，z-index 低于内容 */
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:260px;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,rgba(247,249,255,0) 0%,rgba(247,249,255,0.45) 45%,rgba(247,249,255,0.82) 72%,#f7f9ff 100%);}
   .hero-content{position:relative;z-index:2;width:min(calc(100vw - 96px),1320px);margin:0 auto;}
   .hero-eyebrow{color:rgba(20,30,50,0.5);font-size:14px;margin:0 0 20px;letter-spacing:0.08em;}
   /* Hero 主标题「智谱Z奖学金」：首屏重点，桌面端单行；移动端在媒体查询里允许换行 */
@@ -107,7 +108,7 @@
 
   /* ===== intro narrative ===== */
   /* 项目简介：内容自适应高度（不用 100vh），padding 控制节奏；宽容器使三行各自单行 */
-  .intro{position:relative;z-index:3;width:min(calc(100vw - 96px),1280px);margin:0 auto;padding:56px 0 92px;text-align:center;}
+  .intro{position:relative;z-index:3;width:min(calc(100vw - 96px),1280px);margin:0 auto;padding:88px 0 92px;text-align:center;}
   .intro p.lead{margin:0 auto;font-size:clamp(20px,1.9vw,28px);line-height:1.55;font-weight:450;letter-spacing:0;color:rgba(255,255,255,0.94);}
   /* 三行固定断行：每行独立成块，逐行 scroll reveal（fade-up） */
   .intro-line{display:block;}
@@ -251,7 +252,7 @@
     .hero-content{width:calc(100vw - 40px) !important;}
     .hero-title{font-size:clamp(40px,9vw,58px) !important;white-space:normal !important;}
     .sec{width:calc(100vw - 40px) !important;padding:64px 0 !important;}
-    .intro{width:calc(100vw - 40px) !important;margin-top:0 !important;padding:40px 0 64px !important;}
+    .intro{width:calc(100vw - 40px) !important;margin-top:0 !important;padding:56px 0 64px !important;}
     .intro p.lead{font-size:clamp(20px,5.4vw,28px) !important;line-height:1.62 !important;}
     .guide-card{grid-template-columns:1fr !important;gap:40px !important;padding:40px 30px !important;}
     .timeline{grid-template-columns:1fr !important;border-top:none !important;border-left:1px solid rgba(255,255,255,0.1) !important;padding-left:24px;}
