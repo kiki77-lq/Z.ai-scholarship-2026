@@ -62,7 +62,7 @@
 
   /* ===== hero ===== */
   /* Hero section 底色：CSS 浅色径向弥散背景（与正文 .root 同一浅色系），不再用图片满铺，从根本消除图底白带与正文的横向断层 */
-  .hero{position:relative;min-height:700px;padding:132px 0 56px;display:flex;align-items:center;overflow:hidden;
+  .hero{position:relative;min-height:760px;padding:140px 0 48px;overflow:hidden;
     background:
       radial-gradient(circle at 80% 18%, rgba(90,135,255,0.16), transparent 36%),
       radial-gradient(circle at 40% 78%, rgba(150,195,255,0.10), transparent 44%),
@@ -106,16 +106,14 @@
   .scroll-cue i{width:30px;height:1px;background:rgba(20,30,50,0.34);display:block;transform-origin:left center;animation:scrollLine 1.6s ease-in-out infinite;}
   @keyframes scrollLine{0%,100%{transform:scaleX(0.45);opacity:0.4;}50%{transform:scaleX(1);opacity:0.9;}}
 
-  /* ===== intro narrative ===== */
-  /* 项目简介：内容自适应高度（不用 100vh），padding 控制节奏；宽容器使三行各自单行 */
-  .intro{position:relative;z-index:3;width:min(calc(100vw - 96px),1280px);margin:0 auto;padding:88px 0 92px;text-align:center;}
-  .intro p.lead{margin:0 auto;font-size:clamp(20px,1.9vw,28px);line-height:1.55;font-weight:450;letter-spacing:0;color:rgba(255,255,255,0.94);}
+  /* ===== hero intro（项目简介并入 Hero 内部，作为首屏叙事延展；浅色样式内置，不依赖 .light-zone） ===== */
+  .hero-intro{position:relative;z-index:2;width:min(calc(100vw - 96px),1120px);margin:96px auto 0;text-align:center;}
+  .hero-intro .lead{margin:0 auto;font-size:clamp(20px,1.9vw,27px);line-height:1.78;font-weight:500;letter-spacing:0;color:#27303f;}
   /* 三行固定断行：每行独立成块，逐行 scroll reveal（fade-up） */
   .intro-line{display:block;}
-  .intro-line + .intro-line{margin-top:12px;}
-  /* 关键词：inline 不换行，所在行揭示后点亮为冷蓝 */
-  .intro .accent{display:inline;white-space:nowrap;font-weight:600;color:inherit;transition:color .55s cubic-bezier(0.2,0.8,0.2,1);}
-  .intro-line.is-visible .accent{color:#76a7ff;}
+  .intro-line + .intro-line{margin-top:10px;}
+  /* 关键词：inline 不换行，蓝紫渐变高亮 */
+  .hero-intro .accent{display:inline;white-space:nowrap;font-weight:600;background:linear-gradient(120deg,#3f6bff,#7a5cff);-webkit-background-clip:text;background-clip:text;color:transparent;}
 
   /* ===== core benefits (字节式横向权益列) ===== */
   .benefits-head{text-align:center;max-width:760px;margin:0 auto 72px;}
@@ -245,15 +243,16 @@
     .nav-links,.nav-right{display:none !important;}
     .nav-burger{display:inline-flex !important;}
     .nav{width:calc(100vw - 32px) !important;top:16px !important;height:58px !important;}
-    .hero{min-height:600px;padding:120px 0 40px;}
+    /* 移动端：Hero 含标题+简介，高度自适应内容；首屏先见标题/CTA，简介在其下方滚动可见 */
+    .hero{min-height:auto;padding:116px 0 52px;}
     /* 移动端：纸帆主体推向右侧边缘，左上文字区让出；顶部加竖向浅色洗白确保标题在图上清晰可读 */
     .hero-bg{width:100% !important;background-position:78% center !important;}
     .hero-mask{background:linear-gradient(180deg,rgba(247,249,255,0.92) 0%,rgba(247,249,255,0.6) 30%,rgba(247,249,255,0.2) 62%,rgba(247,249,255,0.05) 100%) !important;}
     .hero-content{width:calc(100vw - 40px) !important;}
     .hero-title{font-size:clamp(40px,9vw,58px) !important;white-space:normal !important;}
     .sec{width:calc(100vw - 40px) !important;padding:64px 0 !important;}
-    .intro{width:calc(100vw - 40px) !important;margin-top:0 !important;padding:56px 0 64px !important;}
-    .intro p.lead{font-size:clamp(20px,5.4vw,28px) !important;line-height:1.62 !important;}
+    .hero-intro{width:calc(100vw - 40px) !important;margin-top:60px !important;}
+    .hero-intro .lead{font-size:clamp(19px,5.2vw,24px) !important;line-height:1.7 !important;}
     .guide-card{grid-template-columns:1fr !important;gap:40px !important;padding:40px 30px !important;}
     .timeline{grid-template-columns:1fr !important;border-top:none !important;border-left:1px solid rgba(255,255,255,0.1) !important;padding-left:24px;}
     .tl-line{display:none;}
@@ -297,10 +296,6 @@
   .light-zone{position:relative;background:transparent;color:#1b2435;}
   .light-zone .eyebrow{color:#3f6bff;}
   .light-zone .h2{color:#141b2b;}
-  /* 项目简介 */
-  .light-zone .intro p.lead{color:#27303f;}
-  .light-zone .intro .accent{background:linear-gradient(120deg,#3f6bff,#7a5cff);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;}
-  .light-zone .intro-line.is-visible .accent{color:transparent;}
   /* 核心权益卡片文字 */
   .light-zone .benefit-label{color:#5b6a86;}
   .light-zone .benefit-value{color:#141b2b;}
@@ -425,20 +420,18 @@
         <a class="btn-lg btn-ghost" data-nav="apply" href="#apply">查看申请指南</a>
       </div>
     </div>
-    <a class="scroll-cue" data-nav="intro" href="#intro"><span>Scroll to explore</span><i></i></a>
+    <!-- 项目简介：并入 Hero 内部，作为首屏叙事延展（结构上消除 Hero 与独立 intro 的 section 接缝） -->
+    <div class="hero-intro" id="intro">
+      <p class="lead" data-stagger>
+        <span class="intro-line" data-reveal>智谱<span class="brand-z"></span>奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，</span>
+        <span class="intro-line" data-reveal>旨在激发具备<span class="accent">原创</span>精神和<span class="accent">创新</span>潜力的青年学者，持续探索人工智能的<span class="accent">能力边界</span>，</span>
+        <span class="intro-line" data-reveal>成为推动人工智能研究及其应用技术突破的<span class="accent">青年开拓者</span>。</span>
+      </p>
+    </div>
   </section>
 
   <!-- ===== 浅色科技官网内容区（Hero 以下） ===== -->
   <div class="light-zone">
-
-  <!-- ===== INTRO NARRATIVE ===== -->
-  <section class="intro" id="intro">
-    <p class="lead" data-stagger>
-      <span class="intro-line" data-reveal>智谱<span class="brand-z"></span>奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，</span>
-      <span class="intro-line" data-reveal>旨在激发具备<span class="accent">原创</span>精神和<span class="accent">创新</span>潜力的青年学者，持续探索人工智能的<span class="accent">能力边界</span>，</span>
-      <span class="intro-line" data-reveal>成为推动人工智能研究及其应用技术突破的<span class="accent">青年开拓者</span>。</span>
-    </p>
-  </section>
 
   <!-- ===== CORE BENEFITS ===== -->
   <section class="sec" id="benefits">
