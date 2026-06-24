@@ -97,7 +97,7 @@
   /* 中文 slogan「问道 AGI，同行未来」：小一号，放在主标题下方 */
   .hero-cn-slogan{margin:22px 0 0;color:rgba(20,30,50,0.78);font-size:clamp(21px,2.3vw,32px);font-weight:450;letter-spacing:0.01em;}
   /* 英文 slogan：层级最小 */
-  .hero-slogan{margin:14px 0 0;color:rgba(20,30,50,0.5);font-size:16px;font-style:italic;}
+  .hero-slogan{margin:14px 0 0;color:rgba(20,30,50,0.6);font-size:16px;font-style:italic;}
   .hero-copy{max-width:620px;margin:28px 0 0;color:rgba(255,255,255,0.68);font-size:17px;line-height:1.85;}
   .hero-cta{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
   .btn-lg{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;text-decoration:none;
@@ -321,7 +321,7 @@
   .light-zone .guide-col-title .en{color:#3f6bff;}
   .light-zone .guide-intro{color:#5b6678;}
   .light-zone .elig-item{border-bottom:1px solid rgba(30,55,110,0.10);}
-  .light-zone .elig-label{color:#8a93a6;}
+  .light-zone .elig-label{color:#6b7488;}
   .light-zone .elig-value{color:#27303f;}
   .light-zone .mat-item{border-bottom:1px solid rgba(30,55,110,0.10);}
   .light-zone .mat-item span{color:#27303f;}
@@ -354,8 +354,8 @@
   .light-zone .footer-cols .lk span,.light-zone .footer-cols .lk a{color:#5b6678;}
   .light-zone .footer-cols .lk span:hover,.light-zone .footer-cols .lk a:hover{color:#3f6bff;}
   .light-zone .footer-bottom{border-top:1px solid rgba(30,55,110,0.10);}
-  .light-zone .footer-bottom .cp{color:#9aa3b4;}
-  .light-zone .footer-bottom .legal span{color:#9aa3b4;}
+  .light-zone .footer-bottom .cp{color:#7c869a;}
+  .light-zone .footer-bottom .legal span{color:#7c869a;}
   .light-zone .footer-bottom .legal span:hover{color:#5b6678;}
   @media (max-width:900px){
     .light-zone .timeline{border-left:1px solid rgba(30,55,110,0.15) !important;}
@@ -370,8 +370,16 @@
   html[lang="en"] .benefit-value.bv-coding{font-size:clamp(18px,1.45vw,23px);line-height:1.22;}
   html[lang="en"] .benefit-desc.bv-coding-desc{white-space:normal;letter-spacing:0;}
   html[lang="en"] .benefit-value.is-text{line-height:1.22;}
+  /* M1：英文态栏标题的小号 .en 子标签为空，隐藏避免标题下方留空隙（中文态保留两行结构） */
+  html[lang="en"] .guide-col-title .en{display:none;}
+  /* M4：英文态隐藏与上行语义重复的第二行 slogan（中文态仍保留 中文 slogan + 英文 slogan 两行） */
+  html[lang="en"] .hero-slogan{display:none;}
   @media (max-width:900px){
     html[lang="en"] .elig-label{flex:0 0 104px;}
+  }
+  /* M3：矮视口（如小高度笔记本）适配——收紧 Hero 上下留白并放开 min-height，确保 CTA 在首屏内可见；不影响正常高度与移动端 */
+  @media (max-height:720px){
+    .hero{padding-top:110px;padding-bottom:72px;min-height:auto;}
   }
 </style>
 </head>
