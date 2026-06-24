@@ -362,6 +362,17 @@
     .tb-pre{display:none;}
     .topbar{font-size:11.5px;gap:9px;padding:0 10px;}
   }
+
+  /* ===== 英文版排版适配（仅 html[lang="en"] 生效，避免英文长文本溢出；不影响中文版） ===== */
+  html[lang="en"] .nav-links{gap:24px;}
+  html[lang="en"] .nav-links span{font-size:13px;letter-spacing:0.01em;}
+  html[lang="en"] .elig-label{flex:0 0 120px;}
+  html[lang="en"] .benefit-value.bv-coding{font-size:clamp(18px,1.45vw,23px);line-height:1.22;}
+  html[lang="en"] .benefit-desc.bv-coding-desc{white-space:normal;letter-spacing:0;}
+  html[lang="en"] .benefit-value.is-text{line-height:1.22;}
+  @media (max-width:900px){
+    html[lang="en"] .elig-label{flex:0 0 104px;}
+  }
 </style>
 </head>
 <body>
@@ -370,7 +381,7 @@
   <!-- ===== TOP COUNTDOWN BAR ===== -->
   <div class="topbar" id="topbar">
     <span class="topbar-text" id="topbarText">Z.AI Scholarship 2026 申请通道已开启 · 距报名截止还有 …</span>
-    <a class="topbar-cta" data-apply href="#">立即申请</a>
+    <a class="topbar-cta" data-apply data-i18n="cta.apply" href="#">立即申请</a>
   </div>
 
   <!-- ===== NAV ===== -->
@@ -390,28 +401,29 @@
       </span>
     </div>
     <nav class="nav-links">
-      <span data-nav="intro">项目简介</span>
-      <span data-nav="benefits">核心权益</span>
-      <span data-nav="apply">申请指南</span>
-      <span data-nav="timeline">评审流程</span>
-      <span data-nav="faq">常见问题</span>
+      <span data-nav="intro" data-i18n="nav.intro">项目简介</span>
+      <span data-nav="benefits" data-i18n="nav.benefits">核心权益</span>
+      <span data-nav="apply" data-i18n="nav.guide">申请指南</span>
+      <span data-nav="timeline" data-i18n="nav.review">评审流程</span>
+      <span data-nav="faq" data-i18n="nav.faq">常见问题</span>
     </nav>
     <div class="nav-right">
-      <span class="nav-lang" title="English version 待补充">EN / 中文</span>
-      <a class="btn-primary" data-apply href="#">立即申请</a>
+      <span class="nav-lang" id="langToggle" role="button" tabindex="0" title="Switch language / 切换语言">EN</span>
+      <a class="btn-primary" data-apply data-i18n="cta.apply" href="#">立即申请</a>
     </div>
     <div class="nav-burger" id="burger" aria-label="menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(20,30,50,0.75)" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
     </div>
   </header>
   <div class="mobile-menu" id="mobileMenu">
-    <span data-nav="intro">项目简介</span>
-    <span data-nav="benefits">核心权益</span>
-    <span data-nav="apply">申请指南</span>
-    <span data-nav="timeline">评审流程</span>
-    <span data-nav="faq">常见问题</span>
+    <span data-nav="intro" data-i18n="nav.intro">项目简介</span>
+    <span data-nav="benefits" data-i18n="nav.benefits">核心权益</span>
+    <span data-nav="apply" data-i18n="nav.guide">申请指南</span>
+    <span data-nav="timeline" data-i18n="nav.review">评审流程</span>
+    <span data-nav="faq" data-i18n="nav.faq">常见问题</span>
     <div class="div"></div>
-    <span style="padding:14px 28px;"><a class="btn-primary" data-apply href="#">立即申请</a></span>
+    <span id="langToggleMobile" role="button" tabindex="0" style="padding:14px 28px;color:#3f6bff;font-weight:600;">English</span>
+    <span style="padding:14px 28px;"><a class="btn-primary" data-apply data-i18n="cta.apply" href="#">立即申请</a></span>
   </div>
 
   <!-- ===== HERO ===== -->
@@ -420,12 +432,12 @@
     <div class="hero-mask"></div>
     <div class="hero-content">
       <p class="hero-eyebrow" data-reveal>Z.AI Scholarship 2026</p>
-      <h1 class="hero-title" data-reveal>智谱<span class="brand-z brand-z-animated" aria-label="Z" role="img"></span>奖学金</h1>
-      <p class="hero-cn-slogan" data-reveal>问道 AGI，同行未来</p>
+      <h1 class="hero-title" data-reveal data-i18n-html="hero.title">智谱<span class="brand-z brand-z-animated" aria-label="Z" role="img"></span>奖学金</h1>
+      <p class="hero-cn-slogan" data-reveal data-i18n="hero.slogan1">问道 AGI，同行未来</p>
       <p class="hero-slogan" data-reveal>Toward AGI, with the next generation.</p>
       <div class="hero-cta" data-reveal>
-        <a class="btn-lg btn-fill" data-apply href="#">立即申请</a>
-        <a class="btn-lg btn-ghost" data-nav="apply" href="#apply">查看申请指南</a>
+        <a class="btn-lg btn-fill" data-apply data-i18n="cta.apply" href="#">立即申请</a>
+        <a class="btn-lg btn-ghost" data-nav="apply" data-i18n="hero.guideBtn" href="#apply">查看申请指南</a>
       </div>
     </div>
   </section>
@@ -435,7 +447,7 @@
 
   <!-- ===== INTRO NARRATIVE（Hero 之后的独立项目简介区域） ===== -->
   <section class="intro" id="intro">
-    <p class="lead" data-stagger>
+    <p class="lead" data-stagger data-i18n-html="intro.lead">
       <span class="intro-line" data-reveal>智谱<span class="brand-z"></span>奖学金（Z.AI Scholarship）是智谱面向全球优秀人工智能青年研究者发起的奖学金计划，</span>
       <span class="intro-line" data-reveal>旨在激发具备<span class="accent">原创</span>精神和<span class="accent">创新</span>潜力的青年学者，持续探索人工智能的<span class="accent">能力边界</span>，</span>
       <span class="intro-line" data-reveal>成为推动人工智能研究及其应用技术突破的<span class="accent">青年开拓者</span>。</span>
@@ -446,56 +458,56 @@
   <section class="sec" id="benefits">
     <div class="benefits-head" data-reveal>
       <p class="eyebrow">CORE BENEFITS</p>
-      <h2 class="h2">核心权益</h2>
+      <h2 class="h2" data-i18n="benefits.h2">核心权益</h2>
     </div>
     <div class="benefits-row" data-stagger>
       <div class="benefit" data-reveal>
-        <p class="benefit-label">智谱<span class="brand-z"></span>奖学金</p>
-        <div class="benefit-value"><span data-count="20">20</span><span class="unit">万元人民币</span></div>
-        <p class="benefit-desc">科研支持与前沿探索</p>
+        <p class="benefit-label" data-i18n-html="ben.label1">智谱<span class="brand-z"></span>奖学金</p>
+        <div class="benefit-value" data-i18n-html="ben.value1"><span data-count="20">20</span><span class="unit">万元人民币</span></div>
+        <p class="benefit-desc" data-i18n="ben.desc1">科研支持与前沿探索</p>
       </div>
       <div class="benefit" data-reveal>
-        <p class="benefit-label">导师奖励</p>
-        <div class="benefit-value"><span data-count="10">10</span><span class="unit">万元人民币</span></div>
-        <p class="benefit-desc">人才培养的持续投入</p>
+        <p class="benefit-label" data-i18n="ben.label2">导师奖励</p>
+        <div class="benefit-value" data-i18n-html="ben.value2"><span data-count="10">10</span><span class="unit">万元人民币</span></div>
+        <p class="benefit-desc" data-i18n="ben.desc2">人才培养的持续投入</p>
       </div>
       <div class="benefit" data-reveal>
         <p class="benefit-label">Coding Plan</p>
-        <div class="benefit-value is-text bv-coding">GLM Coding&nbsp;Plan Max&nbsp;年包</div>
-        <p class="benefit-desc bv-coding-desc">每位获奖同学与导师均可获得</p>
+        <div class="benefit-value is-text bv-coding" data-i18n-html="ben.value3">GLM Coding&nbsp;Plan Max&nbsp;年包</div>
+        <p class="benefit-desc bv-coding-desc" data-i18n="ben.desc3">每位获奖同学与导师均可获得</p>
       </div>
       <div class="benefit" data-reveal>
         <p class="benefit-label">Scholars Club</p>
         <div class="benefit-value is-text bv-club">Z.AI Scholars Club</div>
-        <p class="benefit-desc">青年研究者网络</p>
+        <p class="benefit-desc" data-i18n="ben.desc4">青年研究者网络</p>
       </div>
       <div class="benefit" data-reveal>
-        <p class="benefit-label">共研通道</p>
-        <div class="benefit-value is-text">长期连接</div>
-        <p class="benefit-desc">联合研究与开放课题机会</p>
+        <p class="benefit-label" data-i18n="ben.label5">共研通道</p>
+        <div class="benefit-value is-text" data-i18n="ben.value5">长期连接</div>
+        <p class="benefit-desc" data-i18n="ben.desc5">联合研究与开放课题机会</p>
       </div>
     </div>
-    <p class="benefits-note" data-reveal>说明：奖学金不附带实习、就业或成果交付要求。后续合作遵循双向选择原则，不作为获奖条件。</p>
+    <p class="benefits-note" data-reveal data-i18n="ben.note">说明：奖学金不附带实习、就业或成果交付要求。后续合作遵循双向选择原则，不作为获奖条件。</p>
   </section>
 
   <!-- ===== APPLICATION GUIDE (条件 + 材料合并) ===== -->
   <section class="sec" id="apply">
     <div class="guide-head" data-reveal>
       <p class="eyebrow">APPLICATION GUIDE</p>
-      <h2 class="h2">申请指南</h2>
+      <h2 class="h2" data-i18n="guide.h2">申请指南</h2>
     </div>
     <div class="guide-card" data-reveal>
       <div class="guide-col">
-        <div class="guide-col-title"><span class="cn">申请条件</span><span class="en">Eligibility</span></div>
-        <div class="elig-item"><div class="elig-label">申请对象</div><div class="elig-value">全球高校及研究机构在读研究生。</div></div>
-        <div class="elig-item"><div class="elig-label">学历阶段</div><div class="elig-value">硕士、博士研究生均可申请。</div></div>
-        <div class="elig-item"><div class="elig-label">毕业时间</div><div class="elig-value">预计于 2027 年 6 月及以后毕业。</div></div>
-        <div class="elig-item"><div class="elig-label">研究方向</div><div class="elig-value">大模型、具身智能、通用人工智能、AI for Science 等。</div></div>
-        <div class="elig-item"><div class="elig-label">能力要求</div><div class="elig-value">具备较强研究能力、原创潜力，或已取得代表性科研/技术成果。</div></div>
+        <div class="guide-col-title"><span class="cn" data-i18n="guide.eligTitle">申请条件</span><span class="en" data-i18n="guide.eligTitleEn">Eligibility</span></div>
+        <div class="elig-item"><div class="elig-label" data-i18n="elig.l1">申请对象</div><div class="elig-value" data-i18n="elig.v1">全球高校及研究机构在读研究生。</div></div>
+        <div class="elig-item"><div class="elig-label" data-i18n="elig.l2">学历阶段</div><div class="elig-value" data-i18n="elig.v2">硕士、博士研究生均可申请。</div></div>
+        <div class="elig-item"><div class="elig-label" data-i18n="elig.l3">毕业时间</div><div class="elig-value" data-i18n="elig.v3">预计于 2027 年 6 月及以后毕业。</div></div>
+        <div class="elig-item"><div class="elig-label" data-i18n="elig.l4">研究方向</div><div class="elig-value" data-i18n="elig.v4">大模型、具身智能、通用人工智能、AI for Science 等。</div></div>
+        <div class="elig-item"><div class="elig-label" data-i18n="elig.l5">能力要求</div><div class="elig-value" data-i18n="elig.v5">具备较强研究能力、原创潜力，或已取得代表性科研/技术成果。</div></div>
       </div>
       <div class="guide-col">
-        <div class="guide-col-title"><span class="cn">申请材料</span><span class="en">Required Materials</span></div>
-        <p class="mat-intro">申请人需提交：</p>
+        <div class="guide-col-title"><span class="cn" data-i18n="guide.matTitle">申请材料</span><span class="en" data-i18n="guide.matTitleEn">Required Materials</span></div>
+        <p class="mat-intro" data-i18n="guide.matIntro">申请人需提交：</p>
         <div class="mat-list" data-mats></div>
       </div>
     </div>
@@ -505,15 +517,15 @@
   <section class="sec" id="timeline">
     <div class="tl-intro" data-reveal>
       <p class="eyebrow">REVIEW PROCESS</p>
-      <h2 class="h2">评审流程</h2>
+      <h2 class="h2" data-i18n="timeline.h2">评审流程</h2>
     </div>
     <div class="timeline" data-reveal data-timeline>
       <div class="tl-line"></div>
-      <div class="tl-item"><span class="tl-node"></span><p class="date">2026 年 7 月</p><strong>申请报名</strong></div>
-      <div class="tl-item"><span class="tl-node"></span><p class="date">2026 年 7 月 31 日 24:00</p><strong>报名截止</strong></div>
-      <div class="tl-item"><span class="tl-node"></span><p class="date">2026 年 8 – 9 月</p><strong>资格审核及专家评审</strong></div>
-      <div class="tl-item"><span class="tl-node"></span><p class="date">2026 年 9 月</p><strong>答辩终审</strong></div>
-      <div class="tl-item"><span class="tl-node"></span><p class="date">2026 年 10 月</p><strong>结果公布与颁奖</strong></div>
+      <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d1">2026 年 7 月</p><strong data-i18n="tl.s1">申请报名</strong></div>
+      <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d2">2026 年 7 月 31 日 24:00</p><strong data-i18n="tl.s2">报名截止</strong></div>
+      <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d3">2026 年 8 – 9 月</p><strong data-i18n="tl.s3">资格审核及专家评审</strong></div>
+      <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d4">2026 年 9 月</p><strong data-i18n="tl.s4">答辩终审</strong></div>
+      <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d5">2026 年 10 月</p><strong data-i18n="tl.s5">结果公布与颁奖</strong></div>
     </div>
   </section>
 
@@ -522,7 +534,7 @@
     <div class="faq-wrap">
       <div data-reveal style="margin-bottom:42px;">
         <p class="eyebrow">FAQ</p>
-        <h2 class="h2">常见问题</h2>
+        <h2 class="h2" data-i18n="faq.h2">常见问题</h2>
       </div>
       <div class="faq-list" data-reveal data-faq></div>
     </div>
@@ -546,32 +558,32 @@
         </div>
         <div class="footer-cols">
           <div>
-            <div class="ttl">项目</div>
+            <div class="ttl" data-i18n="footer.col1">项目</div>
             <div class="lk">
-              <span data-nav="intro">项目简介</span>
-              <span data-nav="benefits">核心权益</span>
-              <span data-nav="apply">申请条件</span>
-              <span data-nav="timeline">评审流程</span>
+              <span data-nav="intro" data-i18n="nav.intro">项目简介</span>
+              <span data-nav="benefits" data-i18n="nav.benefits">核心权益</span>
+              <span data-nav="apply" data-i18n="guide.eligTitle">申请条件</span>
+              <span data-nav="timeline" data-i18n="nav.review">评审流程</span>
             </div>
           </div>
           <div>
-            <div class="ttl">申请</div>
+            <div class="ttl" data-i18n="footer.col2">申请</div>
             <div class="lk">
-              <span data-nav="apply">申请方式</span>
-              <span data-nav="apply">申请材料</span>
+              <span data-nav="apply" data-i18n="footer.how">申请方式</span>
+              <span data-nav="apply" data-i18n="guide.matTitle">申请材料</span>
             </div>
           </div>
           <div>
-            <div class="ttl">联系方式</div>
+            <div class="ttl" data-i18n="footer.col3">联系方式</div>
             <div class="lk">
-              <span>咨询邮箱：<a href="mailto:zpsy@aminer.cn">zpsy@aminer.cn</a></span>
+              <span data-i18n-html="footer.email">咨询邮箱：<a href="mailto:zpsy@aminer.cn">zpsy@aminer.cn</a></span>
             </div>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
         <span class="cp">© 2026 Z.AI. All rights reserved.</span>
-        <div class="legal"><span>隐私政策</span><span>使用条款</span></div>
+        <div class="legal"><span data-i18n="footer.privacy">隐私政策</span><span data-i18n="footer.terms">使用条款</span></div>
       </div>
     </div>
   </footer>
@@ -599,24 +611,35 @@
   }
   bindLink('[data-apply]', APPLICATION_FORM_URL);     // Header / Hero / 移动菜单 / 顶部公告「立即申请」
 
-  // ===== 品牌「Z」字标：将全站 .brand-z 占位注入智谱 logo 的 Z 字形（统一视觉）=====
+  // ===== 品牌「Z」字标：将全站 .brand-z 占位注入智谱 logo 的 Z 字形（统一视觉；切换语言后可重注入）=====
   var BRAND_Z_SVG = '<svg viewBox="248 286 504 428" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M512.56,286.53l-35.18,50.01c-5.53,7.79-14.57,12.56-24.37,12.56H261.28v-62.82C261.28,286.53,512.56,286.53,512.56,286.53z"/><polygon points="751.28,286.53 449.74,713.72 248.72,713.72 550.26,286.53"/><path d="M487.44,713.72l35.43-50.26c5.53-7.79,14.57-12.56,24.37-12.56h191.48v62.82H487.44z"/></svg>';
-  document.querySelectorAll('.brand-z').forEach(function(el){ el.innerHTML = BRAND_Z_SVG; });
+  function injectBrandZ(){ document.querySelectorAll('.brand-z').forEach(function(el){ if(!el.querySelector('svg')) el.innerHTML = BRAND_Z_SVG; }); }
 
-  // ===== 申请材料（来源：何芸 12 条修改文档 第 9 条）=====
-  // 第一项后附小号「下载申请表」文字链接（飞书申请表），其余为纯文本；第五项含子项
-  var dlLink = ' <a class="mat-dl" href="'+FORM_DOWNLOAD_URL+'" target="_blank" rel="noopener noreferrer">下载申请表</a>';
-  var MATERIALS = [
-    { text:'智谱Z奖学金-Z.AI Scholarship 2026 申请表', dl:true },
-    '个人简历',
-    '未来研究计划',
-    '导师推荐信',
-    { text:'代表性成果证明材料', sub:['论文','开源项目','技术报告','系统成果','专利等'] }
-  ];
+  // ===== 申请材料（中英双语；第一项后附「下载申请表 / Download Application Form」文字链接，第五项含子项）=====
+  var MATERIALS = {
+    zh: [
+      { text:'智谱Z奖学金-Z.AI Scholarship 2026 申请表', dl:true },
+      '个人简历',
+      '未来研究计划',
+      '导师推荐信',
+      { text:'代表性成果证明材料', sub:['论文','开源项目','技术报告','系统成果','专利等'] }
+    ],
+    en: [
+      { text:'Z.AI Scholarship 2026 Application Form', dl:true },
+      'Curriculum Vitae',
+      'Future Research Plan',
+      'Advisor Recommendation Letter',
+      { text:'Supporting Materials for Representative Achievements', sub:['Papers','Open-source Projects','Technical Reports','System Contributions','Patents and Others'] }
+    ]
+  };
+  var DL_LABEL = { zh:'下载申请表', en:'Download Application Form' };
   var docIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#76a7ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>';
-  var matWrap = document.querySelector('[data-mats]');
-  if(matWrap){
-    MATERIALS.forEach(function(m){
+  function renderMats(lang){
+    var matWrap = document.querySelector('[data-mats]');
+    if(!matWrap) return;
+    matWrap.innerHTML = '';
+    var dlLink = ' <a class="mat-dl" href="'+FORM_DOWNLOAD_URL+'" target="_blank" rel="noopener noreferrer">'+DL_LABEL[lang]+'</a>';
+    MATERIALS[lang].forEach(function(m){
       var d = document.createElement('div'); d.className='mat-item';
       if(typeof m === 'string'){
         d.innerHTML = docIcon + '<span>'+m+'</span>';
@@ -630,8 +653,9 @@
     });
   }
 
-  // ===== FAQ（来源：何芸最新确认 15 题版本，原文照录）=====
-  var FAQS = [
+  // ===== FAQ（中英双语，各 15 题；不增删题）=====
+  var FAQS = {
+    zh: [
     ['哪些人可以申请 Z.AI Scholarship 2026？','Z.AI Scholarship 2026 面向全球高校及研究机构的硕士、博士研究生开放申请。'],
     ['对学历阶段有要求吗？','申请人应为硕士或博士研究生。评审将重点关注申请人在人工智能相关方向的研究能力、原创潜力、代表性成果和长期发展空间。'],
     ['对毕业时间有要求吗？','申请人预计毕业时间应为 2027 年 6 月及以后。'],
@@ -647,10 +671,30 @@
     ['评审流程是怎样的？','项目采用“材料申报 + 专家函评 + 终审评议”的方式开展评审。评审委员会将综合申请人的研究成果、原创能力、项目提案质量、长期潜力及推荐意见，最终确定年度 Scholar 名单。'],
     ['申请信息会用于哪些用途？','申请人提交的信息和材料仅用于 Z.AI Scholarship 2026 奖学金申请、评审、沟通及发放相关工作，不用于其他无关用途。'],
     ['是否有后续合作机会？','有。对于有进一步合作意愿的 Scholar，智谱将优先开放联合研究、开放课题、暑期研究、实习实践、博士后计划及长期研究岗位等机会，均遵循双向选择原则。']
-  ];
-  var faqWrap = document.querySelector('[data-faq]');
-  if(faqWrap){
-    FAQS.forEach(function(pair, i){
+    ],
+    en: [
+    ['Who can apply for Z.AI Scholarship 2026?','Z.AI Scholarship 2026 is open to master’s and PhD students from universities and research institutions worldwide.'],
+    ['Are there requirements for academic stage?','Applicants should be master’s or PhD students. The review will focus on research capability, originality potential, representative achievements, and long-term development potential in AI-related fields.'],
+    ['Are there requirements for graduation time?','Applicants are expected to graduate in June 2027 or later.'],
+    ['What research areas are eligible?','Applicants’ research should be related to artificial intelligence, computer science, fundamental science, or frontier topics related to AGI. Priority areas include, but are not limited to:<ul><li>Foundation Models</li><li>Multimodal Intelligence</li><li>Agent Systems</li><li>Reinforcement Learning</li><li>AI Infrastructure</li><li>AI Native Systems</li><li>AI for Science</li><li>Embodied Intelligence</li><li>Other important directions related to AGI</li></ul>'],
+    ['What does the review committee value most?','The review will focus on research capability, originality potential, technical judgment, representative research or technical achievements, and the potential to continue exploring important research problems.'],
+    ['What materials are required?','Applicants should submit the following materials:<ol><li>Z.AI Scholarship 2026 Application Form</li><li>CV</li><li>Supplementary application form or future research plan</li><li>Representative achievement materials</li><li>1–2 advisor recommendation letters</li></ol>Representative achievement materials may include papers, open-source projects, technical reports, system contributions, benchmark results, patents, competition awards, and other relevant materials.'],
+    ['Are advisor recommendation letters required?','Yes. Applicants are encouraged to submit 1–2 advisor recommendation letters. Recommenders should be the applicant’s advisor or collaborating advisor.'],
+    ['How should advisor recommendation letters be submitted?','Recommendation letters may be uploaded together with the application materials, or sent separately by the recommender to the designated project email. If sent separately, the email should include the applicant’s name, university or institution, and project name.'],
+    ['Do selected Scholars have to intern or work at Z.AI?','No. Z.AI Scholarship follows an open, public-interest, and academic-oriented principle. The scholarship does not require internship, employment, or deliverable commitments.'],
+    ['Does this scholarship conflict with other scholarships?','No. Applicants may apply for or receive other scholarships, scholar programs, or university funding. Applicants are welcome to mention other major awards or scholar programs in their application materials.'],
+    ['How do I submit my application materials?','Applicants should submit materials through the official Z.AI Scholarship application channel. Please use the “Apply Now” entry on the official website to access the online application form and submit materials as required.'],
+    ['Can I modify my materials after submission?','Before the application deadline, applicants may modify or supplement materials according to the system rules. After the deadline, material updates are generally not accepted.'],
+    ['What is the review process?','The program follows a review process that includes material submission, expert review, and final evaluation. The review committee will comprehensively consider research achievements, originality, proposal quality, long-term potential, and recommendation letters to determine the annual Scholar list.'],
+    ['How will my application information be used?','The information and materials submitted by applicants will only be used for Z.AI Scholarship 2026 application review, communication, and scholarship-related processes, and will not be used for unrelated purposes.'],
+    ['Will there be follow-up collaboration opportunities after selection?','Yes. For Scholars interested in further collaboration, Z.AI will provide priority access to joint research, open research topics, summer research opportunities, internships, postdoctoral programs, and long-term research positions, based on mutual selection.']
+    ]
+  };
+  function renderFAQ(lang){
+    var faqWrap = document.querySelector('[data-faq]');
+    if(!faqWrap) return;
+    faqWrap.innerHTML = '';
+    FAQS[lang].forEach(function(pair, i){
       var item = document.createElement('div'); item.className='faq-item'+(i===0?' open':'');
       item.innerHTML =
         '<div class="faq-q"><span>'+pair[0]+'</span><span class="faq-icon"></span></div>'+
@@ -664,7 +708,6 @@
         else { item.classList.remove('open'); a.style.maxHeight = '0px'; }
       });
     });
-    // 默认展开第一题
     var first = faqWrap.querySelector('.faq-item.open .faq-a');
     if(first){ requestAnimationFrame(function(){ first.style.maxHeight = first.scrollHeight + 'px'; }); }
   }
@@ -742,30 +785,115 @@
 
   // Intro 三行逐行 reveal 复用通用 [data-reveal] + [data-stagger] 机制；关键词点亮由 .intro-line.is-visible 触发（CSS）。
 
-  // ===== 顶部公告 / 倒计时（截止：2026 年 7 月 31 日 24:00）=====
-  (function(){
-    var deadline = new Date(2026, 6, 31, 24, 0, 0).getTime(); // 月份 0 基：6=七月；24:00 即 8 月 1 日 00:00
+  // ===== 顶部公告 / 倒计时（截止：2026 年 7 月 31 日 24:00；中英双语，跟随 LANG）=====
+  var CD_DEADLINE = new Date(2026, 6, 31, 24, 0, 0).getTime(); // 月份 0 基：6=七月；24:00 即 8 月 1 日 00:00
+  function pad2(n){ return (n < 10 ? '0' : '') + n; }
+  function refreshTopbar(){
     var elText = document.getElementById('topbarText');
     var elCta  = document.querySelector('.topbar-cta');
     if(!elText) return;
-    function pad(n){ return (n < 10 ? '0' : '') + n; }
-    function tick(){
-      var diff = deadline - Date.now();
-      if(diff <= 0){
-        clearInterval(timer);
-        elText.innerHTML = 'Z.AI Scholarship 2026 申请已截止 <span class="sep">·</span> <a href="#timeline" id="cdTl">查看评审流程</a>';
-        if(elCta) elCta.style.display = 'none';
-        var t = document.getElementById('cdTl');
-        if(t) t.addEventListener('click', function(e){ e.preventDefault(); scrollToId('timeline'); });
-        return;
-      }
-      var DAY = 86400000, HR = 3600000, MI = 60000;
-      var d = Math.floor(diff / DAY), h = Math.floor((diff % DAY) / HR), m = Math.floor((diff % HR) / MI), s = Math.floor((diff % MI) / 1000);
-      elText.innerHTML = '<span class="tb-pre">Z.AI Scholarship 2026 申请通道已开启 <span class="sep">·</span> </span>距报名截止还有 <span class="cd">' + d + ' 天 ' + pad(h) + ' 时 ' + pad(m) + ' 分 ' + pad(s) + ' 秒</span>';
+    var diff = CD_DEADLINE - Date.now();
+    if(diff <= 0){
+      if(window.__cdTimer){ clearInterval(window.__cdTimer); window.__cdTimer = null; }
+      elText.innerHTML = (LANG==='en')
+        ? 'Applications for Z.AI Scholarship 2026 are now closed <span class="sep">·</span> <a href="#timeline" id="cdTl">View Review Process</a>'
+        : 'Z.AI Scholarship 2026 申请已截止 <span class="sep">·</span> <a href="#timeline" id="cdTl">查看评审流程</a>';
+      if(elCta) elCta.style.display = 'none';
+      var t = document.getElementById('cdTl');
+      if(t) t.addEventListener('click', function(e){ e.preventDefault(); scrollToId('timeline'); });
+      return;
     }
-    tick();
-    var timer = setInterval(tick, 1000);
-  })();
+    if(elCta) elCta.style.display = '';
+    var DAY = 86400000, HR = 3600000, MI = 60000;
+    var d = Math.floor(diff / DAY), h = Math.floor((diff % DAY) / HR), m = Math.floor((diff % HR) / MI), s = Math.floor((diff % MI) / 1000);
+    elText.innerHTML = (LANG==='en')
+      ? '<span class="tb-pre">Applications for Z.AI Scholarship 2026 are now open <span class="sep">·</span> </span>Deadline countdown: <span class="cd">' + d + 'd ' + pad2(h) + 'h ' + pad2(m) + 'm ' + pad2(s) + 's</span>'
+      : '<span class="tb-pre">Z.AI Scholarship 2026 申请通道已开启 <span class="sep">·</span> </span>距报名截止还有 <span class="cd">' + d + ' 天 ' + pad2(h) + ' 时 ' + pad2(m) + ' 分 ' + pad2(s) + ' 秒</span>';
+  }
+
+  // ===== i18n：中文为默认，英文经字典覆盖；快照中文原文用于回退 =====
+  var LANG = (localStorage.getItem('zai_lang') === 'en') ? 'en' : 'zh';
+  var I18N = {
+    'cta.apply':'Apply Now',
+    'nav.intro':'Project Overview','nav.benefits':'Benefits','nav.guide':'Application Guide','nav.review':'Review Process','nav.faq':'FAQ',
+    'hero.title':'<span class="brand-z brand-z-animated" aria-label="Z" role="img"></span>.AI Scholarship',
+    'hero.slogan1':'Toward AGI, Together with the Next Generation','hero.guideBtn':'View Application Guide',
+    'intro.lead':'<span class="intro-line">Z.AI Scholarship is a scholarship program launched by Z.AI for outstanding young AI researchers worldwide. It aims to support young scholars with <span class="accent">originality</span> and <span class="accent">innovation</span> potential, encourage them to continuously explore the <span class="accent">frontiers of artificial intelligence</span>, and empower them to become <span class="accent">pioneering researchers</span> driving breakthroughs in AI research and its real-world applications.</span>',
+    'benefits.h2':'Core Benefits',
+    'ben.label1':'Z.AI Scholarship','ben.value1':'RMB 200,000','ben.desc1':'Research support for frontier exploration',
+    'ben.label2':'Advisor Award','ben.value2':'RMB 100,000','ben.desc2':'Long-term support for talent cultivation',
+    'ben.value3':'GLM Coding Plan Max Annual Plan','ben.desc3':'Available to each selected Scholar and their advisor',
+    'ben.desc4':'A network for young researchers',
+    'ben.label5':'Research Collaboration','ben.value5':'Long-term Connection','ben.desc5':'Opportunities for joint research and open research topics',
+    'ben.note':'Note: The scholarship carries no internship, employment, or deliverable obligations. Any future collaboration follows the principle of mutual selection and is not a condition of the award.',
+    'guide.h2':'Application Guide','guide.eligTitle':'Eligibility','guide.eligTitleEn':'','guide.matTitle':'Required Materials','guide.matTitleEn':'','guide.matIntro':'Applicants should submit:',
+    'elig.l1':'Applicants','elig.v1':'Graduate students currently enrolled in universities or research institutions worldwide.',
+    'elig.l2':'Academic Stage','elig.v2':'Master’s and PhD students are eligible to apply.',
+    'elig.l3':'Expected Graduation','elig.v3':'Expected graduation in June 2027 or later.',
+    'elig.l4':'Research Areas','elig.v4':'Foundation models, embodied intelligence, AGI, AI for Science, and related areas.',
+    'elig.l5':'Evaluation Focus','elig.v5':'Strong research capability, originality potential, or representative research / technical achievements.',
+    'timeline.h2':'Review Process',
+    'tl.d1':'July 2026','tl.s1':'Application Submission',
+    'tl.d2':'July 31, 2026, 24:00','tl.s2':'Application Deadline',
+    'tl.d3':'August–September 2026','tl.s3':'Eligibility Review and Expert Evaluation',
+    'tl.d4':'September 2026','tl.s4':'Final Presentation Review',
+    'tl.d5':'October 2026','tl.s5':'Announcement and Awarding',
+    'faq.h2':'FAQ',
+    'footer.col1':'Navigation','footer.col2':'Application','footer.col3':'Contact','footer.how':'How to Apply',
+    'footer.email':'Email: <a href="mailto:'+CONTACT_EMAIL+'">'+CONTACT_EMAIL+'</a>',
+    'footer.privacy':'Privacy Policy','footer.terms':'Terms of Use'
+  };
+  var zhStore = {};
+  function snapshotZh(){
+    document.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(function(el){
+      var html = el.hasAttribute('data-i18n-html');
+      var key = el.getAttribute(html ? 'data-i18n-html' : 'data-i18n');
+      if(!(key in zhStore)) zhStore[key] = html ? el.innerHTML : el.textContent;
+    });
+  }
+  function applyLang(lang){
+    LANG = lang;
+    document.documentElement.setAttribute('lang', lang==='en' ? 'en' : 'zh-CN');
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k = el.getAttribute('data-i18n');
+      el.textContent = (lang==='en' && I18N[k]!=null) ? I18N[k] : (zhStore[k]!=null ? zhStore[k] : el.textContent);
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var k = el.getAttribute('data-i18n-html');
+      el.innerHTML = (lang==='en' && I18N[k]!=null) ? I18N[k] : (zhStore[k]!=null ? zhStore[k] : el.innerHTML);
+      // 切换后强制显示其中的 reveal 元素（避免重渲染内容因未被观察而保持透明）
+      el.querySelectorAll('[data-reveal]').forEach(function(c){ c.classList.add('is-visible'); });
+    });
+    injectBrandZ();
+    renderMats(lang);
+    renderFAQ(lang);
+    updateLangToggle(lang);
+    refreshTopbar();
+    try{ localStorage.setItem('zai_lang', lang); }catch(e){}
+  }
+  function updateLangToggle(lang){
+    var t = document.getElementById('langToggle');
+    if(t) t.textContent = (lang==='en') ? '中文' : 'EN';
+    var tm = document.getElementById('langToggleMobile');
+    if(tm) tm.textContent = (lang==='en') ? '中文' : 'English';
+  }
+  function toggleLang(){ applyLang(LANG==='en' ? 'zh' : 'en'); }
+
+  // ===== 初始化（中文为默认；英文经字典覆盖；记忆用户选择）=====
+  injectBrandZ();
+  snapshotZh();
+  renderMats(LANG);
+  renderFAQ(LANG);
+  updateLangToggle(LANG);
+  if(LANG==='en'){ applyLang('en'); }
+  ['langToggle','langToggleMobile'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('click', function(){ toggleLang(); closeMobile(); });
+    el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleLang(); closeMobile(); } });
+  });
+  refreshTopbar();
+  window.__cdTimer = setInterval(refreshTopbar, 1000);
 })();
 </script>
 </body>
