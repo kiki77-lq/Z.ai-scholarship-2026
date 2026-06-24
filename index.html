@@ -181,6 +181,9 @@
   .mat-sub span::before{content:"";position:absolute;left:0;top:8px;width:4px;height:4px;border-radius:999px;background:rgba(118,167,255,0.6);}
   .guide-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;align-items:center;}
   .guide-actions .btn-lg{height:50px;}
+  /* D2：申请指南末尾就近 Apply CTA——默认隐藏，仅英文态显示（中文态是否加按钮待单独确认） */
+  .guide-cta{display:none;}
+  .guide-cta-hint{margin:0;font-size:13.5px;color:rgba(20,30,50,0.5);}
   .pending{display:inline-flex;align-items:center;height:50px;padding:0 22px;border-radius:999px;font-size:14px;color:rgba(255,255,255,0.5);
     border:1px dashed rgba(255,255,255,0.2);background:rgba(255,255,255,0.02);cursor:not-allowed;}
   .mat-note{color:rgba(255,255,255,0.4);font-size:13px;line-height:1.6;margin:18px 0 0;}
@@ -386,6 +389,11 @@
   html[lang="en"] .faq-a-inner{line-height:1.8;}
   html[lang="en"] .faq-a-inner p{margin-bottom:12px;}
   html[lang="en"] .faq-a-inner li{margin-bottom:7px;}
+  /* D2：英文态显示申请指南末尾就近 Apply CTA（复用 APPLICATION_FORM_URL，无新链接） */
+  html[lang="en"] .guide-cta{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:36px;text-align:center;}
+  /* D2：英文态拉开 Hero 主/次 CTA 权重——主按钮保持强实心+辉光，次按钮降为更轻的描边链接 */
+  html[lang="en"] .hero-cta .btn-ghost{background:transparent;border-color:rgba(40,70,130,0.16);color:rgba(20,30,50,0.6);font-weight:500;}
+  html[lang="en"] .hero-cta .btn-ghost:hover{border-color:#3f6bff;color:#3f6bff;background:rgba(255,255,255,0.5);}
   @media (max-width:900px){
     html[lang="en"] .elig-label{flex:0 0 104px;}
   }
@@ -536,6 +544,10 @@
         <p class="mat-intro" data-i18n="guide.matIntro">申请人需提交：</p>
         <div class="mat-list" data-mats></div>
       </div>
+    </div>
+    <div class="guide-cta">
+      <a class="btn-lg btn-fill" data-apply data-i18n="cta.apply" href="#">立即申请</a>
+      <p class="guide-cta-hint" data-i18n="guide.ctaHint">下载申请表后，在线提交申请。</p>
     </div>
   </section>
 
@@ -854,7 +866,7 @@
     'ben.desc4':'A network for young researchers',
     'ben.label5':'Research Collaboration','ben.value5':'Long-term Connection','ben.desc5':'Opportunities for joint research and open research topics',
     'ben.note':'Note: The scholarship carries no internship, employment, or deliverable obligations. Any future collaboration follows the principle of mutual selection and is not a condition of the award.',
-    'guide.h2':'Application Guide','guide.eligTitle':'Eligibility','guide.eligTitleEn':'','guide.matTitle':'Required Materials','guide.matTitleEn':'','guide.matIntro':'Applicants should submit:',
+    'guide.h2':'Application Guide','guide.eligTitle':'Eligibility','guide.eligTitleEn':'','guide.matTitle':'Required Materials','guide.matTitleEn':'','guide.matIntro':'Applicants should submit:','guide.ctaHint':'Download the form, then submit your application online.',
     'elig.l1':'Applicants','elig.v1':'Graduate students currently enrolled in universities or research institutions worldwide.',
     'elig.l2':'Academic Stage','elig.v2':'Master’s and PhD students are eligible to apply.',
     'elig.l3':'Expected Graduation','elig.v3':'Expected graduation in June 2027 or later.',
