@@ -374,8 +374,26 @@
   html[lang="en"] .guide-col-title .en{display:none;}
   /* M4：英文态隐藏与上行语义重复的第二行 slogan（中文态仍保留 中文 slogan + 英文 slogan 两行） */
   html[lang="en"] .hero-slogan{display:none;}
+  /* L1：英文态导航品牌——主行已切为「Z.AI Scholarship」（i18n），隐藏重复的英文副行；中文态保留 智谱Z奖学金 + 副行 */
+  html[lang="en"] .nav-brand .brand-en{display:none;}
+  /* M1：英文态落款——主行已切为「Z.AI Scholarship」（i18n），隐藏重复的英文副行；中文态保留 中文落款 + 英文副行 */
+  html[lang="en"] .signoff-en{display:none;}
+  /* S1：英文长标题允许换行，避免移动端横向裁切（中文标题短、不受影响） */
+  html[lang="en"] .hero-title{white-space:normal;}
+  /* M4：英文态 FAQ 纯排版减压（仅英文，不改文案/题量/accordion 交互；中文 FAQ 不变） */
+  html[lang="en"] .faq-item{margin-bottom:12px;}
+  html[lang="en"] .faq-q{font-weight:500;line-height:1.55;}
+  html[lang="en"] .faq-a-inner{line-height:1.8;}
+  html[lang="en"] .faq-a-inner p{margin-bottom:12px;}
+  html[lang="en"] .faq-a-inner li{margin-bottom:7px;}
   @media (max-width:900px){
     html[lang="en"] .elig-label{flex:0 0 104px;}
+  }
+  /* S1：英文态窄屏（≤560px）——标题缩放并保证可换行、Hero CTA 纵向堆叠且按钮整宽，杜绝 320px 裁切；中文态用上方非 EN 的 560 媒体查询，不受影响 */
+  @media (max-width:560px){
+    html[lang="en"] .hero-title{font-size:clamp(32px,8.5vw,46px) !important;line-height:1.06 !important;max-width:100%;}
+    html[lang="en"] .hero-cta{flex-direction:column;align-items:stretch;gap:12px;max-width:100%;}
+    html[lang="en"] .hero-cta .btn-lg{width:100%;max-width:100%;justify-content:center;}
   }
   /* M3：矮视口（如小高度笔记本）适配——收紧 Hero 上下留白并放开 min-height，确保 CTA 在首屏内可见；不影响正常高度与移动端 */
   @media (max-height:720px){
@@ -404,7 +422,7 @@
         <path fill="#FFFFFF" d="M487.44,713.72l35.43-50.26c5.53-7.79,14.57-12.56,24.37-12.56h191.48v62.82H487.44z"/>
       </svg>
       <span class="brand-txt">
-        <span class="brand-cn">智谱<span class="brand-z"></span>奖学金</span>
+        <span class="brand-cn" data-i18n-html="brand.cn">智谱<span class="brand-z"></span>奖学金</span>
         <span class="brand-en">Z.AI Scholarship</span>
       </span>
     </div>
@@ -439,7 +457,7 @@
     <div class="hero-bg"></div>
     <div class="hero-mask"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow" data-reveal>Z.AI Scholarship 2026</p>
+      <p class="hero-eyebrow" data-reveal data-i18n="hero.eyebrow">Z.AI Scholarship 2026</p>
       <h1 class="hero-title" data-reveal data-i18n-html="hero.title">智谱<span class="brand-z brand-z-animated" aria-label="Z" role="img"></span>奖学金</h1>
       <p class="hero-cn-slogan" data-reveal data-i18n="hero.slogan1">问道 AGI，同行未来</p>
       <p class="hero-slogan" data-reveal>Toward AGI, with the next generation.</p>
@@ -551,7 +569,7 @@
   <!-- ===== CONTACT CTA ===== -->
   <section class="cta" id="contact">
     <div class="signoff" data-reveal>
-      <div class="signoff-cn">智谱<span class="brand-z"></span>奖学金</div>
+      <div class="signoff-cn" data-i18n-html="signoff.brand">智谱<span class="brand-z"></span>奖学金</div>
       <div class="signoff-en">Z.AI Scholarship</div>
     </div>
   </section>
@@ -823,9 +841,11 @@
   var LANG = (localStorage.getItem('zai_lang') === 'en') ? 'en' : 'zh';
   var I18N = {
     'cta.apply':'Apply Now',
+    'brand.cn':'Z.AI Scholarship','signoff.brand':'Z.AI Scholarship',
     'nav.intro':'Project Overview','nav.benefits':'Benefits','nav.guide':'Application Guide','nav.review':'Review Process','nav.faq':'FAQ',
     'hero.title':'<span class="brand-z brand-z-animated" aria-label="Z" role="img"></span>.AI Scholarship',
-    'hero.slogan1':'Toward AGI, Together with the Next Generation','hero.guideBtn':'View Application Guide',
+    'hero.eyebrow':'2026 Global Research Fellowship',
+    'hero.slogan1':'Toward AGI, with the next generation.','hero.guideBtn':'View Application Guide',
     'intro.lead':'<span class="intro-line">Z.AI Scholarship is a scholarship program launched by Z.AI for outstanding young AI researchers worldwide. It aims to support young scholars with <span class="accent">originality</span> and <span class="accent">innovation</span> potential, encourage them to continuously explore the <span class="accent">frontiers of artificial intelligence</span>, and empower them to become <span class="accent">pioneering researchers</span> driving breakthroughs in AI research and its real-world applications.</span>',
     'benefits.h2':'Core Benefits',
     'ben.label1':'Z.AI Scholarship','ben.value1':'RMB 200,000','ben.desc1':'Research support for frontier exploration',
