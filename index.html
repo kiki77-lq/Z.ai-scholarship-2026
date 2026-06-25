@@ -91,6 +91,9 @@
   /* 可复用品牌「Z」字标：全站「智谱Z奖学金」统一使用智谱 logo 的 Z 字形（内联 SVG，随字号缩放、跟随文字颜色） */
   .brand-z{display:inline-block;height:0.84em;width:auto;vertical-align:-0.1em;margin:0 0.03em;}
   .brand-z svg{display:block;height:100%;width:auto;fill:currentColor;}
+  /* Footer/Signoff 品牌 Z：复用 .brand-z 字标，按拉丁字母 cap 高度对齐 baseline，不上浮/下沉、不超后续文字太多 */
+  .footer-brand .name .brand-z{height:0.74em;vertical-align:baseline;margin:0 0.01em 0 0;}
+  html[lang="en"] .signoff-cn .brand-z{height:0.74em;vertical-align:baseline;margin:0 0.01em 0 0;}
   /* 仅 Hero 标题的 Z 加轻量动效（不影响全站其它 .brand-z）：蓝紫呼吸光感 + 极轻色彩流动，克制、不闪烁、不影响可读性 */
   .brand-z-animated{animation:zHueFlow 6.5s ease-in-out infinite;}
   .brand-z-animated svg{animation:zBreathe 6.5s ease-in-out infinite;will-change:filter;}
@@ -177,7 +180,8 @@
   .mat-item:last-child{border-bottom:none;}
   .mat-item svg{flex-shrink:0;margin-top:3px;}
   .mat-item span{font-size:15.5px;color:rgba(255,255,255,0.85);line-height:1.5;}
-  .mat-intro{color:rgba(255,255,255,0.55);font-size:14px;margin:0 0 8px;}
+  /* 层级对齐：右列正文上移补一段，与左列首行（.elig-item padding-top:18px）起始 Y 对齐，消除两列顶部错位 */
+  .mat-intro{color:rgba(255,255,255,0.55);font-size:14px;margin:0 0 8px;padding-top:18px;}
   /* 申请表小号文字链接（参考字节，非大按钮）；蓝色强调，hover 变亮加下划线 */
   .mat-dl{margin-left:12px;color:#76a7ff;font-size:14px;text-decoration:none;white-space:nowrap;transition:color .2s ease;}
   .mat-dl:hover{color:#9dbbff;text-decoration:underline;}
@@ -600,7 +604,7 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <div class="name">Z.AI Scholarship 2026</div>
+          <div class="name"><span class="brand-z"></span>.AI Scholarship 2026</div>
           <div class="tag">Toward AGI, with the next generation.</div>
         </div>
         <div class="footer-cols">
@@ -862,7 +866,7 @@
   var LANG = (localStorage.getItem('zai_lang') === 'en') ? 'en' : 'zh';
   var I18N = {
     'cta.apply':'Apply Now',
-    'brand.cn':'Z.AI Scholarship','signoff.brand':'Z.AI Scholarship',
+    'brand.cn':'Z.AI Scholarship','signoff.brand':'<span class="brand-z"></span>.AI Scholarship',
     'nav.intro':'Project Overview','nav.benefits':'Core Benefits','nav.guide':'Application Guide','nav.review':'Review Process','nav.faq':'FAQ',
     'hero.title':'<span class="brand-z brand-z-animated" aria-label="Z" role="img"></span>.AI Scholarship',
     'hero.eyebrow':'2026 Global Research Fellowship',
