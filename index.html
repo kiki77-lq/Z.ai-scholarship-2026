@@ -652,6 +652,8 @@
   var APPLICATION_FORM_URL = 'https://zhipu-ai.feishu.cn/share/base/form/shrcnAJYvhX1QOm2G42Uq4TEwwb';
   // 申请表下载（仅申请指南「申请材料」首项后的「下载申请表」文字链接，独立于申请入口）
   var FORM_DOWNLOAD_URL = 'https://zhipu-ai.feishu.cn/wiki/KiihwcRO7icdPgkx5CPcgwHen7e?from=from_copylink';
+  // 英文版专用下载链接：英文态 Download Application Form 指向英文版申请表飞书文档（中文态仍用 FORM_DOWNLOAD_URL，互不影响）
+  var FORM_DOWNLOAD_URL_EN = 'https://zhipu-ai.feishu.cn/docx/Ic9jdeFSkoII7nxMB7bcI1vonhc?from=from_copylink';
   var CONTACT_EMAIL = 'zpsy@aminer.cn'; // 咨询邮箱（页脚 mailto）
 
   function bindLink(sel, url){
@@ -689,7 +691,8 @@
     var matWrap = document.querySelector('[data-mats]');
     if(!matWrap) return;
     matWrap.innerHTML = '';
-    var dlLink = ' <a class="mat-dl" href="'+FORM_DOWNLOAD_URL+'" target="_blank" rel="noopener noreferrer">'+DL_LABEL[lang]+'</a>';
+    var dlUrl = (lang === 'en') ? FORM_DOWNLOAD_URL_EN : FORM_DOWNLOAD_URL;
+    var dlLink = ' <a class="mat-dl" href="'+dlUrl+'" target="_blank" rel="noopener noreferrer">'+DL_LABEL[lang]+'</a>';
     MATERIALS[lang].forEach(function(m){
       var d = document.createElement('div'); d.className='mat-item';
       if(typeof m === 'string'){
