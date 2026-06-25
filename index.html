@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
@@ -138,15 +138,17 @@
   .benefit:nth-child(5)::before{background:radial-gradient(circle, rgba(160,150,235,0.24), transparent 70%);}
   .benefit > *{position:relative;z-index:1;}
   .benefit:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(40,70,130,0.13);}
-  .benefit-label{margin:0;color:rgba(190,210,255,0.62);font-size:16.5px;font-weight:500;letter-spacing:0.02em;}
-  .benefit-value{margin:22px 0 0;font-size:clamp(30px,2.6vw,46px);line-height:1.06;font-weight:600;letter-spacing:-0.03em;color:#141b2b;
+  /* D1：label 预留两行高度并统一行高——无论 label 单/双行（如 EN「Research Collaboration」换行），各卡 value 顶部对齐 */
+  .benefit-label{margin:0;color:rgba(190,210,255,0.62);font-size:16.5px;font-weight:500;letter-spacing:0.02em;line-height:1.3;min-height:2.6em;}
+  /* D1：金额数值仍是全排视觉锚点但收口最大值（46→40），缩小与文本型卡的字号落差 */
+  .benefit-value{margin:18px 0 0;font-size:clamp(28px,2.3vw,40px);line-height:1.1;font-weight:600;letter-spacing:-0.03em;color:#141b2b;
     word-break:keep-all;overflow-wrap:normal;transition:color .35s ease;}
-  /* 文本型大字（Coding Plan Max / Z.AI Scholar / 长期机会）：略小，整词换行不拆字 */
-  .benefit-value.is-text{font-size:clamp(26px,2vw,34px);line-height:1.18;letter-spacing:-0.02em;}
-  /* Coding Plan：含「Max 年包」较长，略缩小确保整词不拆奇怪 */
-  .benefit-value.bv-coding{font-size:clamp(21px,1.6vw,27px);line-height:1.2;}
-  /* Scholars Club：缩小并强制一行展示，不让 Club 掉行 */
-  .benefit-value.bv-club{font-size:clamp(14px,1.2vw,18px);letter-spacing:-0.01em;white-space:nowrap;font-weight:500;}
+  /* D1：文本型大字（长期连接 / Long-term Connection 等）统一到一档，整词换行不拆字 */
+  .benefit-value.is-text{font-size:clamp(23px,1.9vw,30px);line-height:1.2;letter-spacing:-0.02em;font-weight:600;}
+  /* D1：Coding Plan 文案较长，略小但贴近文本型一档（不再悬殊） */
+  .benefit-value.bv-coding{font-size:clamp(20px,1.55vw,25px);line-height:1.22;}
+  /* D1：Scholars Club 不再被压到过小——抬升到接近文本型一档，允许整词换行（去掉强制单行） */
+  .benefit-value.bv-club{font-size:clamp(19px,1.5vw,23px);letter-spacing:-0.01em;white-space:normal;font-weight:600;line-height:1.2;}
   .benefit:hover .benefit-value{color:#3f6bff;}
   .benefit-value .unit{font-size:0.46em;font-weight:400;color:rgba(255,255,255,0.72);margin-left:5px;letter-spacing:0;}
   .benefit-desc{margin:16px 0 0;color:rgba(230,238,255,0.55);font-size:14px;line-height:1.6;letter-spacing:0.01em;}
