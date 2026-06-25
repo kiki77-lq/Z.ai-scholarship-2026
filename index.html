@@ -21,7 +21,8 @@
       #f7f9ff;
   }
   .wrap{width:min(calc(100vw - 96px),1180px);margin:0 auto;}
-  .sec{width:min(calc(100vw - 96px),1180px);margin:0 auto;padding:88px 0;}
+  /* M6.1/M8(PDF)：大屏 section 容器 1180→1240，向 Hero(1320) 靠拢、缓解大屏「过窄」；FAQ 内层仍 1000 保证可读，时间轴变化幅度小不致太散（中英共用，必要的视觉修正） */
+  .sec{width:min(calc(100vw - 96px),1240px);margin:0 auto;padding:88px 0;}
   .eyebrow{margin:0 0 18px;color:#76a7ff;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;}
   .h2{margin:0;font-size:clamp(36px,4vw,66px);line-height:1.05;font-weight:450;letter-spacing:-0.04em;}
 
@@ -85,7 +86,8 @@
   .hero-content{position:relative;z-index:2;width:min(calc(100vw - 96px),1320px);margin:0 auto;}
   .hero-eyebrow{color:rgba(20,30,50,0.5);font-size:14px;margin:0 0 20px;letter-spacing:0.08em;}
   /* Hero 主标题「智谱Z奖学金」：首屏重点，桌面端单行；移动端在媒体查询里允许换行 */
-  .hero-title{margin:0;font-size:clamp(48px,6vw,96px);line-height:1.06;font-weight:600;letter-spacing:-0.01em;color:#141b2b;white-space:nowrap;}
+  /* M3(PDF)：大屏 Hero 标题更有首屏气势——上限 96→108、vw 6→6.2（min 48 不变，移动端另有媒体查询覆盖） */
+  .hero-title{margin:0;font-size:clamp(48px,6.2vw,108px);line-height:1.06;font-weight:600;letter-spacing:-0.01em;color:#141b2b;white-space:nowrap;}
   /* 可复用品牌「Z」字标：全站「智谱Z奖学金」统一使用智谱 logo 的 Z 字形（内联 SVG，随字号缩放、跟随文字颜色） */
   .brand-z{display:inline-block;height:0.84em;width:auto;vertical-align:-0.1em;margin:0 0.03em;}
   .brand-z svg{display:block;height:100%;width:auto;fill:currentColor;}
@@ -183,9 +185,6 @@
   .mat-sub span::before{content:"";position:absolute;left:0;top:8px;width:4px;height:4px;border-radius:999px;background:rgba(118,167,255,0.6);}
   .guide-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;align-items:center;}
   .guide-actions .btn-lg{height:50px;}
-  /* D2：申请指南末尾就近 Apply CTA——默认隐藏，仅英文态显示（中文态是否加按钮待单独确认） */
-  .guide-cta{display:none;}
-  .guide-cta-hint{margin:0;font-size:13.5px;color:rgba(20,30,50,0.5);}
   .pending{display:inline-flex;align-items:center;height:50px;padding:0 22px;border-radius:999px;font-size:14px;color:rgba(255,255,255,0.5);
     border:1px dashed rgba(255,255,255,0.2);background:rgba(255,255,255,0.02);cursor:not-allowed;}
   .mat-note{color:rgba(255,255,255,0.4);font-size:13px;line-height:1.6;margin:18px 0 0;}
@@ -211,7 +210,8 @@
   .faq-item{border-bottom:1px solid rgba(255,255,255,0.1);}
   .faq-q{display:flex;align-items:center;justify-content:space-between;padding:24px 0;cursor:pointer;gap:24px;user-select:none;min-height:70px;transition:color .2s ease;}
   .faq-q:hover{color:#76a7ff;}
-  .faq-q span{font-size:17px;color:rgba(255,255,255,0.92);line-height:1.5;}
+  /* M11(PDF)：Q 字号增大并加重，与 A（15px）拉开层级（中英统一） */
+  .faq-q span{font-size:19px;font-weight:600;color:rgba(255,255,255,0.92);line-height:1.5;}
   .faq-icon{flex-shrink:0;position:relative;width:18px;height:18px;}
   .faq-icon::before,.faq-icon::after{content:"";position:absolute;background:rgba(255,255,255,0.5);transition:transform .3s ease,background .3s ease;}
   .faq-icon::before{top:8px;left:0;width:18px;height:2px;}
@@ -369,8 +369,10 @@
   }
 
   /* ===== 英文版排版适配（仅 html[lang="en"] 生效，避免英文长文本溢出；不影响中文版） ===== */
-  html[lang="en"] .nav-links{gap:24px;}
-  html[lang="en"] .nav-links span{font-size:13px;letter-spacing:0.01em;}
+  /* M2(PDF)：英文导航在大屏更舒展——字号 13→15、间距 24→32；窄桌面（≤1120）回落避免溢出 */
+  html[lang="en"] .nav-links{gap:32px;}
+  html[lang="en"] .nav-links span{font-size:15px;letter-spacing:0.01em;}
+  html[lang="en"] .nav-right{gap:20px;}
   html[lang="en"] .elig-label{flex:0 0 120px;}
   html[lang="en"] .benefit-value.bv-coding{font-size:clamp(18px,1.45vw,23px);line-height:1.22;}
   html[lang="en"] .benefit-desc.bv-coding-desc{white-space:normal;letter-spacing:0;}
@@ -385,14 +387,21 @@
   html[lang="en"] .signoff-en{display:none;}
   /* S1：英文长标题允许换行，避免移动端横向裁切（中文标题短、不受影响） */
   html[lang="en"] .hero-title{white-space:normal;}
+  /* M1(PDF)：英文态隐藏每个 section 大标题上方与之重复的小号 eyebrow（CORE BENEFITS / APPLICATION GUIDE / REVIEW PROCESS / FAQ）；中文态保留「小号英文标签 + 中文标题」 */
+  html[lang="en"] .eyebrow{display:none;}
+  /* M4(PDF)：英文 Hero 标题里的品牌 Z 与「.AI Scholarship」统一视觉字号并对齐基线（仅英文 Hero；中文「智谱Z奖学金」不受影响） */
+  html[lang="en"] .hero-title .brand-z{height:0.72em;vertical-align:baseline;margin:0 0.01em 0 0;}
+  /* M2(PDF)：英文导航窄桌面（901–1120）回落字号/间距，避免「Core Benefits」等更长项在 1024 溢出（≤900 已转 burger） */
+  @media (max-width:1120px){
+    html[lang="en"] .nav-links{gap:22px;}
+    html[lang="en"] .nav-links span{font-size:13.5px;}
+  }
   /* M4：英文态 FAQ 纯排版减压（仅英文，不改文案/题量/accordion 交互；中文 FAQ 不变） */
   html[lang="en"] .faq-item{margin-bottom:12px;}
-  html[lang="en"] .faq-q{font-weight:500;line-height:1.55;}
+  html[lang="en"] .faq-q{line-height:1.55;}
   html[lang="en"] .faq-a-inner{line-height:1.8;}
   html[lang="en"] .faq-a-inner p{margin-bottom:12px;}
   html[lang="en"] .faq-a-inner li{margin-bottom:7px;}
-  /* D2：英文态显示申请指南末尾就近 Apply CTA（复用 APPLICATION_FORM_URL，无新链接） */
-  html[lang="en"] .guide-cta{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:36px;text-align:center;}
   /* D2：英文态拉开 Hero 主/次 CTA 权重——主按钮保持强实心+辉光，次按钮降为更轻的描边链接 */
   html[lang="en"] .hero-cta .btn-ghost{background:transparent;border-color:rgba(40,70,130,0.16);color:rgba(20,30,50,0.6);font-weight:500;}
   html[lang="en"] .hero-cta .btn-ghost:hover{border-color:#3f6bff;color:#3f6bff;background:rgba(255,255,255,0.5);}
@@ -547,10 +556,6 @@
         <div class="mat-list" data-mats></div>
       </div>
     </div>
-    <div class="guide-cta">
-      <a class="btn-lg btn-fill" data-apply data-i18n="cta.apply" href="#">立即申请</a>
-      <p class="guide-cta-hint" data-i18n="guide.ctaHint">下载申请表后，在线提交申请。</p>
-    </div>
   </section>
 
   <!-- ===== REVIEW PROCESS ===== -->
@@ -562,7 +567,7 @@
     <div class="timeline" data-reveal data-timeline>
       <div class="tl-line"></div>
       <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d1">2026 年 7 月</p><strong data-i18n="tl.s1">申请报名</strong></div>
-      <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d2">2026 年 7 月 31 日 24:00</p><strong data-i18n="tl.s2">报名截止</strong></div>
+      <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d2">2026 年 8 月 8 日 24:00</p><strong data-i18n="tl.s2">报名截止</strong></div>
       <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d3">2026 年 8 – 9 月</p><strong data-i18n="tl.s3">资格审核及专家评审</strong></div>
       <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d4">2026 年 9 月</p><strong data-i18n="tl.s4">答辩终审</strong></div>
       <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d5">2026 年 10 月</p><strong data-i18n="tl.s5">结果公布与颁奖</strong></div>
@@ -721,13 +726,13 @@
     ['What materials are required?','Applicants should submit the following materials:<ol><li>Z.AI Scholarship 2026 Application Form</li><li>CV</li><li>Supplementary application form or future research plan</li><li>Representative achievement materials</li><li>1–2 advisor recommendation letters</li></ol>Representative achievement materials may include papers, open-source projects, technical reports, system contributions, benchmark results, patents, competition awards, and other relevant materials.'],
     ['Are advisor recommendation letters required?','Yes. Applicants are encouraged to submit 1–2 advisor recommendation letters. Recommenders should be the applicant’s advisor or collaborating advisor.'],
     ['How should advisor recommendation letters be submitted?','Recommendation letters may be uploaded together with the application materials, or sent separately by the recommender to the designated project email. If sent separately, the email should include the applicant’s name, university or institution, and project name.'],
-    ['Do selected Scholars have to intern or work at Z.AI?','No. Z.AI Scholarship follows an open, public-interest, and academic-oriented principle. The scholarship does not require internship, employment, or deliverable commitments.'],
+    ['Do selected scholars have to intern or work at Z.AI?','No. Z.AI Scholarship follows an open, public-interest, and academic-oriented principle. The scholarship does not require internship, employment, or deliverable commitments.'],
     ['Does this scholarship conflict with other scholarships?','No. Applicants may apply for or receive other scholarships, scholar programs, or university funding. Applicants are welcome to mention other major awards or scholar programs in their application materials.'],
     ['How do I submit my application materials?','Applicants should submit materials through the official Z.AI Scholarship application channel. Please use the “Apply Now” entry on the official website to access the online application form and submit materials as required.'],
     ['Can I modify my materials after submission?','Before the application deadline, applicants may modify or supplement materials according to the system rules. After the deadline, material updates are generally not accepted.'],
-    ['What is the review process?','The program follows a review process that includes material submission, expert review, and final evaluation. The review committee will comprehensively consider research achievements, originality, proposal quality, long-term potential, and recommendation letters to determine the annual Scholar list.'],
+    ['What is the review process?','The program follows a review process that includes material submission, expert review, and final evaluation. The review committee will comprehensively consider research achievements, originality, proposal quality, long-term potential, and recommendation letters to determine the annual scholar list.'],
     ['How will my application information be used?','The information and materials submitted by applicants will only be used for Z.AI Scholarship 2026 application review, communication, and scholarship-related processes, and will not be used for unrelated purposes.'],
-    ['Will there be follow-up collaboration opportunities after selection?','Yes. For Scholars interested in further collaboration, Z.AI will provide priority access to joint research, open research topics, summer research opportunities, internships, postdoctoral programs, and long-term research positions, based on mutual selection.']
+    ['Will there be follow-up collaboration opportunities after selection?','Yes. For scholars interested in further collaboration, Z.AI will provide priority access to joint research, open research topics, summer research opportunities, internships, postdoctoral programs, and long-term research positions, based on mutual selection.']
     ]
   };
   function renderFAQ(lang){
@@ -825,8 +830,8 @@
 
   // Intro 三行逐行 reveal 复用通用 [data-reveal] + [data-stagger] 机制；关键词点亮由 .intro-line.is-visible 触发（CSS）。
 
-  // ===== 顶部公告 / 倒计时（截止：2026 年 7 月 31 日 24:00；中英双语，跟随 LANG）=====
-  var CD_DEADLINE = new Date(2026, 6, 31, 24, 0, 0).getTime(); // 月份 0 基：6=七月；24:00 即 8 月 1 日 00:00
+  // ===== 顶部公告 / 倒计时（截止：2026 年 8 月 8 日 24:00；中英双语，跟随 LANG）=====
+  var CD_DEADLINE = new Date(2026, 7, 8, 24, 0, 0).getTime(); // 月份 0 基：7=八月；8 日 24:00 即 8 月 9 日 00:00
   function pad2(n){ return (n < 10 ? '0' : '') + n; }
   function refreshTopbar(){
     var elText = document.getElementById('topbarText');
@@ -856,19 +861,19 @@
   var I18N = {
     'cta.apply':'Apply Now',
     'brand.cn':'Z.AI Scholarship','signoff.brand':'Z.AI Scholarship',
-    'nav.intro':'Project Overview','nav.benefits':'Benefits','nav.guide':'Application Guide','nav.review':'Review Process','nav.faq':'FAQ',
+    'nav.intro':'Project Overview','nav.benefits':'Core Benefits','nav.guide':'Application Guide','nav.review':'Review Process','nav.faq':'FAQ',
     'hero.title':'<span class="brand-z brand-z-animated" aria-label="Z" role="img"></span>.AI Scholarship',
     'hero.eyebrow':'2026 Global Research Fellowship',
     'hero.slogan1':'Toward AGI, with the next generation.','hero.guideBtn':'View Application Guide',
     'intro.lead':'<span class="intro-line">Z.AI Scholarship is a global program from Z.AI for outstanding young AI researchers worldwide.</span><span class="intro-line">It supports young scholars with <span class="accent">originality</span> and <span class="accent">innovation</span> potential, encouraging them to keep exploring the <span class="accent">frontiers of artificial intelligence</span>—</span><span class="intro-line">and to become <span class="accent">pioneering researchers</span> driving breakthroughs in AI research and its real-world applications.</span>',
     'benefits.h2':'Core Benefits',
-    'ben.label1':'Z.AI Scholarship','ben.value1':'RMB 200,000','ben.desc1':'Research support for frontier exploration',
-    'ben.label2':'Advisor Award','ben.value2':'RMB 100,000','ben.desc2':'Long-term support for talent cultivation',
-    'ben.value3':'GLM Coding Plan Max Annual Plan','ben.desc3':'Available to each selected Scholar and their advisor',
+    'ben.label1':'Z.AI Scholarship','ben.value1':'CNY ¥200,000','ben.desc1':'Research support for frontier exploration',
+    'ben.label2':'Advisor Award','ben.value2':'CNY ¥100,000','ben.desc2':'Long-term support for talent cultivation',
+    'ben.value3':'GLM Coding Plan Max Annual Plan','ben.desc3':'Available to each selected scholar and their advisor',
     'ben.desc4':'A network for young researchers',
     'ben.label5':'Research Collaboration','ben.value5':'Long-term Connection','ben.desc5':'Opportunities for joint research and open research topics',
     'ben.note':'Note: The scholarship carries no internship, employment, or deliverable obligations. Any future collaboration follows the principle of mutual selection and is not a condition of the award.',
-    'guide.h2':'Application Guide','guide.eligTitle':'Eligibility','guide.eligTitleEn':'','guide.matTitle':'Required Materials','guide.matTitleEn':'','guide.matIntro':'Applicants should submit:','guide.ctaHint':'Download the form, then submit your application online.',
+    'guide.h2':'Application Guide','guide.eligTitle':'Eligibility','guide.eligTitleEn':'','guide.matTitle':'Required Materials','guide.matTitleEn':'','guide.matIntro':'Applicants should submit:',
     'elig.l1':'Applicants','elig.v1':'Graduate students currently enrolled in universities or research institutions worldwide.',
     'elig.l2':'Academic Stage','elig.v2':'Master’s and PhD students are eligible to apply.',
     'elig.l3':'Expected Graduation','elig.v3':'Expected graduation in June 2027 or later.',
@@ -876,7 +881,7 @@
     'elig.l5':'Evaluation Focus','elig.v5':'Strong research capability, originality potential, or representative research / technical achievements.',
     'timeline.h2':'Review Process',
     'tl.d1':'July 2026','tl.s1':'Application Submission',
-    'tl.d2':'July 31, 2026, 24:00','tl.s2':'Application Deadline',
+    'tl.d2':'August 8, 2026, 24:00','tl.s2':'Application Deadline',
     'tl.d3':'August–September 2026','tl.s3':'Eligibility Review and Expert Evaluation',
     'tl.d4':'September 2026','tl.s4':'Final Presentation Review',
     'tl.d5':'October 2026','tl.s5':'Announcement and Awarding',
