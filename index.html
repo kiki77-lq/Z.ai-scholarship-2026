@@ -248,8 +248,8 @@
   .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
   .footer-bottom .cp{font-size:12px;color:rgba(255,255,255,0.3);}
   .footer-bottom .legal{display:flex;gap:22px;}
-  .footer-bottom .legal span{font-size:12px;color:rgba(255,255,255,0.3);cursor:pointer;transition:color .2s ease;}
-  .footer-bottom .legal span:hover{color:rgba(255,255,255,0.6);}
+  .footer-bottom .legal span,.footer-bottom .legal a{font-size:12px;color:rgba(255,255,255,0.3);cursor:pointer;transition:color .2s ease;text-decoration:none;}
+  .footer-bottom .legal span:hover,.footer-bottom .legal a:hover{color:rgba(255,255,255,0.6);}
 
   /* ===== responsive ===== */
   /* Codex问题3：五列阈值 980→1100，避免 1024 下五卡过窄、英文碎行；1024 改用两列（每卡更宽，英文行宽从容） */
@@ -366,8 +366,8 @@
   .light-zone .footer-cols .lk span:hover,.light-zone .footer-cols .lk a:hover{color:#3f6bff;}
   .light-zone .footer-bottom{border-top:1px solid rgba(30,55,110,0.10);}
   .light-zone .footer-bottom .cp{color:#7c869a;}
-  .light-zone .footer-bottom .legal span{color:#7c869a;}
-  .light-zone .footer-bottom .legal span:hover{color:#5b6678;}
+  .light-zone .footer-bottom .legal span,.light-zone .footer-bottom .legal a{color:#7c869a;}
+  .light-zone .footer-bottom .legal span:hover,.light-zone .footer-bottom .legal a:hover{color:#5b6678;}
   @media (max-width:900px){
     .light-zone .timeline{border-left:1px solid rgba(30,55,110,0.15) !important;}
     .tb-pre{display:none;}
@@ -634,7 +634,7 @@
       </div>
       <div class="footer-bottom">
         <span class="cp">© 2026 Z.AI. All rights reserved.</span>
-        <div class="legal"><span data-i18n="footer.privacy">隐私政策</span><span data-i18n="footer.terms">使用条款</span></div>
+        <div class="legal"><a href="https://zhipu-ai.feishu.cn/wiki/DnmEw6H7ui7NJlkj7tCcZIZcnLf?from=from_copylink" target="_blank" rel="noopener noreferrer" data-i18n="footer.privacy">隐私条款</a><span data-i18n="footer.terms">使用条款</span></div>
       </div>
     </div>
   </footer>
@@ -897,7 +897,7 @@
     'faq.h2':'FAQ',
     'footer.col1':'Navigation','footer.col2':'Application','footer.col3':'Contact','footer.how':'How to Apply',
     'footer.email':'Email: <a href="mailto:'+CONTACT_EMAIL+'">'+CONTACT_EMAIL+'</a>',
-    'footer.privacy':'Privacy Policy','footer.terms':'Terms of Use'
+    'footer.privacy':'Privacy Terms','footer.terms':'Terms of Use'
   };
   var zhStore = {};
   function snapshotZh(){
