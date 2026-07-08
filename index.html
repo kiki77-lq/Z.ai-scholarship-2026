@@ -414,6 +414,10 @@
   @media (max-width:900px){
     html[lang="en"] .elig-label{flex:0 0 104px;}
   }
+  @media (max-width:480px){
+    html[lang="en"] .elig-item{flex-direction:column;gap:4px;}
+    html[lang="en"] .elig-label{flex:none;}
+  }
   /* S1：英文态窄屏（≤560px）——标题缩放并保证可换行、Hero CTA 纵向堆叠且按钮整宽，杜绝 320px 裁切；中文态用上方非 EN 的 560 媒体查询，不受影响 */
   @media (max-width:560px){
     html[lang="en"] .hero-title{font-size:clamp(32px,8.5vw,46px) !important;line-height:1.06 !important;max-width:100%;}
