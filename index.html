@@ -439,7 +439,7 @@
 
   <!-- ===== TOP COUNTDOWN BAR ===== -->
   <div class="topbar" id="topbar">
-    <span class="topbar-text" id="topbarText">Z.AI Scholarship 2026 申请通道已开启 · 距报名截止还有 …</span>
+    <span class="topbar-text" id="topbarText">报名截止：2026 年 8 月 16 日 24:00 · 距报名截止还有 …</span>
     <a class="topbar-cta" data-apply data-i18n="cta.apply" href="#">立即申请</a>
   </div>
 
@@ -581,7 +581,7 @@
     <div class="timeline" data-reveal data-timeline>
       <div class="tl-line"></div>
       <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d1">2026 年 7 月</p><strong data-i18n="tl.s1">申请报名</strong></div>
-      <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d2">2026 年 8 月 8 日 24:00</p><strong data-i18n="tl.s2">报名截止</strong></div>
+      <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d2">2026 年 8 月 16 日 24:00</p><strong data-i18n="tl.s2">报名截止</strong></div>
       <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d3">2026 年 8 – 9 月</p><strong data-i18n="tl.s3">资格审核及专家评审</strong></div>
       <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d4">2026 年 9 月</p><strong data-i18n="tl.s4">答辩终审</strong></div>
       <div class="tl-item"><span class="tl-node"></span><p class="date" data-i18n="tl.d5">2026 年 10 月</p><strong data-i18n="tl.s5">结果公布与颁奖</strong></div>
@@ -847,8 +847,8 @@
 
   // Intro 三行逐行 reveal 复用通用 [data-reveal] + [data-stagger] 机制；关键词点亮由 .intro-line.is-visible 触发（CSS）。
 
-  // ===== 顶部公告 / 倒计时（截止：2026 年 8 月 8 日 24:00；中英双语，跟随 LANG）=====
-  var CD_DEADLINE = new Date(2026, 7, 8, 24, 0, 0).getTime(); // 月份 0 基：7=八月；8 日 24:00 即 8 月 9 日 00:00
+  // ===== 顶部公告 / 倒计时（截止：2026 年 8 月 16 日 24:00；中英双语，跟随 LANG）=====
+  var CD_DEADLINE = new Date(2026, 7, 16, 24, 0, 0).getTime(); // 月份 0 基：7=八月；16 日 24:00 即 8 月 17 日 00:00
   function pad2(n){ return (n < 10 ? '0' : '') + n; }
   function refreshTopbar(){
     var elText = document.getElementById('topbarText');
@@ -869,8 +869,8 @@
     var DAY = 86400000, HR = 3600000, MI = 60000;
     var d = Math.floor(diff / DAY), h = Math.floor((diff % DAY) / HR), m = Math.floor((diff % HR) / MI), s = Math.floor((diff % MI) / 1000);
     elText.innerHTML = (LANG==='en')
-      ? '<span class="tb-pre">Applications for Z.AI Scholarship 2026 are now open <span class="sep">·</span> </span>Deadline countdown: <span class="cd">' + d + 'd ' + pad2(h) + 'h ' + pad2(m) + 'm ' + pad2(s) + 's</span>'
-      : '<span class="tb-pre">Z.AI Scholarship 2026 申请通道已开启 <span class="sep">·</span> </span>距报名截止还有 <span class="cd">' + d + ' 天 ' + pad2(h) + ' 时 ' + pad2(m) + ' 分 ' + pad2(s) + ' 秒</span>';
+      ? 'Deadline: August 16, 2026, 24:00 <span class="sep">·</span> Deadline countdown: <span class="cd">' + d + 'd ' + pad2(h) + 'h ' + pad2(m) + 'm ' + pad2(s) + 's</span>'
+      : '报名截止：2026 年 8 月 16 日 24:00 <span class="sep">·</span> 距报名截止还有 <span class="cd">' + d + ' 天 ' + pad2(h) + ' 时 ' + pad2(m) + ' 分 ' + pad2(s) + ' 秒</span>';
   }
 
   // ===== i18n：中文为默认，英文经字典覆盖；快照中文原文用于回退 =====
@@ -898,7 +898,7 @@
     'elig.l5':'Evaluation Focus','elig.v5':'Strong research capability, originality potential, or representative research / technical achievements.',
     'timeline.h2':'Review Process',
     'tl.d1':'July 2026','tl.s1':'Application Submission',
-    'tl.d2':'August 8, 2026, 24:00','tl.s2':'Application Deadline',
+    'tl.d2':'August 16, 2026, 24:00','tl.s2':'Application Deadline',
     'tl.d3':'August–September 2026','tl.s3':'Eligibility Review and Expert Evaluation',
     'tl.d4':'September 2026','tl.s4':'Final Presentation Review',
     'tl.d5':'October 2026','tl.s5':'Announcement and Awarding',
