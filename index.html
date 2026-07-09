@@ -42,8 +42,9 @@
   .nav-brand .brand-txt{display:flex;flex-direction:column;justify-content:center;line-height:1.12;flex:0 0 auto;min-width:max-content;}
   .nav-brand .brand-cn{font-size:14px;font-weight:600;color:#141b2b;letter-spacing:0.02em;}
   .nav-brand .brand-en{font-size:10.5px;font-weight:500;color:rgba(20,30,50,0.5);letter-spacing:0.07em;margin-top:1px;}
-  .nav-brand .brand-z{width:0.989em;height:0.84em;min-width:0.989em;aspect-ratio:504 / 428;}
-  .nav-brand .brand-z svg{width:100%;height:100%;}
+  .nav-brand .brand-z{display:inline-block;width:auto;height:auto;min-width:max-content;aspect-ratio:auto;vertical-align:baseline;margin:0 0.03em;font-family:inherit;font-style:normal;font-stretch:normal;line-height:inherit;transform:none;}
+  .nav-brand .brand-z svg{display:none;}
+  .nav-brand .brand-z::before{content:"Z";}
   .nav-links{display:flex;gap:34px;}
   .nav-links span{color:rgba(20,30,50,0.7);font-size:14px;cursor:pointer;transition:color .22s ease;}
   .nav-links span:hover{color:#3f6bff;}
